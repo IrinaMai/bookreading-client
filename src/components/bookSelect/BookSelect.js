@@ -9,6 +9,19 @@ const BookSelect = ({ onChange }) => {
     { value: 'book5', label: 'Book5' },
   ]
 
+  const customStyles = {
+    option: (provided, _) => ({
+      ...provided,
+      padding: '3px',
+    }),
+    control: provided => ({
+      ...provided,
+      fontSize: '14px',
+    }),
+    menu: provided => ({ ...provided, zIndex: 9999, padding:'5px' }),
+    menuPortal: base => ({ ...base, zIndex: 9999 }),
+  }
+
   const customTheme = theme => {
     return {
       ...theme,
@@ -27,13 +40,17 @@ const BookSelect = ({ onChange }) => {
       options={books}
       theme={customTheme}
       placeholder="Обрати книги з бібліотеки"
-      isMulti
+      // isMulti
       autoFocus
       components={{
         IndicatorSeparator: () => null,
       }}
-      maxMenuHeight={200}
+      maxMenuHeight={100}
       menuPlacement="auto"
+      menuPortalTarget={document.body}
+      menuPosition={'fixed'}
+      styles={customStyles}
+      myFontSize="10px"
     />
   )
 }
