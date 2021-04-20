@@ -38,29 +38,35 @@ const FormContainer = styled.div`
   .inputGroup {
     margin-bottom: 20px;
 
-    @media (max-width: 767px) {
-      & input:first-child {
-        margin-bottom: 20px;
-      }
-    }
-
     @media (min-width: 768px) {
       display: flex;
       justify-content: center;
       margin-bottom: 25px;
 
-      & input:first-child {
-        margin-right: 45px;
-      }
     }
   }
 
-  .formInput {
-    width: 100%;
-    height: 42px;
+  .inputGroup > div {
+    @media (max-width: 767px) {
+      margin-bottom: 20px;
+    }
+  }
 
+  .inputGroup > div ~ div {
+    @media (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+
+  .inputGroup > div {
     @media (min-width: 768px) {
-      width: 250px;
+      margin-right: 45px;
+    }
+  }
+
+  .inputGroup > div ~ div {
+    @media (min-width: 768px) {
+      margin-right: 0;
     }
   }
 

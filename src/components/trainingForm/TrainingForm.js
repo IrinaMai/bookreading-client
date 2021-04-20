@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
 import BookSelect from '../bookSelect/BookSelect'
+import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
 const TrainingForm = () => {
   const [books, setBooks] = useState([])
-  const [startDate, setStartDate] = useState(new Date())
-  const [finishDate, setFinishDate] = useState(new Date())
+  const [startDate, setStartDate] = useState('')
+  const [finishDate, setFinishDate] = useState('')
 
   const handleChange = selectedOption => {
     setBooks(selectedOption)
@@ -18,24 +19,21 @@ const TrainingForm = () => {
 
   return (
     <FormContainer>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit} autoComplete="off">
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
-          <input
-            type="date"
-            name="startDate"
-            value={startDate}
-            placeholder="Початок"
-            onChange={e => setStartDate(e.target.value)}
-            className="formInput"
+       
+          <InputDatePicker
+            pickedDate={startDate}
+            setPickedDate={setStartDate}
+            placeholderText="Початок"
+            className="startDatePicker"
           />
-          <input
-            type="date"
-            name="finishDate"
-            value={finishDate}
-            placeholder="Завершення"
-            onChange={e => setFinishDate(e.target.value)}
-            className="formInput"
+           <InputDatePicker
+            pickedDate={finishDate}
+            setPickedDate={setFinishDate}
+            placeholderText="Завершення"
+            className="finishDatePicker"
           />
         </div>
         <div className="selectGroup">
@@ -51,6 +49,22 @@ const TrainingForm = () => {
 
 export default TrainingForm
 
+/* <input
+            type="date"
+            name="startDate"
+            value={startDate}
+            placeholder="Початок"
+            onChange={e => setStartDate(e.target.value)}
+            className="formInput"
+          />
+          <input
+            type="date"
+            name="finishDate"
+            value={finishDate}
+            placeholder="Завершення"
+            onChange={e => setFinishDate(e.target.value)}
+            className="formInput"
+          /> */
 //isMulti handler
 // const handleChange = e => {
 //   setBooks(() => {
