@@ -8,7 +8,7 @@ import mainRoutes from '../../routes/mainRoutes';
 const UserMenu = () => {
   const history = useHistory();
   const logOut = () => {
-    history.push('/');
+    history.push('/login');
   };
   const onlyWidth = useWindowWidth();
   return (
