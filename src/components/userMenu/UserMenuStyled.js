@@ -6,8 +6,6 @@ const UserMenuStyled = styled.div`
   align-items: center;
   .userMenu-nav {
     display: flex;
-    /* justify-content: space-between; */
-    /* align-items: center; */
   }
   .userMenu-nav::after {
     content: '';
@@ -47,6 +45,7 @@ const UserMenuStyled = styled.div`
     color: var(--main-text);
     background-color: transparent;
     border: 0;
+    cursor: pointer;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     &:focus,
     &:hover,

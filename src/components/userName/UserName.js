@@ -2,7 +2,7 @@ import React from 'react';
 import UserNameStyled from './UserNameStyled';
 
 const UserName = () => {
-  const name = 'Martha Stewart';
+  const name = 'Darth Vader';
   const letter = name.slice(0, 1);
 
   return (

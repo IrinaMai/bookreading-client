@@ -10,12 +10,12 @@ const DefaultPage = () => {
         Вказана сторінка не знайдена. Повернутися до<span> </span>
         {!isAuth && (
           <Link to="/login" className="linkError">
-            бібліотеки
+            сторінки логіну
           </Link>
         )}
         {isAuth && (
           <Link to="/library" className="linkError">
-            сторінки логіну
+            бібліотеки
           </Link>
         )}
       </p>
