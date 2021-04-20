@@ -1,6 +1,6 @@
 import React from 'react';
 import { Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import DefaultPage from '../../pages/defaultPage/DefaultPage';
 import mainRoutes from '../../routes/mainRoutes';
 import LoaderSpinner from '../loader/Loader';
@@ -21,6 +21,13 @@ const Main = () => {
               return <PublicRoute {...route} key={route.path} isAuth={isAuth} />;
             }
           })}
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return isAuth ? <Redirect to="/library" /> : <Redirect to="/login" />;
+            }}
+          />
           <Route component={DefaultPage} />
         </Switch>
       </Suspense>
