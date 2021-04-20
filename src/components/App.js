@@ -1,3 +1,4 @@
+import TrainingPage from '../pages/trainingPage/TrainingPage';
 import Header from './header/Header';
 import Main from './main/Main';
 
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <Main />
+      <TrainingPage/>
     </>
   );
 }
