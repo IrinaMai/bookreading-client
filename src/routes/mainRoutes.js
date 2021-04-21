@@ -1,4 +1,6 @@
 import { lazy } from 'react';
+import HomeIcon from '../components/icons/HomeIcon';
+import TrainingIcon from '../components/icons/TrainingIcon';
 
 const mainRoutes = [
   {
@@ -18,6 +20,7 @@ const mainRoutes = [
   {
     path: '/library',
     name: 'Бібліотека',
+    icon: HomeIcon(),
     exact: false,
     component: lazy(() => import('../pages/libraryPage/LibraryPage' /* webpackChunkName: "LibraryPage"*/)),
     isPrivate: true,
@@ -25,6 +28,7 @@ const mainRoutes = [
   {
     path: '/training',
     name: 'Тренування',
+    icon: TrainingIcon(),
     exact: false,
     component: lazy(() => import('../pages/trainingPage/TrainingPage' /* webpackChunkName: "TrainingPage"*/)),
     isPrivate: true,
