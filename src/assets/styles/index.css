@@ -36,6 +36,8 @@ img {
   width: 100%;
   padding-left: 25px;
   padding-right: 25px;
+  margin-right: auto;
+  margin-left: auto;
 }
 @media screen and (min-width: 480px) {
   .container {
@@ -64,4 +66,16 @@ img {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color:rgba(177, 181, 194, 0.25);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #B1B5C2;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 40px;
 }
