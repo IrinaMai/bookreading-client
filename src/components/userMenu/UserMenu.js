@@ -4,10 +4,14 @@ import { useWindowWidth } from '@react-hook/window-size';
 import UserName from '../userName/UserName';
 import UserMenuStyled from './UserMenuStyled';
 import mainRoutes from '../../routes/mainRoutes';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/operations/authOperations';
 
 const UserMenu = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const logOut = () => {
+    dispatch(authOperations.logOutOperation());
     history.push('/login');
   };
   const onlyWidth = useWindowWidth();

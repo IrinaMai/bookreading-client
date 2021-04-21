@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DefaultPageWrapper from './DefaultPageStyled';
+import authSelectors from '../../redux/selectors/authSelectors';
 
 const DefaultPage = () => {
-  const isAuth = true;
+  const isAuth = useSelector(authSelectors.isAuth);
   return (
     <DefaultPageWrapper>
       <p className="textError">

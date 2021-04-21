@@ -1,14 +1,16 @@
 import React from 'react';
 import { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import DefaultPage from '../../pages/defaultPage/DefaultPage';
 import mainRoutes from '../../routes/mainRoutes';
 import LoaderSpinner from '../loader/Loader';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 import PublicRoute from '../publicRoute/PublicRoute';
+import authSelectors from '../../redux/selectors/authSelectors';
 
 const Main = () => {
-  const isAuth = true;
+  const isAuth = useSelector(authSelectors.isAuth);
 
   return (
     <>
