@@ -1,15 +1,18 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { postBookSuccess } from "../actions/bookAction";
 
-const initialState = {}
+const initialState = {
+  title: '',
+  author: '',
+  year: "",
+  pages: ""
+}
 
 const bookReducer = createReducer(
     {...initialState},
     {
       [postBookSuccess]  : (state, action) => {
-          return {
-              ...state
-          }
+          return {...state, ...action.payload.data }
       }
     }
 )

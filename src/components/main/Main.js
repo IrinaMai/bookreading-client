@@ -1,12 +1,4 @@
 import React from 'react';
-
-import LibraryForm from './library/LibraryForm'
-
-// const Main = () => {
-//   return <div>
-//     <LibraryForm/>
-//   </div>;
-
 import { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';

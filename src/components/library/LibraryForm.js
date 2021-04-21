@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import LoaderSpinner from '../../loader/Loader'
+import { useDispatch } from 'react-redux';
 import FormBook from './LibraryFormStyle.js'
-import addBookToDb from '../../../redux/operations/bookOperation'
+import addBookToDb from '../../redux/operations/bookOperation'
 
 const initialState = {
-    name: "",
+    title: "",
     author: "",
     year: "",
     pages: "",
@@ -23,7 +22,7 @@ const LibraryForm = () => {
     const onBookSubmit =(e) => {
         e.preventDefault();
         dispatch(addBookToDb(book));
-        console.log(book)
+        // console.log(book)
         setBook({ ...initialState });
     }
 
@@ -32,7 +31,7 @@ const LibraryForm = () => {
   <FormBook onSubmit={onBookSubmit}>
       <label className="bookLabel">
           Назва книги
-          <input name = "name" placeholder="..." value={book.name} onChange= {onInputChange} className = "bookInput"/>
+          <input name = "title" placeholder="..." value={book.title} onChange= {onInputChange} className = "bookInput"/>
       </label>
       <label className="bookLabel">
           Автор книги
