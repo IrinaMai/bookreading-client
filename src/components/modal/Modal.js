@@ -45,11 +45,11 @@ const Modal = ({ children }) => {
       {openModal && (
         <ModalWindow onClick={handleClick} data-name="overlay">
           <div className="modal" data-name="modal">
-            <button
+            {/* <button
               className={onlyWidth < 768 ? 'arrowCloseButton' : 'closeButton'}
               type="button"
               onClick={closeModal}
-            ></button>
+            ></button> */}
             {children}
           </div>
         </ModalWindow>

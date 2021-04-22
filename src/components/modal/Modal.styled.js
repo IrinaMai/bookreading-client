@@ -6,7 +6,7 @@ import iconCloseWhite from './image/iconCloseWhite.svg'
 
 const ModalWindow = styled.div`
   position: fixed;
-  top: 80px;
+  top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
@@ -28,29 +28,29 @@ const ModalWindow = styled.div`
   }
   .modal {
     position: absolute;
-    top: 35px;
+    top: 145px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
-    height: 100vh;
+    height: 425px;
     box-shadow: 0px 22px 40px 0px rgba(0, 0, 0, 0.1);
-    padding: 30px 15px 0;
+    padding: 31px 15px 38px;
     @media (max-width: 767px) {
-      width: 100%;
+      min-width: 270px;
     }
     @media (min-width: 768px) {
-      width: 594px;
-      height: 580px;
+      min-width: 570px;
+      height: 270px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 0 40px;
+      padding: 15px 30px;
     }
     @media (min-width: 1280px) and (orientation: landscape) {
       max-width: 690px;
     }
   }
-  .closeButton {
+  /* .closeButton {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -97,6 +97,6 @@ const ModalWindow = styled.div`
   .arrowCloseButton:hover,
   .arrowCloseButton:focus {
     background-image: url(${arrowCloseOrange});
-  }
+  } */
 `
 export default ModalWindow
