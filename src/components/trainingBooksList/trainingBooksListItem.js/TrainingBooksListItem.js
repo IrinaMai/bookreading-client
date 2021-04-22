@@ -19,15 +19,17 @@ const TrainingBooksListItem = ({
       <p className="description">{title}</p>
       <p className="description">
         {onlyWidth < 768 && <span className="label">Автор:</span>}
-        {!author ? "..." : author}
+        {!author ? '...' : author}
       </p>
+
       <p className="description">
         {onlyWidth < 768 && <span className="label">Рік:</span>}
-        {!year ? "..." : year}
+        {!year ? '...' : year}
       </p>
+
       <p className="description">
         {onlyWidth < 768 && <span className="label">Стор.:</span>}
-        {!pages ? "..." : pages}
+        {!pages ? '...' : pages}
       </p>
       <button
         type="button"
@@ -35,7 +37,7 @@ const TrainingBooksListItem = ({
         onClick={onDeleteBook}
         className="deleteButton"
       >
-       {id && <DeleteIcon className="deleteIcon" />}
+        {id && <DeleteIcon className="deleteIcon" />}
       </button>
     </li>
   )

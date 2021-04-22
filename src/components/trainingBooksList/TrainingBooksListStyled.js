@@ -2,27 +2,27 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   .listItem {
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
+    display: ${({tablet}) => tablet ? "flex" : "block"};
+
+    align-items: center;
     padding: 22px 35px;
-    border-top: 1px solid #e0e5eb;
-    border-bottom: 1px solid #e0e5eb;
+    border-top:${({tablet}) => tablet ? "none" : "1px solid #e0e5eb"}; 
+    border-bottom: ${({tablet}) => tablet ? "none" : "1px solid #e0e5eb"};
     color: var(--main-text);
     font-weight: 500;
     font-size: 12px;
     line-height: 1.25;
     list-style: none;
-    position: relative;
+    position: ${({tablet}) => tablet ? "static" : "relative"};
     & > svg {
-      position: absolute;
+      position: ${({tablet}) => tablet ? "static" : "absolute"};
       top: 20px;
       left: 0px;
     }
   }
 
   .deleteButton {
-    position: absolute;
+    position: ${({tablet}) => tablet ? "static" : "absolute"};
     top: 12px;
     right: 0px;
     width: 33px;
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     background-color: transparent;
     cursor: pointer;
     outline: none;
-    
+
     & > svg {
       fill: var(--light-text);
       transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
