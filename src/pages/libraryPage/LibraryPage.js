@@ -1,5 +1,5 @@
 import React from 'react';
-import  LibraryForm  from "../../components/library/LibraryForm";
+import  LibraryForm  from "../../components/library/LibraryForm.js";
 
 
 const LibraryPage = () => {
@@ -9,4 +9,4 @@ const LibraryPage = () => {
   </>;
 };
 
-export default LibraryPage;
+export default LibraryPage

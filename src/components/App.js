@@ -9,8 +9,8 @@ function App() {
     password: 'PaDmE#123456',
   };
   const dispatch = useDispatch();
-  // dispatch(authOperations.registerOperation(user));
-  // dispatch(authOperations.loginOperation(user));
+  dispatch(authOperations.registerOperation(user));
+  dispatch(authOperations.loginOperation(user));
   // dispatch(authOperations.logOutOperation());
 
   return (

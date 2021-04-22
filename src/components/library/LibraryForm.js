@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import FormBook from './LibraryFormStyle.js'
+// import FormBook from './LibraryFormStyle.js'
 import addBookToDb from '../../redux/operations/bookOperation'
+// import DatePicker from 'react-datepicker'
+import BookAddSchema from "./yup.js";
+import { Formik, Field, Form, ErrorMessage  } from 'formik';
+
 
 const initialState = {
     title: "",
@@ -10,46 +14,54 @@ const initialState = {
     pages: "",
 }
 
+
 const LibraryForm = () => {
-    const [book, setBook] = useState({...initialState})
     const dispatch = useDispatch();
 
-    const onInputChange = (e) => {
-        const {name, value} = e.target;
-        setBook(prev => ({...prev, [name]: value}))
 
-    }
-    const onBookSubmit =(e) => {
-        e.preventDefault();
-        dispatch(addBookToDb(book));
-        // console.log(book)
-        setBook({ ...initialState });
-    }
+  return  <>
+    <Formik
+      initialValues={{ ...initialState }}
+      validationSchema = {BookAddSchema}
 
+      onSubmit={ (values, actions) => {
+        dispatch(addBookToDb(values));
+        // console.log(values)
+        actions.resetForm({ ...initialState })
+      }}
+    >
+    {({
+          errors,
+          touched,
+          values,
+          handleChange,
+        //   isValid,
+        //   dirty,
+        //   isSubmitting,
+        }) => (
+      <Form>
+        <label htmlFor="title"> Назва книги</label>
+        <Field id="title" name="title" value={values.title} onChange={handleChange} placeholder="..." />
+        <ErrorMessage component="div" name="title" />
 
-  return <>
-  <FormBook onSubmit={onBookSubmit}>
-      <label className="bookLabel">
-          Назва книги
-          <input name = "title" placeholder="..." value={book.title} onChange= {onInputChange} className = "bookInput"/>
-      </label>
-      <label className="bookLabel">
-          Автор книги
-          <input name = "author" placeholder="..." value={book.author} onChange= {onInputChange} className = "bookInput"/>
-      </label>
-      <label className="bookLabel">
-          Рік випуску
-          <input name = "year" placeholder="..." value={book.year} onChange= {onInputChange} className = "bookInput"/>
-      </label>
-      <label className="bookLabel">
-          Кількість сторінок
-          <input name = "pages" placeholder="..." value={book.pages} onChange= {onInputChange} className = "bookInput"/>
-      </label>
-      <button type="submit">Додати</button>
+        <label htmlFor="author">Автор книги</label>
+        <Field id="author" name="author" value={values.author} onChange={handleChange} placeholder="..." />
+        <ErrorMessage component="div" name="author" />
 
+        <label htmlFor="year">Рік випуску</label>
+        <Field id="year" name="year" value={values.year} onChange={handleChange}  placeholder="..."/>
+        <ErrorMessage component="div" name="year" />
 
-  </FormBook>
+        <label htmlFor="pages">Кількість сторінок</label>
+        <Field id="pages" name="pages" value={values.pages} onChange={handleChange} placeholder="..."/>
+         <ErrorMessage component="div" name="pages" />
+
+        <button type="submit">Додати</button>
+      </Form>)}
+    </Formik>
+
   </>;
 };
 
 export default LibraryForm;
+

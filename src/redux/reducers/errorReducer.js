@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import authActions from '../actions/authActions';
-import { postBookRequest, postBookSuccess, postBookError} from "../actions/bookAction";
+import { postBookRequest, postBookError} from "../actions/bookAction";
 
 const errorReducer = createReducer(null, {
   [authActions.registerError]: (_, { payload }) => payload,
