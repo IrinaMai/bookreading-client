@@ -10,7 +10,7 @@ const TrainingBooksList = () => {
   const books = useSelector(getBooks)
   const dispatch = useDispatch()
 
-  const handleDeleteContact = e => {
+  const handleDeleteBook = e => {
     const { id } = e.currentTarget.dataset
     dispatch(deleteBook(id))
   }
@@ -22,7 +22,7 @@ const TrainingBooksList = () => {
           <CSSTransition key={book.id} timeout={250} classNames="bookListItem">
             <TrainingBooksListItem
               {...book}
-              onDeleteContact={handleDeleteContact}
+              onDeleteBook={handleDeleteBook}
             />
           </CSSTransition>
         ))}

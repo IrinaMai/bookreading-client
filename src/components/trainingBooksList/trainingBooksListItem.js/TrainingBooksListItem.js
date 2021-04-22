@@ -8,7 +8,7 @@ const TrainingBooksListItem = ({
   author,
   year,
   pages,
-  onDeleteContact,
+  onDeleteBook,
 }) => {
   return (
     <li key={id}>
@@ -17,7 +17,7 @@ const TrainingBooksListItem = ({
       <p>{author}</p>
       <p>{year}</p>
       <p>{pages}</p>
-      <button type="button" data-id={id} onClick={onDeleteContact}>
+      <button type="button" data-id={id} onClick={onDeleteBook}>
       <DeleteIcon/>
       </button>
     </li>

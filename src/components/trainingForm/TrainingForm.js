@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addBook } from '../../redux/actions/trainingActions'
-import { getBooks } from '../../redux/selectors/trainingSelectors'
+// import { getBooks } from '../../redux/selectors/trainingSelectors'
 
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
