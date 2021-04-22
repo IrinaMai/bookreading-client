@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import { addBook } from '../actions/trainingActions'
+import { addBook, deleteBook } from '../actions/trainingActions'
 
 const initialState = {
   hardcodeBooks: [
@@ -44,6 +44,10 @@ export const bookReducer = createReducer(
           pages: payload.pages,
         },
       ],
+    }),
+    [deleteBook]: (state, { payload }) => ({
+      ...state,
+      booksList: [...state.booksList.filter(item => item.id !== payload)],
     }),
   }
 )

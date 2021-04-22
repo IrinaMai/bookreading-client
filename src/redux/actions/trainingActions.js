@@ -1,4 +1,11 @@
 import { createAction } from "@reduxjs/toolkit";
 
 export const addBook = createAction("trainingBooksList/addBook");
-// export const getBook = createAction("trainingBooksList/getBook");
+export const deleteBook = createAction("trainingBooksList/deleteBook");
+
+const trainingActions = {
+  addBook,
+  deleteBook,
+};
+
+export default trainingActions

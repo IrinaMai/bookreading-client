@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addBook } from '../../redux/actions/trainingActions'
+import { getBooks } from '../../redux/selectors/trainingSelectors'
 
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
@@ -10,6 +11,7 @@ const TrainingForm = () => {
 const [option, setOption] = useState('')
 const [startDate, setStartDate] = useState('')
 const [finishDate, setFinishDate] = useState('')
+
 const dispatch = useDispatch()
 
   const handleChange = selectedOption => {

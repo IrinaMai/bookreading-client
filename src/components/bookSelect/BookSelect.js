@@ -1,13 +1,23 @@
 import Select from 'react-select'
+import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
-import {getHardcodeBooks} from '../../redux/selectors/trainingSelectors'
+import {
+  getBooks,
+  getHardcodeBooks,
+} from '../../redux/selectors/trainingSelectors'
 
 const BookSelect = ({ onChange }) => {
-
-  const books = useSelector(getHardcodeBooks)// temporary selector
- 
-  const selectBooks = books.map(book=>({...book, label:book.title, value:book.title }))
   
+  const books = useSelector(getHardcodeBooks) // temporary selector
+  const booksList = useSelector(getBooks)
+
+  const selectBooks = xorWith(books, booksList, isEqual)
+
+  const filteredOptions = selectBooks.map(book => ({
+    ...book,
+    label: book.title,
+    value: book.title,
+  }))
 
   const customStyles = {
     option: (provided, _) => ({
@@ -18,7 +28,7 @@ const BookSelect = ({ onChange }) => {
       ...provided,
       fontSize: '14px',
     }),
-    menu: provided => ({ ...provided, zIndex: 9999, padding:'5px' }),
+    menu: provided => ({ ...provided, zIndex: 9999, padding: '5px' }),
     menuPortal: base => ({ ...base, zIndex: 9999 }),
   }
 
@@ -37,7 +47,7 @@ const BookSelect = ({ onChange }) => {
   return (
     <Select
       onChange={onChange}
-      options={selectBooks}
+      options={filteredOptions}
       theme={customTheme}
       placeholder="Обрати книги з бібліотеки"
       // isMulti
