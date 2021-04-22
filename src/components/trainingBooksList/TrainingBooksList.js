@@ -14,18 +14,26 @@ const TrainingBooksList = () => {
     const { id } = e.currentTarget.dataset
     dispatch(deleteBook(id))
   }
-
+  console.log(`books`, books)
   return (
     <Wrapper>
       <TransitionGroup component="ul">
-        {books.map(book => (
-          <CSSTransition key={book.id} timeout={250} classNames="bookListItem">
-            <TrainingBooksListItem
-              {...book}
-              onDeleteBook={handleDeleteBook}
-            />
-          </CSSTransition>
-        ))}
+        {!books.length ? (
+          <TrainingBooksListItem />
+        ) : (
+          books.map(book => (
+            <CSSTransition
+              key={book.id}
+              timeout={250}
+              classNames="bookListItem"
+            >
+              <TrainingBooksListItem
+                {...book}
+                onDeleteBook={handleDeleteBook}
+              />
+            </CSSTransition>
+          ))
+        )}
       </TransitionGroup>
     </Wrapper>
   )
