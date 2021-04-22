@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './authReducer';
 import errorReducer from './errorReducer';
 import loaderReducer from './loaderReducer';
+import trainingReducer from './trainingReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -15,6 +16,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  training: trainingReducer,
   loading: loaderReducer,
   error: errorReducer,
 });

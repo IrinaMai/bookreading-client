@@ -10,7 +10,7 @@ function App() {
   };
   const dispatch = useDispatch();
   // dispatch(authOperations.registerOperation(user));
-  // dispatch(authOperations.loginOperation(user));
+  dispatch(authOperations.loginOperation(user));
   // dispatch(authOperations.logOutOperation());
 
   return (

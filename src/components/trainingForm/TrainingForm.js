@@ -5,13 +5,13 @@ import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
 const TrainingForm = () => {
-  // eslint-disable-next-line
-  const [books, setBooks] = useState([])
-  const [startDate, setStartDate] = useState('')
-  const [finishDate, setFinishDate] = useState('')
+
+  // const [books, setBooks] = useState([])
+const [startDate, setStartDate] = useState('')
+const [finishDate, setFinishDate] = useState('')
 
   const handleChange = selectedOption => {
-    setBooks(selectedOption)
+    // setBooks(selectedOption)
   }
 
   const handleSubmit = e => {

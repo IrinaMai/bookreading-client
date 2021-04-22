@@ -1,13 +1,19 @@
 import Select from 'react-select'
+import { useSelector } from 'react-redux'
+import {getHardcodeBooks} from '../../redux/selectors/trainingSelectors'
 
 const BookSelect = ({ onChange }) => {
-  const books = [
-    { label: 'Book1', id: '1', name: 'Book1' },
-    { value: 'book2', label: 'Book2' },
-    { value: 'book3', label: 'Book3' },
-    { value: 'book4', label: 'Book4' },
-    { value: 'book5', label: 'Book5' },
-  ]
+
+  const books = useSelector(getHardcodeBooks)// temporary selector
+  console.log(`books`, books)
+
+  // const books = [
+  //   { label: 'Book1', id: '1', name: 'Book1' },
+  //   { value: 'book2', label: 'Book2' },
+  //   { value: 'book3', label: 'Book3' },
+  //   { value: 'book4', label: 'Book4' },
+  //   { value: 'book5', label: 'Book5' },
+  // ]
 
   const customStyles = {
     option: (provided, _) => ({
