@@ -35,9 +35,6 @@ const LibraryForm = () => {
           touched,
           values,
           handleChange,
-        //   isValid,
-        //   dirty,
-        //   isSubmitting,
         }) => (
       <Form>
         <label htmlFor="title"> Назва книги</label>
