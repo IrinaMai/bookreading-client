@@ -10,7 +10,7 @@ const Header = () => {
   const isAuth = useSelector(authSelectors.isAuth);
   const onlyWidth = useWindowWidth();
   return (
-    <HeaderStyled>
+    <HeaderStyled isAuth={isAuth}>
       <div className="container header-container">
         <p className="header-logo">BR</p>
         {isAuth && (
