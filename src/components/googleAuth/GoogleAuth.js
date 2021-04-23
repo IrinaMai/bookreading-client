@@ -1,35 +1,15 @@
 import React from 'react';
 import GoogleAuthStyled from './GoogleAuthStyled'
+import logo from '../../assets/images/googleIcon.png'
 
-class GoogleAuth extends React.Component {
-
-  componentDidMount() {
-    console.log('Loading');
-
-    window.gapi.load('auth2', () => {
-      window.gapi.auth2.init({
-        client_id: '463853183214-o6hjmam98ocbokpekige37p912nomnn3.apps.googleusercontent.com'
-      })
-      console.log('Api init')
-
-      window.gapi.load('signin2', () => {
-        const params = {
-          onsuccess: () => {
-            console.log('User has finished signing in!');
-          }
-        }
-        window.gapi.signin2.render('loginButton', params)
-      })
-    })
-  }
-
-  render() {
+const GoogleAuth = () => {
     return (
       <GoogleAuthStyled>
-        <div id='loginButton'></div>
+        <a href='http://localhost:5000/api/auth/google' className='googleBtn'>
+          <img src={logo} alt='googleIcon' className='googleIcon' />Google
+        </a>
       </GoogleAuthStyled>
     )
-  }
 }
 
 export default GoogleAuth
