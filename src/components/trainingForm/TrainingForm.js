@@ -1,41 +1,56 @@
+import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addBook } from '../../redux/actions/trainingActions'
 // import { getBooks } from '../../redux/selectors/trainingSelectors'
-
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
+
 const TrainingForm = () => {
-const [option, setOption] = useState('')
-const [startDate, setStartDate] = useState('')
-const [finishDate, setFinishDate] = useState('')
+  const [option, setOption] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [finishDate, setFinishDate] = useState('')
+  const dispatch = useDispatch()
 
-const dispatch = useDispatch()
+  const validate = values => {
+    const errors = {}
 
-  const handleChange = selectedOption => {
-  setOption(selectedOption)
+    if (!values.book) {
+      errors.book = 'Required'
+    }
+    return errors
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    dispatch(addBook(option))
+  const formik = useFormik({
+    initialValues: {
+      book: '',
+    },
+    validate,
+    onSubmit: values => {
+      console.log(values)
+      dispatch(addBook(option))
+    },
+  })
+
+  const handleChange = value => {
+    formik.setFieldValue('book', value.value)
+    setOption(value)
   }
 
   return (
     <FormContainer>
-      <form className="form" onSubmit={handleSubmit} autoComplete="off">
+      <form className="form" onSubmit={formik.handleSubmit} autoComplete="off">
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
-       
           <InputDatePicker
             pickedDate={startDate}
             setPickedDate={setStartDate}
             placeholderText="Початок"
             className="startDatePicker"
           />
-           <InputDatePicker
+          <InputDatePicker
             pickedDate={finishDate}
             setPickedDate={setFinishDate}
             placeholderText="Завершення"
@@ -43,7 +58,14 @@ const dispatch = useDispatch()
           />
         </div>
         <div className="selectGroup">
-          <BookSelect onChange={handleChange} className="formSelect" />
+          <BookSelect
+            className="formSelect"
+            value={formik.values.book}
+            onChange={handleChange}
+          />
+          {formik.errors.book ? (
+            <div className="error">{formik.errors.book}</div>
+          ) : null}
           <button className="formButton" type="submit">
             Додати
           </button>
@@ -74,3 +96,4 @@ export default TrainingForm
             <option key={id} value={value}>{value}</option>
           ))}
         </select> */
+        
