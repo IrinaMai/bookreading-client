@@ -15,6 +15,7 @@ const bookReducer = createReducer([...initialState], {
     return [...state, { ...action.payload.data }];
   },
   [authActions.loginSuccess]: (_, { payload }) => payload.user.books,
+  [authActions.logOutSuccess]: () => initialState,
 });
 
 export default bookReducer;
