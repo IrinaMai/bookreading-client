@@ -49,7 +49,6 @@ const BookSelect = ({onChange, value}) => {
       : ''
   }
 
-
   return (
     <Select
       value={defaultValue(filteredOptions, value)}

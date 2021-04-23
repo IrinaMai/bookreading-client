@@ -7,7 +7,6 @@ import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
-
 const TrainingForm = () => {
   const [option, setOption] = useState('')
   const [startDate, setStartDate] = useState('')
@@ -17,19 +16,27 @@ const TrainingForm = () => {
   const validate = values => {
     const errors = {}
 
+    if (!values.startDate) {
+      errors.startDate = 'Виберіть дату початку тренування'
+    }
+    if (!values.finishDate) {
+      errors.finishDate = 'Виберіть дату завершення тренування'
+    }
+
     if (!values.book) {
-      errors.book = 'Required'
+      errors.book = 'Виберіть книгу для тренування'
     }
     return errors
   }
 
   const formik = useFormik({
     initialValues: {
+      startDate: '',
+      finishDate: '',
       book: '',
     },
     validate,
     onSubmit: values => {
-      console.log(values)
       dispatch(addBook(option))
     },
   })
@@ -39,6 +46,15 @@ const TrainingForm = () => {
     setOption(value)
   }
 
+  const handleStartDate = date => {
+    formik.setFieldValue('startDate', date)
+    setStartDate(date)
+  }
+  const handleFinishtDate = date => {
+    formik.setFieldValue('finishDate', date)
+    setFinishDate(date)
+  }
+
   return (
     <FormContainer>
       <form className="form" onSubmit={formik.handleSubmit} autoComplete="off">
@@ -46,16 +62,22 @@ const TrainingForm = () => {
         <div className="inputGroup">
           <InputDatePicker
             pickedDate={startDate}
-            setPickedDate={setStartDate}
+            onChange={handleStartDate}
+            value={formik.values.data}
             placeholderText="Початок"
-            className="startDatePicker"
           />
+          {formik.errors.startDate ? (
+            <span className="error start">{formik.errors.startDate}</span>
+          ) : null}
           <InputDatePicker
             pickedDate={finishDate}
-            setPickedDate={setFinishDate}
+            onChange={handleFinishtDate}
+            value={formik.values.data}
             placeholderText="Завершення"
-            className="finishDatePicker"
           />
+          {formik.errors.finishDate ? (
+            <span className="error finish">{formik.errors.finishDate}</span>
+          ) : null}
         </div>
         <div className="selectGroup">
           <BookSelect
@@ -64,7 +86,7 @@ const TrainingForm = () => {
             onChange={handleChange}
           />
           {formik.errors.book ? (
-            <div className="error">{formik.errors.book}</div>
+            <span className="error">{formik.errors.book}</span>
           ) : null}
           <button className="formButton" type="submit">
             Додати
@@ -96,4 +118,72 @@ export default TrainingForm
             <option key={id} value={value}>{value}</option>
           ))}
         </select> */
-        
+
+// const TrainingForm = () => {
+//   const [option, setOption] = useState('')
+//   const [startDate, setStartDate] = useState('')
+//   const [finishDate, setFinishDate] = useState('')
+//   const dispatch = useDispatch()
+
+//   const validate = values => {
+//     const errors = {}
+
+//     if (!values.book) {
+//       errors.book = 'Required'
+//     }
+//     return errors
+//   }
+
+//   const formik = useFormik({
+//     initialValues: {
+//       book: '',
+//     },
+//     validate,
+//     onSubmit: values => {
+//       console.log(values)
+//       dispatch(addBook(option))
+//     },
+//   })
+
+//   const handleChange = value => {
+//     formik.setFieldValue('book', value.value)
+//     setOption(value)
+//   }
+
+//   return (
+//     <FormContainer>
+//       <form className="form" onSubmit={formik.handleSubmit} autoComplete="off">
+//         <p className="formTitle">Моє тренування</p>
+//         <div className="inputGroup">
+//           <InputDatePicker
+//             pickedDate={startDate}
+//             setPickedDate={setStartDate}
+//             placeholderText="Початок"
+//             className="startDatePicker"
+//           />
+//           <InputDatePicker
+//             pickedDate={finishDate}
+//             setPickedDate={setFinishDate}
+//             placeholderText="Завершення"
+//             className="finishDatePicker"
+//           />
+//         </div>
+//         <div className="selectGroup">
+//           <BookSelect
+//             className="formSelect"
+//             value={formik.values.book}
+//             onChange={handleChange}
+//           />
+//           {formik.errors.book ? (
+//             <div className="error">{formik.errors.book}</div>
+//           ) : null}
+//           <button className="formButton" type="submit">
+//             Додати
+//           </button>
+//         </div>
+//       </form>
+//     </FormContainer>
+//   )
+// }
+
+// export default TrainingForm
