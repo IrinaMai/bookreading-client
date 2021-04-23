@@ -16,9 +16,13 @@ const TrainingBooksList = () => {
     const { id } = e.currentTarget.dataset
     dispatch(deleteBook(id))
   }
-
+  console.log(`books`, books.length)
   return (
-    <Wrapper tablet={onlyWidth > 767}>
+    <Wrapper
+      tablet={onlyWidth > 767}
+      desktop={onlyWidth > 1279}
+      books={books.length > 3}
+    >
       {!books.length && (
         <TransitionGroup component="ul">
           <TrainingBooksListItem />
