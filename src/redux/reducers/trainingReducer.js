@@ -6,7 +6,7 @@ const initialState = {
   hardcodeBooks: [
     {
       id: '1',
-      title: 'Scrum. Революционный метод',
+      title: 'Scrum. Революционный метод ',
       author: 'Джефф Сазерленд',
       year: '2014',
       pages: 15,
@@ -23,6 +23,20 @@ const initialState = {
       title: '5 Пороков команды. Притчи о лидерстве.',
       author: 'Патрик Ленсиони',
       year: '2011',
+      pages: 125,
+    },
+    {
+      id: '4',
+      title: 'React',
+      author: 'Том ДеМарко',
+      year: '2018',
+      pages: 188,
+    },
+    {
+      id: '5',
+      title: 'Node JS',
+      author: 'Патрик Ленсиони',
+      year: '2019',
       pages: 125,
     },
   ],

@@ -1,49 +1,96 @@
+import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import { addBook } from '../../redux/actions/trainingActions'
 // import { getBooks } from '../../redux/selectors/trainingSelectors'
-
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
 const TrainingForm = () => {
-const [option, setOption] = useState('')
-const [startDate, setStartDate] = useState('')
-const [finishDate, setFinishDate] = useState('')
+  const [option, setOption] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [finishDate, setFinishDate] = useState('')
+  const dispatch = useDispatch()
+  const history = useHistory();
 
-const dispatch = useDispatch()
+  const validate = values => {
+    const errors = {}
 
-  const handleChange = selectedOption => {
-  setOption(selectedOption)
+    if (!values.startDate) {
+      errors.startDate = 'Виберіть дату початку тренування'
+    }
+    if (!values.finishDate) {
+      errors.finishDate = 'Виберіть дату завершення тренування'
+    }
+
+    if (!values.book) {
+      errors.book = 'Виберіть книгу для тренування'
+    }
+    return errors
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    dispatch(addBook(option))
+  const formik = useFormik({
+    initialValues: {
+      startDate: '',
+      finishDate: '',
+      book: '',
+    },
+    validate,
+    onSubmit: values => {
+      dispatch(addBook(option))
+      history.push("/training");
+    },
+  })
+
+  const handleChange = value => {
+    formik.setFieldValue('book', value.value)
+    setOption(value)
+  }
+
+  const handleStartDate = date => {
+    formik.setFieldValue('startDate', date)
+    setStartDate(date)
+  }
+  const handleFinishtDate = date => {
+    formik.setFieldValue('finishDate', date)
+    setFinishDate(date)
   }
 
   return (
     <FormContainer>
-      <form className="form" onSubmit={handleSubmit} autoComplete="off">
+      <form className="form" onSubmit={formik.handleSubmit} autoComplete="off">
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
-       
           <InputDatePicker
             pickedDate={startDate}
-            setPickedDate={setStartDate}
+            onChange={handleStartDate}
+            value={formik.values.data}
             placeholderText="Початок"
-            className="startDatePicker"
           />
-           <InputDatePicker
+          {formik.errors.startDate ? (
+            <span className="error start">{formik.errors.startDate}</span>
+          ) : null}
+          <InputDatePicker
             pickedDate={finishDate}
-            setPickedDate={setFinishDate}
+            onChange={handleFinishtDate}
+            value={formik.values.data}
             placeholderText="Завершення"
-            className="finishDatePicker"
           />
+          {formik.errors.finishDate ? (
+            <span className="error finish">{formik.errors.finishDate}</span>
+          ) : null}
         </div>
         <div className="selectGroup">
-          <BookSelect onChange={handleChange} className="formSelect" />
+          <BookSelect
+            className="formSelect"
+            value={formik.values.book}
+            onChange={handleChange}
+          />
+          {formik.errors.book ? (
+            <span className="error">{formik.errors.book}</span>
+          ) : null}
           <button className="formButton" type="submit">
             Додати
           </button>
@@ -65,12 +112,3 @@ export default TrainingForm
 //     return [...normalizedArray]
 //   })
 // }
-
-/* <select name="books" required>
-          <option value="" disabled selected hidden>
-            Обрати книги з бібліотеки
-          </option>
-          {books.map(({ value, id }) => (
-            <option key={id} value={value}>{value}</option>
-          ))}
-        </select> */

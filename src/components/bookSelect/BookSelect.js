@@ -6,8 +6,7 @@ import {
   getHardcodeBooks,
 } from '../../redux/selectors/trainingSelectors'
 
-const BookSelect = ({ onChange }) => {
-  
+const BookSelect = ({ onChange, value }) => {
   const books = useSelector(getHardcodeBooks) // temporary selector
   const booksList = useSelector(getBooks)
 
@@ -44,24 +43,32 @@ const BookSelect = ({ onChange }) => {
     }
   }
 
+  const defaultValue = (filteredOptions, value) => {
+    return filteredOptions
+      ? filteredOptions.find(option => option.value === value)
+      : ''
+  }
+
   return (
-    <Select
-      onChange={onChange}
-      options={filteredOptions}
-      theme={customTheme}
-      placeholder="Обрати книги з бібліотеки"
-      // isMulti
-      autoFocus
-      components={{
-        IndicatorSeparator: () => null,
-      }}
-      maxMenuHeight={100}
-      menuPlacement="auto"
-      menuPortalTarget={document.body}
-      menuPosition={'fixed'}
-      styles={customStyles}
-      myFontSize="10px"
-    />
+      <Select
+        value={defaultValue(filteredOptions, value)}
+        options={filteredOptions}
+        onChange={value => onChange(value)}
+        theme={customTheme}
+        placeholder="Обрати книги з бібліотеки"
+        autoFocus
+        components={{
+          IndicatorSeparator: () => null,
+        }}
+        maxMenuHeight={100}
+        menuPlacement="auto"
+        menuPortalTarget={document.body}
+        menuPosition={'fixed'}
+        styles={customStyles}
+        myFontSize="10px"
+        isDisabled={!filteredOptions.length}
+        // isMulti
+      />
   )
 }
 
