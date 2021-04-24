@@ -2,34 +2,38 @@ import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import * as yup from 'yup'
+import { DateTime } from 'luxon'
 import { addBook } from '../../redux/actions/trainingActions'
 // import { getBooks } from '../../redux/selectors/trainingSelectors'
+import convertDate from '../../utils/dateConverter'
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
 
 const TrainingForm = () => {
   const [option, setOption] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [finishDate, setFinishDate] = useState('')
+  // const [startDate, setStartDate] = useState('')
+  // const [finishDate, setFinishDate] = useState('')
   const dispatch = useDispatch()
-  const history = useHistory();
+  const history = useHistory()
 
-  const validate = values => {
-    const errors = {}
-
-    if (!values.startDate) {
-      errors.startDate = 'Виберіть дату початку тренування'
-    }
-    if (!values.finishDate) {
-      errors.finishDate = 'Виберіть дату завершення тренування'
-    }
-
-    if (!values.book) {
-      errors.book = 'Виберіть книгу для тренування'
-    }
-    return errors
-  }
+  const validationSchema = yup.object({
+    startDate: yup.string().required('Виберіть дату початку тренування'),
+    finishDate: yup
+      .string()
+      .required('Виберіть дату завершення тренування')
+      .when('startDate', (startDate, schema) => {
+        return schema.test({
+          test: finishDate =>
+            startDate &&
+            DateTime.fromISO(convertDate(startDate)) <=
+              DateTime.fromISO(convertDate(finishDate)),
+          message: 'Вибрана дата не коректна',
+        })
+      }),
+    book: yup.string().required('Виберіть книгу для тренування'),
+  })
 
   const formik = useFormik({
     initialValues: {
@@ -37,10 +41,10 @@ const TrainingForm = () => {
       finishDate: '',
       book: '',
     },
-    validate,
+    validationSchema,
     onSubmit: values => {
       dispatch(addBook(option))
-      history.push("/training");
+      history.push('/training')
     },
   })
 
@@ -51,11 +55,11 @@ const TrainingForm = () => {
 
   const handleStartDate = date => {
     formik.setFieldValue('startDate', date)
-    setStartDate(date)
+    // setStartDate(date)
   }
   const handleFinishtDate = date => {
     formik.setFieldValue('finishDate', date)
-    setFinishDate(date)
+    // setFinishDate(date)
   }
 
   return (
@@ -64,21 +68,21 @@ const TrainingForm = () => {
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
           <InputDatePicker
-            pickedDate={startDate}
+            pickedDate={formik.values.startDate}
             onChange={handleStartDate}
-            value={formik.values.data}
+            // value={formik.values.startDate}
             placeholderText="Початок"
           />
-          {formik.errors.startDate ? (
+          {formik.touched.startDate && formik.errors.startDate ? (
             <span className="error start">{formik.errors.startDate}</span>
           ) : null}
           <InputDatePicker
-            pickedDate={finishDate}
+            pickedDate={formik.values.finishDate}
             onChange={handleFinishtDate}
-            value={formik.values.data}
+            // value={formik.values.finishDate}
             placeholderText="Завершення"
           />
-          {formik.errors.finishDate ? (
+          {formik.touched.finishDate && formik.errors.finishDate ? (
             <span className="error finish">{formik.errors.finishDate}</span>
           ) : null}
         </div>
@@ -88,7 +92,7 @@ const TrainingForm = () => {
             value={formik.values.book}
             onChange={handleChange}
           />
-          {formik.errors.book ? (
+          {formik.touched.book && formik.errors.book ? (
             <span className="error">{formik.errors.book}</span>
           ) : null}
           <button className="formButton" type="submit">
