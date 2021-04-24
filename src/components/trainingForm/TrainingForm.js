@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import { addBook } from '../../redux/actions/trainingActions'
 // import { getBooks } from '../../redux/selectors/trainingSelectors'
 import BookSelect from '../bookSelect/BookSelect'
@@ -12,6 +13,7 @@ const TrainingForm = () => {
   const [startDate, setStartDate] = useState('')
   const [finishDate, setFinishDate] = useState('')
   const dispatch = useDispatch()
+  const history = useHistory();
 
   const validate = values => {
     const errors = {}
@@ -38,6 +40,7 @@ const TrainingForm = () => {
     validate,
     onSubmit: values => {
       dispatch(addBook(option))
+      history.push("/training");
     },
   })
 

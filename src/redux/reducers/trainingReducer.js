@@ -6,7 +6,7 @@ const initialState = {
   hardcodeBooks: [
     {
       id: '1',
-      title: 'Scrum. Революционный метод dfjjjjjjjjjjjjjjjjjjjjjjjjjaskjfdajksdkjashdjkasgghjghghghjghjgljhglf, ',
+      title: 'Scrum. Революционный метод ',
       author: 'Джефф Сазерленд',
       year: '2014',
       pages: 15,
