@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useWindowWidth } from '@react-hook/window-size'
 import ModalWindow from './Modal.styled'
 import getModalState from '../../redux/selectors/modalSelector'
 import modalActions from '../../redux/actions/modalActions'
@@ -8,7 +7,6 @@ import modalActions from '../../redux/actions/modalActions'
 const Modal = ({ children }) => {
   const openModal = useSelector(getModalState)
   const dispatch = useDispatch()
-  const onlyWidth = useWindowWidth()
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown)
     return () => {
@@ -45,11 +43,6 @@ const Modal = ({ children }) => {
       {openModal && (
         <ModalWindow onClick={handleClick} data-name="overlay">
           <div className="modal" data-name="modal">
-            {/* <button
-              className={onlyWidth < 768 ? 'arrowCloseButton' : 'closeButton'}
-              type="button"
-              onClick={closeModal}
-            ></button> */}
             {children}
           </div>
         </ModalWindow>

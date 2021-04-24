@@ -1,6 +1,13 @@
 import styled from 'styled-components'
 
 const LibraryEmptyWrapper = styled.div`
+  min-width: 240px;
+  min-height: 356px;
+  @media (min-width: 768px) {
+    min-width: 510px;
+    min-height: 240px;
+  }
+
   .iconWrapper {
     display: flex;
   }

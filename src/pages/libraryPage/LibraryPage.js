@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import Modal from '../../components/modal/Modal'
 import modalActions from '../../redux/actions/modalActions'
 import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
+import WellDone from '../../components/wellDone/WellDone'
 
 const LibraryPage = () => {
   const dispatch = useDispatch()
@@ -16,9 +17,8 @@ const LibraryPage = () => {
       <h2>Library Page</h2>
       <button onClick={handleClick}>openModal</button>
       <Modal>
-        <LibraryEmpty />
+        <WellDone />
       </Modal>
-      <button onClick={handleClick}>Резюме</button>
     </div>
   )
 }
