@@ -16,7 +16,7 @@ const TrainingBooksList = () => {
     const { id } = e.currentTarget.dataset
     dispatch(deleteBook(id))
   }
-  console.log(`books`, books.length)
+
   return (
     <Wrapper
       tablet={onlyWidth > 767}

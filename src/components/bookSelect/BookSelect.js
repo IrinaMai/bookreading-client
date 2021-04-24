@@ -6,7 +6,7 @@ import {
   getHardcodeBooks,
 } from '../../redux/selectors/trainingSelectors'
 
-const BookSelect = ({onChange, value}) => {
+const BookSelect = ({ onChange, value }) => {
   const books = useSelector(getHardcodeBooks) // temporary selector
   const booksList = useSelector(getBooks)
 
@@ -16,7 +16,7 @@ const BookSelect = ({onChange, value}) => {
     ...book,
     label: book.title,
     value: book.title,
-   }))
+  }))
 
   const customStyles = {
     option: (provided, _) => ({
@@ -50,24 +50,25 @@ const BookSelect = ({onChange, value}) => {
   }
 
   return (
-    <Select
-      value={defaultValue(filteredOptions, value)}
-      options={filteredOptions}
-      onChange={value=>onChange(value)}
-      theme={customTheme}
-      placeholder="Обрати книги з бібліотеки"
-      autoFocus
-      components={{
-        IndicatorSeparator: () => null,
-      }}
-      maxMenuHeight={100}
-      menuPlacement="auto"
-      menuPortalTarget={document.body}
-      menuPosition={'fixed'}
-      styles={customStyles}
-      myFontSize="10px"
-      // isMulti
-    />
+      <Select
+        value={defaultValue(filteredOptions, value)}
+        options={filteredOptions}
+        onChange={value => onChange(value)}
+        theme={customTheme}
+        placeholder="Обрати книги з бібліотеки"
+        autoFocus
+        components={{
+          IndicatorSeparator: () => null,
+        }}
+        maxMenuHeight={100}
+        menuPlacement="auto"
+        menuPortalTarget={document.body}
+        menuPosition={'fixed'}
+        styles={customStyles}
+        myFontSize="10px"
+        isDisabled={!filteredOptions.length}
+        // isMulti
+      />
   )
 }
 
