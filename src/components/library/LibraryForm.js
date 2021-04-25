@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 // import FormBook from './LibraryFormStyle.js'
 import addBookToDb from '../../redux/operations/bookOperation'
-// import DatePicker from 'react-datepicker'
 import BookAddSchema from "./yup.js";
-import { Formik, Field, Form, ErrorMessage  } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import sprite from "./symbol-defs.svg";
 
 
 const initialState = {
@@ -22,11 +22,10 @@ const LibraryForm = () => {
   return  <>
     <Formik
       initialValues={{ ...initialState }}
-      validationSchema = {BookAddSchema}
-
-      onSubmit={ (values, actions) => {
+      validationSchema={BookAddSchema}
+      
+      onSubmit={(values, actions) => {
         dispatch(addBookToDb(values));
-        // console.log(values)
         actions.resetForm({ ...initialState })
       }}
     >
@@ -46,7 +45,7 @@ const LibraryForm = () => {
         <ErrorMessage component="div" name="author" />
 
         <label htmlFor="year">Рік випуску</label>
-        <Field id="year" name="year" value={values.year} onChange={handleChange}  placeholder="..."/>
+        <Field id="year" name="year" value={values.year} onChange={handleChange} placeholder="..." />
         <ErrorMessage component="div" name="year" />
 
         <label htmlFor="pages">Кількість сторінок</label>
