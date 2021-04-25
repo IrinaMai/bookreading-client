@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import FormBook from './LibraryFormStyle.js'
+import Wrapper from './LibraryFormStyle.js'
 import addBookToDb from '../../redux/operations/bookOperation'
 import BookAddSchema from "./yup.js";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import sprite from "./symbol-defs.svg";
+
 
 
 const initialState = {
@@ -14,12 +14,10 @@ const initialState = {
     pages: "",
 }
 
-
 const LibraryForm = () => {
     const dispatch = useDispatch();
 
-
-  return  <>
+  return  <Wrapper>
     <Formik
       initialValues={{ ...initialState }}
       validationSchema={BookAddSchema}
@@ -34,29 +32,40 @@ const LibraryForm = () => {
           touched,
           values,
           handleChange,
+          isValid,
+          dirty,
+          isSubmitting,
+          isValidating
         }) => (
       <Form>
-        <label htmlFor="title"> Назва книги</label>
-        <Field id="title" name="title" value={values.title} onChange={handleChange} placeholder="..." />
-        <ErrorMessage component="div" name="title" />
+        <label htmlFor="title" class="bookLabel bookTitle"> Назва книги
+        <Field id="title" name="title" value={values.title} onChange={handleChange} placeholder="..." autofocus class="bookInput"/>
+        <ErrorMessage component="div" name="title" class="bookError" />
+        </label>
+        
+        <div class="planshetWrapper">
+        <label htmlFor="author" class="bookLabel bookAuthor">Автор книги
+        <Field id="author" name="author" value={values.author} onChange={handleChange} placeholder="..." class="bookInput" />
+        <ErrorMessage component="div" name="author" class="bookError" />
+        </label>
 
-        <label htmlFor="author">Автор книги</label>
-        <Field id="author" name="author" value={values.author} onChange={handleChange} placeholder="..." />
-        <ErrorMessage component="div" name="author" />
+        <label htmlFor="year" class="bookLabel bookNumber">Рік випуску
+        <Field id="year" name="year" value={values.year} onChange={handleChange} placeholder="..." autocomplete ="on" class="bookInput" />
+        <ErrorMessage component="div" name="year" class="bookError" />
+        </label>
 
-        <label htmlFor="year">Рік випуску</label>
-        <Field id="year" name="year" value={values.year} onChange={handleChange} placeholder="..." />
-        <ErrorMessage component="div" name="year" />
+        <label htmlFor="pages" class="bookLabel bookNumber">Кількість сторінок
+        <Field id="pages" name="pages" value={values.pages} onChange={handleChange} placeholder="..." class="bookInput" />
+        <ErrorMessage component="div" name="pages" class="bookError" />
+        </label>
 
-        <label htmlFor="pages">Кількість сторінок</label>
-        <Field id="pages" name="pages" value={values.pages} onChange={handleChange} placeholder="..."/>
-         <ErrorMessage component="div" name="pages" />
+        </div>
 
-        <button type="submit">Додати</button>
+        <button type="submit" class="bookButton" >Додати</button>
       </Form>)}
     </Formik>
 
-  </>;
+  </Wrapper>;
 };
 
 export default LibraryForm;

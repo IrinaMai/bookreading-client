@@ -14,9 +14,7 @@ const LibraryPage = () => {
 
   return (
     <div>
-      <h2>Library Page</h2>
-      <LibraryForm />
-
+        <LibraryForm />
       <button onClick={handleClick}>openModal</button>
       <Modal>
         <LibraryEmpty />
