@@ -1,13 +1,22 @@
 import Select from 'react-select'
+import { xorWith, isEqual } from 'lodash'
+import { useSelector } from 'react-redux'
+import {
+  getBooks,
+  getHardcodeBooks,
+} from '../../redux/selectors/trainingSelectors'
 
-const BookSelect = ({ onChange }) => {
-  const books = [
-    { label: 'Book1', id: '1', name: 'Book1' },
-    { value: 'book2', label: 'Book2' },
-    { value: 'book3', label: 'Book3' },
-    { value: 'book4', label: 'Book4' },
-    { value: 'book5', label: 'Book5' },
-  ]
+const BookSelect = ({ onChange, value }) => {
+  const books = useSelector(getHardcodeBooks) // temporary selector
+  const booksList = useSelector(getBooks)
+
+  const selectBooks = xorWith(books, booksList, isEqual)
+
+  const filteredOptions = selectBooks.map(book => ({
+    ...book,
+    label: book.title,
+    value: book.title,
+  }))
 
   const customStyles = {
     option: (provided, _) => ({
@@ -18,7 +27,7 @@ const BookSelect = ({ onChange }) => {
       ...provided,
       fontSize: '14px',
     }),
-    menu: provided => ({ ...provided, zIndex: 9999, padding:'5px' }),
+    menu: provided => ({ ...provided, zIndex: 9999, padding: '5px' }),
     menuPortal: base => ({ ...base, zIndex: 9999 }),
   }
 
@@ -34,24 +43,32 @@ const BookSelect = ({ onChange }) => {
     }
   }
 
+  const defaultValue = (filteredOptions, value) => {
+    return filteredOptions
+      ? filteredOptions.find(option => option.value === value)
+      : ''
+  }
+
   return (
-    <Select
-      onChange={onChange}
-      options={books}
-      theme={customTheme}
-      placeholder="Обрати книги з бібліотеки"
-      // isMulti
-      autoFocus
-      components={{
-        IndicatorSeparator: () => null,
-      }}
-      maxMenuHeight={100}
-      menuPlacement="auto"
-      menuPortalTarget={document.body}
-      menuPosition={'fixed'}
-      styles={customStyles}
-      myFontSize="10px"
-    />
+      <Select
+        value={defaultValue(filteredOptions, value)}
+        options={filteredOptions}
+        onChange={value => onChange(value)}
+        theme={customTheme}
+        placeholder="Обрати книги з бібліотеки"
+        autoFocus
+        components={{
+          IndicatorSeparator: () => null,
+        }}
+        maxMenuHeight={100}
+        menuPlacement="auto"
+        menuPortalTarget={document.body}
+        menuPosition={'fixed'}
+        styles={customStyles}
+        myFontSize="10px"
+        isDisabled={!filteredOptions.length}
+        // isMulti
+      />
   )
 }
 

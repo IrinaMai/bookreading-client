@@ -28,7 +28,8 @@ const registerOperation = data => async dispatch => {
 const loginOperation = data => async dispatch => {
   dispatch(authActions.loginRequest());
   try {
-    const response = await axios.post(`/auth/login`, data);
+    const path = data.token ? `/auth/user` : `/auth/login`;
+    const response = await axios.post(path, data);
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
