@@ -3,6 +3,41 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label } 
 import { useWindowWidth } from '@react-hook/window-size';
 import ChartStyled from './ChartStyled';
 
+const training = {
+    totalPages: 400,
+    startDate: '2021-04-22',
+    finishDate: '2021-04-28',
+    progress: [
+      {
+        name: '2021-04-22',        
+        pagesRead: 40,
+      },
+      {
+        name: '2021-04-23',
+        pagesRead: 60,
+      },
+      {
+        name: '2021-04-24',
+        pagesRead: 90,
+      },
+      {
+        name: '2021-04-25',
+        pagesRead: 20,
+      },
+      {
+        name: '2021-04-26',
+        pagesRead: 40,
+      },
+      {
+        name: '2021-04-27',
+        pagesRead: 70,
+      },
+      {
+        name: '2021-04-28',
+        pagesRead: 80,
+      },
+    ]
+}
 const data = [
   {
     name: '22.04.2021',
