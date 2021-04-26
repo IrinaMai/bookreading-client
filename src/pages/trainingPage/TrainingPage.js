@@ -17,7 +17,7 @@ const TrainingPage = () => {
       <TrainingPageWrapper>
         {onlyWidth < 768 && location.pathname === '/training/books' && <BackButton/>}
         {onlyWidth < 768 && location.pathname === '/training/books' && <TrainingForm />}
-        {onlyWidth > 768 && <TrainingForm />}
+        {onlyWidth > 767 && <TrainingForm />}
         {onlyWidth > 767 && (
           <BooksListContainer>
             <TrainingBooksList />

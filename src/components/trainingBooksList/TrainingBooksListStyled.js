@@ -122,6 +122,9 @@ const Wrapper = styled.div`
   }
 
   .description {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     @media (min-width: 768px) {
       margin-left: 20px;
     }
