@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import authOperations from '../redux/operations/authOperations'
-import Header from './header/Header'
-import Main from './main/Main'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import authOperations from '../redux/operations/authOperations';
+import Header from './header/Header';
+import Main from './main/Main';
 
 function App() {
   function useQuery() {
@@ -23,17 +23,16 @@ function App() {
   dispatch(authOperations.loginOperation(user));
  // dispatch(authOperations.logOutOperation());
 
+	useEffect(() => {
+		googleToken?.token && dispatch(authOperations.loginOperation(googleToken));
+	}, [googleToken]);
 
-  useEffect(() => {
-    googleToken?.token && dispatch(authOperations.loginOperation(googleToken))
-  }, [googleToken])
-
-  return (
-    <>
-      <Header />
-      <Main />
-    </>
-  )
+	return (
+		<>
+			<Header />
+			<Main />
+		</>
+	);
 }
 
-export default App
+export default App;
