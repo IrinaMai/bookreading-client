@@ -4,6 +4,7 @@ import Wrapper from './LibraryFormStyle.js'
 import addBookToDb from '../../redux/operations/bookOperation'
 import BookAddSchema from "./yup.js";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+// import LibraryButton from "./libraryButton"
 
 
 
@@ -33,9 +34,7 @@ const LibraryForm = () => {
           values,
           handleChange,
           isValid,
-          dirty,
-          isSubmitting,
-          isValidating
+ 
         }) => (
       <Form>
         <label htmlFor="title" class="bookLabel bookTitle"> Назва книги
@@ -59,9 +58,13 @@ const LibraryForm = () => {
         <ErrorMessage component="div" name="pages" class="bookError" />
         </label>
 
-        </div>
+          </div>
+          
+          {/* <LibraryButton disabled = {!isValid}/>  */}
+          
 
-        <button type="submit" class="bookButton" >Додати</button>
+          <button type="submit" class="bookButton">Додати</button>
+    
       </Form>)}
     </Formik>
 

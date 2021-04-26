@@ -3,12 +3,24 @@ import styled from "styled-components";
 const Wrapper = styled.div`
 background-color: #F6F7FB;
 display: block;
-outline: 1px solid teal;
 
+
+@media (max-width: 767px) {
+margin-top: 52px;
+margin-bottom: 109px;
+margin-left: auto;
+margin-right: auto;
+max-width: 450px;
+}
+
+@media (max-width: 480px) {
 margin-top: 52px;
 margin-bottom: 109px;
 margin-left: 25px;
 margin-right: 25px;
+max-width: 450px;
+}
+
 
 font-family: Montserrat;
 font-style: normal;
@@ -16,6 +28,15 @@ font-weight: 500;
 font-size: 14px;
 line-height: 2.714;
 color: #898F9F;
+
+    .bookLabel {
+        display: block;
+        height: 80px;
+        margin-top: 10px;
+        &.bookTitle {
+            margin-top: 0;
+        }
+    }
 
 
     .bookInput {
@@ -25,13 +46,11 @@ color: #898F9F;
         font-weight: 500;
         font-size: 14px;
         color: #898F9F;
-    
         
         height: 42px;
         padding: 2px 13px;
         width: 100%;
- 
-
+   
         background: #F6F7FB;
         border: 1px solid #A6ABB9;
         outline: none;
@@ -43,16 +62,9 @@ color: #898F9F;
         }
     }
 
-    .bookLabel {
-        display: block;
-        height: 80px;
-        margin-top: 10px;
-        &.bookTitle {
-            margin-top: 0;
-        }
-    }
-
+    
     .bookButton {
+ 
         display: block;
         width: 171px;
         height: 42px;
@@ -64,6 +76,8 @@ color: #898F9F;
         color: #000000;
         background: #F6F7FB;
         border: 1px solid #242A37;
+        background-color: ${props => props.disabled ? "read" : "blue"}
+         
         &:hover,
         &:focus {
             outline: none;
@@ -104,6 +118,7 @@ color: #898F9F;
 
 }
 
+
 @media (min-width: 1280px) {
 
     display: inline-flex;
@@ -114,11 +129,13 @@ color: #898F9F;
     margin-bottom: 30px;
     margin-left: 39px;
     width: 1150px;
-     
-    .planshetWrapper {
-        width: 600px;
-        justify-content: center;
+    
+    form {
+        display: flex;
+        width: 1100%;
+        align-items: flex-end;
     }
+   
 
     .bookTitle {
         width: 346px;
@@ -134,14 +151,19 @@ color: #898F9F;
         width: 134px;
         margin-right: 15px;
         margin-top: 0;
+        & .bookInput {
+            width: 97%;
+        }
     }
     .bookButton {
-        margin-left: 30px;
+        margin-left: 26px;
         margin-top: 0;
+        margin-bottom: 1px;
 
     }
 
 }
+
 
 
 
