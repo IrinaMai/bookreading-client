@@ -16,11 +16,13 @@ function App() {
   const user = {
     email: 'darthvader@deathstar.com',
     password: 'PaDmE#123456',
-  }
-  const dispatch = useDispatch()
+  };
+  const dispatch = useDispatch();
+  
   // dispatch(authOperations.registerOperation(user));
-  dispatch(authOperations.loginOperation(user))
-  // dispatch(authOperations.logOutOperation());
+  dispatch(authOperations.loginOperation(user));
+ // dispatch(authOperations.logOutOperation());
+
 
   useEffect(() => {
     googleToken?.token && dispatch(authOperations.loginOperation(googleToken))

@@ -2,11 +2,12 @@ import styled from 'styled-components'
 
 const WellDoneWrapper = styled.div`
   min-width: 240px;
-  min-height: 227px;
-  padding-top: 15px;
+  min-height: 221px;
+  padding-top: 31px;
+  padding-bottom: 35px;
   text-align: center;
   @media (min-width: 768px) {
-    min-width: 330px;
+    min-width: 360px;
     min-height: 260px;
     padding-top: 27px;
   }
@@ -25,7 +26,7 @@ const WellDoneWrapper = styled.div`
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 127px;
+    width: 97px;
     height: 40px;
     left: 96px;
     top: 492px;
@@ -39,6 +40,9 @@ const WellDoneWrapper = styled.div`
     .textWrapper {
       margin-top: 21px;
       margin-bottom: 25px;
+    }
+    .mobileButton {
+      min-width: 130px;
     }
   }
 `

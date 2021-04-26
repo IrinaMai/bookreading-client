@@ -8,12 +8,15 @@ import TrainingBooksList from '../../components/trainingBooksList/TrainingBooksL
 import TrainingForm from '../../components/trainingForm/TrainingForm'
 import TrainingPageWrapper from './TrainingPageStyled'
 import ToGoal from '../../components/to-goal/ToGoal'
+import Chart from '../../components/chart/Chart'
+
 const TrainingPage = () => {
   const onlyWidth = useWindowWidth()
   const location = useLocation()
 
   return (
     <div className="container">
+      <ToGoal />
       <TrainingPageWrapper>
         {onlyWidth < 768 && location.pathname === '/training/books' && (
           <BackButton />
@@ -33,6 +36,7 @@ const TrainingPage = () => {
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <AddButton />
         )}
+        <Chart />
       </TrainingPageWrapper>
     </div>
   )
