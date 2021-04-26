@@ -2,15 +2,45 @@ import styled from 'styled-components';
 
 const LoginFormWrapper = styled.section`
 	width: 270px;
+	height: 359px;
+
+	@media screen and (max-width: 1279px) {
+		margin: 0 auto;
+	}
 
 	@media screen and (min-width: 768px) {
-		width: 400px;
+		min-width: 400px;
+		min-height: 420px;
+		background-color: var(--secondary-background);
+		padding: 40px 40px 25px 40px;
 	}
+
+	@media screen and (min-width: 1280px) {
+		padding: 40px 40px 30px 40px;
+	}
+
+	.text {
+		color: var(--accent-color);
+		font-size: 17px;
+	}
+
+	.google {
+		width: 150px;
+		height: 40px;
+		margin: 0 auto;
+		display: block;
+		margin-bottom: 20px;
+	}
+
 	.formLabelText {
 		font-weight: 600;
 		font-size: 14px;
 		line-height: 2.71;
 		color: var(--secondary-background);
+
+		@media screen and (min-width: 768px) {
+			color: var(--secondary-text);
+		}
 	}
 
 	.error {
@@ -19,12 +49,14 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.formLabel {
-		/* position: relative;
-		display: flex; */
-		height: 35.5px;
-		/* border-bottom: 1px solid #e0e0e0; */
 		&:not(:last-child) {
 			margin-bottom: 48px;
+		}
+
+		@media screen and (min-width: 768px) {
+			&:not(:last-child) {
+				margin-bottom: 30px;
+			}
 		}
 	}
 
@@ -32,9 +64,11 @@ const LoginFormWrapper = styled.section`
 		display: block;
 		padding-left: 10px;
 		width: 270px;
-		height: 35.5px;
-		flex-grow: 1;
-		@media (min-width: 1280px) {
+		height: 42px;
+		border: none;
+		box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+
+		@media screen and (min-width: 768px) {
 			width: 320px;
 		}
 	}
@@ -46,23 +80,18 @@ const LoginFormWrapper = styled.section`
 		padding: 13px 48px;
 		border: 1px solid var(--accent-color);
 		background-color: var(--accent-color);
-		color: #fff;
+		color: var(--secondary-background);
 		box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 
 		width: 100%;
 		height: 44px;
 		display: block;
 		margin-top: 30px;
-		margin-bottom: 5px;
+		margin-bottom: 15px;
 
-		@media (max-width: 767px) {
-			/* display: block;
-			margin: 0 auto; */
-			/* margin-top: 60px; */
-			/* margin-bottom: 15px; */
-		}
 		@media screen and (min-width: 768px) {
-			/* margin-top: 60px; */
+			height: 42px;
+			padding: 11px 131px 11px 132px;
 		}
 
 		&:hover,
@@ -81,9 +110,11 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.registr {
-		color: var(--accent-color);
+		display: block;
+		text-align: center;
 		text-decoration: underline;
 		cursor: pointer;
+		color: var(--accent-color);
 
 		&:hover {
 			color: var(--secondary-background);

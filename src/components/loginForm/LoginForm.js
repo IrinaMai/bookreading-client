@@ -6,13 +6,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
-import { isAuth } from '../../redux/selectors/authSelectors';
 import LoginFormWrapper from './LoginFormStyled';
-
-const initialState = {
-	email: '',
-	password: '',
-};
+// import { isAuth } from '../../redux/selectors/authSelectors';
 
 const LoginForm = () => {
 	// const isAuthFlag = useSelector(isAuth);
@@ -23,8 +18,11 @@ const LoginForm = () => {
 			.string()
 			.min(8, 'Пароль не менш 8 символів')
 			.max(16, 'Пароль не більш 16 символів')
-			.typeError('Повинно бути строкою')
-			.required("Обов'язково"),
+			.required("Обов'язково")
+			.matches(
+				'^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$',
+				'Не менш 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
+			),
 	});
 
 	const dispatch = useDispatch();
@@ -35,6 +33,7 @@ const LoginForm = () => {
 
 	return (
 		<LoginFormWrapper>
+			<button className='google'></button>
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validationSchema={validateSchema}
@@ -45,7 +44,9 @@ const LoginForm = () => {
 					<Form>
 						<section className='form'>
 							<label className='formLabel'>
-								<span className='formLabelText'>Електронна адреса *</span>
+								<p className='formLabelText'>
+									Електронна адреса <span className='text'>*</span>
+								</p>
 
 								<Field
 									className='formInput'
@@ -59,13 +60,15 @@ const LoginForm = () => {
 							</label>
 
 							<label className='formLabel'>
-								<span className='formLabelText'>Пароль *</span>
+								<p className='formLabelText'>
+									Пароль <span className='text'>*</span>
+								</p>
 
 								<Field
 									className='formInput'
 									type='password'
 									name='password'
-									value={values.email}
+									value={values.password}
 									placeholder='Пароль'
 								/>
 
@@ -80,8 +83,10 @@ const LoginForm = () => {
 							<span>Увійти</span>
 						</button>
 
-						<p href='' target='_blank' rel='noreferrer noopener'>
-							<a className='registr'>Реєстрація</a>
+						<p className='formLink'>
+							<a className='registr' href='/register'>
+								Реєстрація
+							</a>
 						</p>
 					</Form>
 				)}
