@@ -49,8 +49,8 @@ const initialState = {
   booksList: [],
   startDate: '',
   finishDate: '',
-  booksCount: 5,
-  daysCount: 11,
+  booksCount: 0,
+  daysCount: 0,
   // test param delete and add from new state
   activeTraining: {},
 }
