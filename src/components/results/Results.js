@@ -8,7 +8,7 @@ import ResultsWrapper from './ResultsStyled'
 const Results = () => {
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.string().required('Введіть кількість прочитаних сторінок'),
+    pages: yup.string().required(`Обов'язкове поле`),
   })
 
   const formik = useFormik({
@@ -53,6 +53,9 @@ const Results = () => {
               }}
               id="date"
             />
+              {formik.touched.date && formik.errors.date ? (
+            <span className="error ">{formik.errors.date}</span>
+          ) : null}
           </div>
           <div className="inputGroup">
             <label className="label" htmlFor="pages">
@@ -67,6 +70,9 @@ const Results = () => {
               onChange={formik.handleChange}
               value={formik.values.pages}
             />
+          {formik.touched.pages && formik.errors.pages ? (
+            <span className="error ">{formik.errors.pages}</span>
+          ) : null}
           </div>
         </div>
         <button type="submit" className="formButton">

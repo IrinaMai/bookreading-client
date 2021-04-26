@@ -43,6 +43,7 @@ const ResultsWrapper = styled.div`
   .inputGroup {
     width: 110px;
     height: 72px;
+    position: relative;
   }
 
   .inputGroup:not(:last-child) {
@@ -104,6 +105,15 @@ const ResultsWrapper = styled.div`
       background: #d15807;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     }
+  }
+
+  .error {
+    position: absolute;
+    top: 72px;
+    left: 10px;
+    color: rgb(225, 22, 22);
+    font-size: 10px;
+    font-weight: 400;
   }
 `
 export default ResultsWrapper
