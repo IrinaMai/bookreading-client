@@ -52,7 +52,7 @@ const UserMenuStyled = styled.div`
     &:active {
       color: #f25137;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
       margin-left: 14px;
     }
   }

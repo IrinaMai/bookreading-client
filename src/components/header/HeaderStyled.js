@@ -18,6 +18,14 @@ const HeaderStyled = styled.div`
     font-size: 20px;
     line-height: 1.35;
     color: var(--main-text);
+    ${props =>
+      !props.isAuth &&
+      `
+    @media screen and (max-width: 767px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    `}
   }
 `;
 

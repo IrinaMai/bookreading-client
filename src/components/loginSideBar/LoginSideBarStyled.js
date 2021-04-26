@@ -3,7 +3,6 @@ import icon from '../../assets/images/login/icon.svg';
 
 const LoginSideBarWrapper = styled.section`
 	background-color: var(--secondary-background);
-	width: 100%;
 
 	@media screen and (max-width: 767px) {
 		padding: 50px 0px 58px 0px;

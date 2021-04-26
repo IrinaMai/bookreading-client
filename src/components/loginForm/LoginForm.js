@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import GoogleAuth from '../googleAuth/GoogleAuth';
 // import { useHistory } from 'react-router';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -21,7 +22,7 @@ const LoginForm = () => {
 			.required("Обов'язково")
 			.matches(
 				'^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$',
-				'Не менш 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
+				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 	});
 
@@ -33,14 +34,18 @@ const LoginForm = () => {
 
 	return (
 		<LoginFormWrapper>
-			<button className='google'></button>
+			<p className='google'>
+				<GoogleAuth />
+			</p>
+
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validationSchema={validateSchema}
+				isInitialValid={false}
 				onSubmit={values => {
 					onHandleSubmit(values);
 				}}>
-				{({ values, isValid, dirty, isSubmitting }) => (
+				{({ values, isValid, dirty, isSubmitting, handleSubmit }) => (
 					<Form>
 						<section className='form'>
 							<label className='formLabel'>
@@ -77,9 +82,10 @@ const LoginForm = () => {
 						</section>
 
 						<button
+							onClick={handleSubmit}
 							className='formBtn'
-							type='submit'
-							disabled={!isValid && !dirty && isSubmitting}>
+							disabled={(!isValid && !dirty) || isSubmitting}
+							type='submit'>
 							<span>Увійти</span>
 						</button>
 

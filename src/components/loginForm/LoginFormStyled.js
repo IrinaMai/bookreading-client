@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const LoginFormWrapper = styled.section`
 	width: 270px;
-	height: 359px;
+	padding-bottom: 40px;
 
 	@media screen and (max-width: 1279px) {
 		margin: 0 auto;
@@ -22,6 +22,17 @@ const LoginFormWrapper = styled.section`
 	.text {
 		color: var(--accent-color);
 		font-size: 17px;
+	}
+
+	.form {
+		position: relative;
+	}
+
+	.password-icon {
+		position: absolute;
+		top: 75%;
+		left: 93%;
+		cursor: pointer;
 	}
 
 	.google {
@@ -45,7 +56,7 @@ const LoginFormWrapper = styled.section`
 
 	.error {
 		color: #e63946;
-		font-size: 1rem;
+		font-size: 10px;
 	}
 
 	.formLabel {
