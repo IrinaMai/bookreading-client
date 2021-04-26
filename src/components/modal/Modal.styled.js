@@ -30,14 +30,13 @@ const ModalWindow = styled.div`
     background-color: #fff;
     min-height: 50px;
     box-shadow: 0px 22px 40px 0px rgba(0, 0, 0, 0.1);
-    padding: 31px 15px 38px;
+    padding: 15px;
     @media (max-width: 767px) {
     }
     @media (min-width: 768px) {
       top: 49%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 15px 30px;
     }
     @media (min-width: 1280px) and (orientation: landscape) {
       top: 38%;

@@ -4,7 +4,7 @@ import TrainingIcon from '../../icons/TrainingIcon'
 import { useWindowWidth } from '@react-hook/window-size'
 
 const TrainingBooksListItem = ({
-  id,
+  _id,
   title,
   author,
   year,
@@ -14,7 +14,7 @@ const TrainingBooksListItem = ({
   const onlyWidth = useWindowWidth()
 
   return (
-    <li key={id} className="listItem">
+    <li key={_id} className="listItem">
       <TrainingIcon className="trainingIcon" />
       <p className="description">{title}</p>
       <p className="description">
@@ -33,11 +33,11 @@ const TrainingBooksListItem = ({
       </p>
       <button
         type="button"
-        data-id={id}
+        data-id={_id}
         onClick={onDeleteBook}
         className="deleteButton"
       >
-        {id && <DeleteIcon className="deleteIcon" />}
+        {_id && <DeleteIcon className="deleteIcon" />}
       </button>
     </li>
   )

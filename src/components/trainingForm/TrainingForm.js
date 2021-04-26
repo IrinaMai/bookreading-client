@@ -1,22 +1,31 @@
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
 import { DateTime } from 'luxon'
-import { addBook } from '../../redux/actions/trainingActions'
-// import { getBooks } from '../../redux/selectors/trainingSelectors'
+import trainingActions from '../../redux/actions/trainingActions'
 import convertDate from '../../utils/dateConverter'
 import BookSelect from '../bookSelect/BookSelect'
 import InputDatePicker from './inputDatePicker/InputDatePicker'
 import FormContainer from './TrainingFormStyled'
+import {
+  getFinishDate,
+  getStartDate,
+} from '../../redux/selectors/trainingSelectors'
 
 const TrainingForm = () => {
   const [option, setOption] = useState('')
-  // const [startDate, setStartDate] = useState('')
-  // const [finishDate, setFinishDate] = useState('')
+  const startDate = useSelector(getStartDate)
+  const finishDate = useSelector(getFinishDate)
   const dispatch = useDispatch()
   const history = useHistory()
+
+  useEffect(() => {
+    formik.setFieldValue('startDate', startDate)
+    formik.setFieldValue('finishDate', finishDate)
+  // eslint-disable-next-line
+  }, [])
 
   const validationSchema = yup.object({
     startDate: yup.string().required('Виберіть дату початку тренування'),
@@ -43,7 +52,7 @@ const TrainingForm = () => {
     },
     validationSchema,
     onSubmit: values => {
-      dispatch(addBook(option))
+      dispatch(trainingActions.addBook(option))
       history.push('/training')
     },
   })
@@ -55,11 +64,11 @@ const TrainingForm = () => {
 
   const handleStartDate = date => {
     formik.setFieldValue('startDate', date)
-    // setStartDate(date)
+    dispatch(trainingActions.setStartDate(convertDate(date)))
   }
   const handleFinishtDate = date => {
     formik.setFieldValue('finishDate', date)
-    // setFinishDate(date)
+    dispatch(trainingActions.setFinishDate(convertDate(date)))
   }
 
   return (
@@ -68,7 +77,7 @@ const TrainingForm = () => {
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
           <InputDatePicker
-            pickedDate={formik.values.startDate}
+            pickedDate={startDate ? new Date(startDate) : ''}
             onChange={handleStartDate}
             // value={formik.values.startDate}
             placeholderText="Початок"
@@ -77,7 +86,7 @@ const TrainingForm = () => {
             <span className="error start">{formik.errors.startDate}</span>
           ) : null}
           <InputDatePicker
-            pickedDate={formik.values.finishDate}
+            pickedDate={finishDate ? new Date(finishDate) : ''}
             onChange={handleFinishtDate}
             // value={formik.values.finishDate}
             placeholderText="Завершення"
@@ -95,7 +104,7 @@ const TrainingForm = () => {
           {formik.touched.book && formik.errors.book ? (
             <span className="error">{formik.errors.book}</span>
           ) : null}
-          <button className="formButton" type="submit">
+          <button className="formButton" type="submit" >
             Додати
           </button>
         </div>
@@ -105,14 +114,3 @@ const TrainingForm = () => {
 }
 
 export default TrainingForm
-
-//isMulti handler
-// const handleChange = e => {
-//   setBooks(() => {
-//     const normalizedArray = e.map(book => ({
-//       id: book.id,
-//       bookName: book.label,
-//     }))
-//     return [...normalizedArray]
-//   })
-// }

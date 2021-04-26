@@ -2,15 +2,26 @@ import Select from 'react-select'
 import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
 import {
-  getBooks,
-  getHardcodeBooks,
+  getBooksList,
+  getAllBooks,
 } from '../../redux/selectors/trainingSelectors'
 
 const BookSelect = ({ onChange, value }) => {
-  const books = useSelector(getHardcodeBooks) // temporary selector
-  const booksList = useSelector(getBooks)
+  const books = useSelector(getAllBooks) // all books from store
+  const booksList = useSelector(getBooksList)
 
-  const selectBooks = xorWith(books, booksList, isEqual)
+  const booksWillRead = books
+    .filter(({ status }) => status === 'WillRead')
+    .map(({ _id, title, year, status, author, pages }) => ({
+      _id,
+      title,
+      year,
+      status,
+      author,
+      pages,
+    }))
+
+  const selectBooks = xorWith(booksWillRead, booksList, isEqual)
 
   const filteredOptions = selectBooks.map(book => ({
     ...book,
@@ -50,25 +61,25 @@ const BookSelect = ({ onChange, value }) => {
   }
 
   return (
-      <Select
-        value={defaultValue(filteredOptions, value)}
-        options={filteredOptions}
-        onChange={value => onChange(value)}
-        theme={customTheme}
-        placeholder="Обрати книги з бібліотеки"
-        autoFocus
-        components={{
-          IndicatorSeparator: () => null,
-        }}
-        maxMenuHeight={100}
-        menuPlacement="auto"
-        menuPortalTarget={document.body}
-        menuPosition={'fixed'}
-        styles={customStyles}
-        myFontSize="10px"
-        isDisabled={!filteredOptions.length}
-        // isMulti
-      />
+    <Select
+      value={defaultValue(filteredOptions, value)}
+      options={filteredOptions}
+      onChange={value => onChange(value)}
+      theme={customTheme}
+      placeholder="Обрати книги з бібліотеки"
+      autoFocus
+      components={{
+        IndicatorSeparator: () => null,
+      }}
+      maxMenuHeight={100}
+      menuPlacement="auto"
+      menuPortalTarget={document.body}
+      menuPosition={'fixed'}
+      styles={customStyles}
+      myFontSize="10px"
+      isDisabled={!filteredOptions.length}
+      // isMulti
+    />
   )
 }
 
