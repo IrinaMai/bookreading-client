@@ -45,17 +45,17 @@ const Chart = () => {
   const onlyWidth = useWindowWidth();
   const config = {};
   switch (true) {
-    case onlyWidth >= 768:
-      config.width = 600;
-      config.height = 340;
-      break;
     case onlyWidth >= 1280:
-      config.width = 700;
-      config.height = 380;
+      config.width = 800;
+      config.height = 250;
+      break;
+    case onlyWidth >= 768:
+      config.width = 610;
+      config.height = 250;      
       break;
     default:
-      config.width = 280;
-      config.height = 200;
+      config.width = 227;
+      config.height = 210;     
       break;
   }
   return (
@@ -68,10 +68,10 @@ const Chart = () => {
         height={config.height}
         data={data}
         margin={{
-          top: 25,
-          right: 36,
-          left: 36,
-          bottom: 50,
+          top: 10,
+          right: 10,
+          left: -53,
+          bottom: 0,
         }}
       >
         <CartesianGrid strokeDasharray="0" horizontal={false} stroke="#B1B5C2" />

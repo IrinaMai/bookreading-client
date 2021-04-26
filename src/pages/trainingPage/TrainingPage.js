@@ -7,6 +7,7 @@ import BooksListContainer from '../../components/trainingBooksList/booksListCont
 import TrainingBooksList from '../../components/trainingBooksList/TrainingBooksList'
 import TrainingForm from '../../components/trainingForm/TrainingForm'
 import TrainingPageWrapper from './TrainingPageStyled'
+import Chart from '../../components/chart/Chart'
 
 const TrainingPage = () => {
   const onlyWidth = useWindowWidth()
@@ -25,6 +26,7 @@ const TrainingPage = () => {
         )}
         {onlyWidth < 768 && location.pathname !== '/training/books' && <TrainingBooksList />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && <AddButton/>}
+        <Chart/>
       </TrainingPageWrapper>
     </div>
   )
