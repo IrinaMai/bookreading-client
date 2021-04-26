@@ -1,4 +1,8 @@
-const getHardcodeBooks = state => state.training.books.hardcodeBooks
-const getBooks = state => state.training.books.booksList
+// const getAllBooks = state => state.training.beforeStart.hardcodeBooks
+const getAllBooks = state => state.book
+const getBooksList = state => state.training.beforeStart.booksList
+const getStartDate = state => state.training.beforeStart.startDate
+const getFinishDate = state => state.training.beforeStart.finishDate
 
-export { getHardcodeBooks, getBooks };
+
+export { getAllBooks, getBooksList, getStartDate, getFinishDate };

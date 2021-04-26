@@ -2,16 +2,26 @@ import Select from 'react-select'
 import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
 import {
-  getBooks,
-  getHardcodeBooks,
+  getBooksList,
+  getAllBooks,
 } from '../../redux/selectors/trainingSelectors'
 
-const BookSelect = ({ onChange }) => {
-  
-  const books = useSelector(getHardcodeBooks) // temporary selector
-  const booksList = useSelector(getBooks)
+const BookSelect = ({ onChange, value }) => {
+  const books = useSelector(getAllBooks) // all books from store
+  const booksList = useSelector(getBooksList)
 
-  const selectBooks = xorWith(books, booksList, isEqual)
+  const booksWillRead = books
+    .filter(({ status }) => status === 'WillRead')
+    .map(({ _id, title, year, status, author, pages }) => ({
+      _id,
+      title,
+      year,
+      status,
+      author,
+      pages,
+    }))
+
+  const selectBooks = xorWith(booksWillRead, booksList, isEqual)
 
   const filteredOptions = selectBooks.map(book => ({
     ...book,
@@ -44,13 +54,19 @@ const BookSelect = ({ onChange }) => {
     }
   }
 
+  const defaultValue = (filteredOptions, value) => {
+    return filteredOptions
+      ? filteredOptions.find(option => option.value === value)
+      : ''
+  }
+
   return (
     <Select
-      onChange={onChange}
+      value={defaultValue(filteredOptions, value)}
       options={filteredOptions}
+      onChange={value => onChange(value)}
       theme={customTheme}
       placeholder="Обрати книги з бібліотеки"
-      // isMulti
       autoFocus
       components={{
         IndicatorSeparator: () => null,
@@ -61,6 +77,8 @@ const BookSelect = ({ onChange }) => {
       menuPosition={'fixed'}
       styles={customStyles}
       myFontSize="10px"
+      isDisabled={!filteredOptions.length}
+      // isMulti
     />
   )
 }

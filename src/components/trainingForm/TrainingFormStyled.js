@@ -37,12 +37,12 @@ const FormContainer = styled.div`
 
   .inputGroup {
     margin-bottom: 20px;
+    position: relative;
 
     @media (min-width: 768px) {
       display: flex;
       justify-content: center;
       margin-bottom: 25px;
-
     }
   }
 
@@ -71,13 +71,15 @@ const FormContainer = styled.div`
   }
 
   .selectGroup {
+    position: relative;
     @media (min-width: 768px) {
       display: flex;
       align-items: baseline;
     }
   }
 
-  .css-2b097c-container {
+// select styles
+  .css-2b097c-container, .css-14jk2my-container{
     @media (min-width: 768px) {
       width: 482px;
       height: 42px;
@@ -89,6 +91,7 @@ const FormContainer = styled.div`
       width: 670px;
     }
   }
+
 
   .formButton {
     min-width: 171px;
@@ -117,6 +120,41 @@ const FormContainer = styled.div`
       color: var(--secondary-background);
       border: 1px solid #6d7a8d;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .error {
+    position: absolute;
+    top: 40px;
+    left: 8px;
+    color: rgb(225, 22, 22);
+    font-size: 11px;
+    font-weight: 400;
+    @media (min-width: 768px) {
+      top: 42px;
+      left: 11px;
+    }
+  }
+
+  .start {
+    top: 44px;
+    @media (min-width: 768px) {
+      top: 45px;
+      left: 78px;
+    }
+    @media (min-width: 1280px) {
+      left: 182px;
+    }
+  }
+
+  .finish {
+    top: 106px;
+    @media (min-width: 768px) {
+      top: 45px;
+      left: 372px;
+    }
+    @media (min-width: 1280px) {
+      left: 480px;
     }
   }
 `
