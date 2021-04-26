@@ -16,7 +16,7 @@ const LibraryPage = () => {
   return (
     <div>
       <LibraryForm />
-      <button onClick={handleClick}>openModal</button>
+      <button onClick={handleClick}>Резюме</button>
       <Modal>
         <Resume />
       </Modal>
