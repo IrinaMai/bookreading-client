@@ -9,6 +9,7 @@ import errorReducer from './errorReducer'
 import loaderReducer from './loaderReducer'
 import trainingReducer from './trainingReducer'
 import modalReducer from './modalReducer'
+import modalContentReducer from './modalContentReducer'
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,5 +26,6 @@ const rootReducer = combineReducers({
   loading: loaderReducer,
   error: errorReducer,
   modal: modalReducer,
+  modalContent: modalContentReducer
 })
 export default rootReducer
