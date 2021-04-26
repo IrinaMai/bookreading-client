@@ -3,9 +3,12 @@ import styled from 'styled-components'
 const LibraryEmptyWrapper = styled.div`
   min-width: 240px;
   min-height: 356px;
+  padding-top: 18px;
+  padding-bottom: 28px;
   @media (min-width: 768px) {
     min-width: 510px;
-    min-height: 240px;
+    min-height: 234px;
+    padding-top: 12px;
   }
 
   .iconWrapper {
