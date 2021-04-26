@@ -3,6 +3,8 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
+  margin-bottom: 35px;
+
   @media (min-width: 768px) and (max-width: 1279px) {
     height: ${({ books }) => (books ? '174px' : 'none')};
   }
@@ -10,7 +12,6 @@ const Wrapper = styled.div`
   @media (min-width: 1280px) {
     height: ${({ books }) => (books ? '196px' : 'none')};
   }
-
 
   .listItem {
     display: ${({ tablet }) => (tablet ? 'flex' : 'block')};

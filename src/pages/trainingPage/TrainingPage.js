@@ -3,6 +3,7 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import AddButton from '../../components/addButton/AddButton'
 import BackButton from '../../components/backButton/BackButton'
+import Results from '../../components/results/Results'
 import BooksListContainer from '../../components/trainingBooksList/booksListContainer/BooksListContainer'
 import TrainingBooksList from '../../components/trainingBooksList/TrainingBooksList'
 import TrainingForm from '../../components/trainingForm/TrainingForm'
@@ -30,13 +31,10 @@ const TrainingPage = () => {
             <TrainingBooksList />
           </BooksListContainer>
         )}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
-          <TrainingBooksList />
-        )}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
-          <AddButton />
-        )}
-        <Chart />
+        {onlyWidth < 768 && location.pathname !== '/training/books' && <TrainingBooksList />}
+        {onlyWidth < 768 && location.pathname !== '/training/books' && <AddButton/>}
+        <Chart/>
+        <Results/>
       </TrainingPageWrapper>
     </div>
   )

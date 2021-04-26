@@ -4,6 +4,7 @@ const BooksWrapper = styled.div`
   border-top: 1px solid #e0e5eb;
   border-bottom: 1px solid #e0e5eb;
   max-width: 886px;
+  margin-bottom: 40px;
 
   .labelContainer {
     border-bottom: 1px solid #e0e5eb;
