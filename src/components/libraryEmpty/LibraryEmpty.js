@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import modalActions from '../../redux/actions/modalActions'
 import LibraryIcon from '../icons/LibraryIcon'
 import ArrowVector from '../icons/ArrowVector'
-import Flag from '../icons/Flag'
+import FlagIcon from '../icons/FlagIcon'
 import LibraryEmptyWrapper from './LibraryEmpty.styled'
 
 const LibraryEmpty = () => {
@@ -29,7 +29,7 @@ const LibraryEmpty = () => {
         </div>
         <h2 className="libraryEmptyTitle">Крок 2.</h2>
         <div className="iconWrapper">
-          <Flag />
+          <FlagIcon />
           <p className="libraryEmptyText">Сформуйте своє перше тренування</p>
         </div>
         <div className="arrowWrapper">
