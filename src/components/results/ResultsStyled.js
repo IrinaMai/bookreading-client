@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 
 const ResultsWrapper = styled.div`
-  min-width: 240px;
+  min-width: 270px;
   padding: 10px 17px;
-
   background-color: var(--secondary-background);
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    width: 678px;
+    padding: 20px 84px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 275px;
+  }
 
   .resultsTitle {
     font-weight: 600;
@@ -12,6 +20,18 @@ const ResultsWrapper = styled.div`
     line-height: 3.17;
     text-align: center;
     text-transform: uppercase;
+  }
+
+  .resultsForm {
+    margin-bottom: 40px;
+    @media (min-width: 768px) and (max-width: 1279px) {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    @media (min-width: 1280px) {
+      width: 240px;
+    }
   }
 
   .formGroup {
@@ -34,6 +54,7 @@ const ResultsWrapper = styled.div`
     width: 100%;
     height: 42px;
     padding: 5px 13px;
+    font-size: 14px;
     border: 1px solid #a6abb9;
     background-color: var(--main-background);
     outline: none;
@@ -64,6 +85,18 @@ const ResultsWrapper = styled.div`
     background-color: var(--accent-color);
     border: 1px solid var(--accent-color);
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (min-width: 768px) and (max-width: 1279px) {
+      width: 240px;
+      height: 40px;
+      margin: 0;
+      margin-left: 30px;
+    }
+
+    @media (min-width: 1280px) {
+      width: 100%;
+      height: 40px;
+    }
 
     &:focus,
     &:hover {
