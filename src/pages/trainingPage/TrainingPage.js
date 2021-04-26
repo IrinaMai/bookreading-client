@@ -40,7 +40,7 @@ const TrainingPage = () => {
         )}
         {/* 1280px positioning top section*/}
         {onlyWidth > 1279 && (
-          <section className="topSection">
+          <div className="topSection">
             <div className="sectionGroup">
               <TrainingForm />
               <BooksListContainer>
@@ -51,7 +51,7 @@ const TrainingPage = () => {
                 !activeTrainingID && <StartTrainingBtn />}
             </div>
             <ToGoal />
-          </section>
+          </div>
         )}
         {/* ---------------------------------- */}
         {onlyWidth > 767 && onlyWidth < 1280 && <TrainingForm />}
@@ -77,11 +77,19 @@ const TrainingPage = () => {
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Chart />
         )}
-        {onlyWidth > 768 && <Chart />}
+        {onlyWidth > 768 && onlyWidth < 1280 && <Chart />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Results />
         )}
-        {onlyWidth > 768 && <Results />}
+        {onlyWidth > 768 && onlyWidth < 1280 && <Results />}
+        {/* 1280px positioning bottom section*/}
+        {onlyWidth > 1279 && (
+          <div className="bottomSection">
+            <Chart />
+            <Results />
+          </div>
+        )}
+        {/* ---------------------------------- */}
       </TrainingPageWrapper>
     </div>
   )
