@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
+import { useParams } from 'react-router'
 import { combineReducers } from 'redux'
 import trainingActions from '../actions/trainingActions'
 
@@ -50,6 +51,8 @@ const initialState = {
   finishDate: '',
   booksCount: 0,
   daysCount: 0,
+  // test param delete and add from new state
+  activeTraining: {},
 }
 
 export const bookReducer = createReducer(
