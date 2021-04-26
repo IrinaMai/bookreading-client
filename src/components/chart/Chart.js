@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label } from 'recharts';
 import { useWindowWidth } from '@react-hook/window-size';
+import { DateTime } from 'luxon'
 import ChartStyled from './ChartStyled';
 
 const training = {
@@ -38,46 +39,23 @@ const training = {
       },
     ]
 }
-const data = [
-  {
-    name: '22.04.2021',
-    pagesTotal: (400 / 7) * 1,
-    pagesRead: 40,
-  },
-  {
-    name: '23.04.2021',
-    pagesTotal: (400 / 7) * 2,
-    pagesRead: 100,
-  },
-  {
-    name: '24.04.2021',
-    pagesTotal: (400 / 7) * 3,
-    pagesRead: 190,
-  },
-  {
-    name: '25.04.2021',
-    pagesTotal: (400 / 7) * 4,
-    pagesRead: 210,
-  },
-  {
-    name: '26.04.2021',
-    pagesTotal: (400 / 7) * 5,
-    pagesRead: 250,
-  },
-  {
-    name: '27.04.2021',
-    pagesTotal: (400 / 7) * 6,
-    pagesRead: 320,
-  },
-  {
-    name: '28.04.2021',
-    pagesTotal: (400 / 7) * 7,
-    pagesRead: 400,
-  },
-];
+
 
 const Chart = () => {
   const onlyWidth = useWindowWidth();
+  const start = DateTime.fromISO(training.startDate);
+  const finish = DateTime.fromISO(training.finishDate);
+  const duration = finish.diff(start, 'days').toObject()?.days + 1;
+  const average = Math.ceil(training.totalPages/duration);
+  const data = training.progress.map((el, idx) => {
+    return {
+    name: el.name,
+    pagesTotal: Math.min(((idx + 1) * average), training.totalPages),
+    pagesRead: training.progress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pagesRead : 0), 0),
+    }
+  })
+  
+
   const config = {};
   switch (true) {
     case onlyWidth >= 1280:
@@ -96,7 +74,7 @@ const Chart = () => {
   return (
     <ChartStyled>
       <p className="pagesAverage">
-        Кількість сторінок / день <span className="pagesAverage-amount">34</span>
+        Кількість сторінок / день <span className="pagesAverage-amount">{average}</span>
       </p>
       <LineChart
         width={config.width}
