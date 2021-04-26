@@ -1,51 +1,73 @@
 import { connect } from 'react-redux'
-import ToGoalStyled from "./ToGoalStyled"
-
-/////////////////////////////////////////////// selectors test ////////////////////
-// const getTrainingBooksCount = state => state.training.booksCount;
-// const getTrainingUnreadBooksCount = state => state.training.unreadBooksCount;
-
+import ToGoalStyled from './ToGoalStyled'
+import { useSelector } from 'react-redux'
 
 const Goal = () => {
+  //////////////////////////////////////////////// Selectors ////////////////////////
+  const booksToRead = useSelector(
+    state => state.training.beforeStart.booksCount
+  )
+  const trainingPeriodDays = useSelector(
+    state => state.training.beforeStart.daysCount
+  )
+  const activeTraining = useSelector(
+    state => state.training.beforeStart.activeTraining
+  )
+  /////////////////////////////////////////////////////////////////////////////////////////
 
-    // const {
-    //     showBooksLeft,
-    //     booksToRead,
-    //     trainingPeriodDays,
-    //     booksLeft,
-    // } = this.props;
+  return (
+    <ToGoalStyled>
+      <h2 className={activeTraining ? 'bookTitleMore' : 'bookTitle'}>
+        Моя мета прочитати
+      </h2>
+      <div
+        className={
+          activeTraining ? 'booksCounterContainerMore' : 'booksCounterContainer'
+        }
+      >
+        <div className={activeTraining ? 'booksCounterMore' : 'booksCounter'}>
+          <p className={activeTraining ? 'counterNumberMore' : 'counterNumber'}>
+            {booksToRead}
+          </p>
+        </div>
 
-    return (
-        <ToGoalStyled>
-            <h2 className="bookTitle">Моя мета прочитати</h2>
-            <div className="booksCounterContainer">
-                <div className="booksCounter"><p className="counterNumber">2</p></div>
-                {/* <div className="booksCounter">{booksToRead}</div> */}
-                {/* <div className="booksCounter">
-        {trainingPeriodDays}
-      </div> */}
-                <div className="booksCounter">
-                    <p className="counterNumber">25</p>
+        <div className={activeTraining ? 'booksCounterMore' : 'booksCounter'}>
+          <p className={activeTraining ? 'counterNumberMore' : 'counterNumber'}>
+            {trainingPeriodDays}
+          </p>
+        </div>
 
-                </div>
-                {/* {showBooksLeft && ( */}
-                {/* // <div className="booksCounterColor">
-        //   {booksLeft}
-        // </div> */}
-                {/* //   )} */}
-                {/* <div className="booksCounter">
-                    <p className="counterNumber">3 </p>
-                </div> */}
-                <div className="counterLabelContainer">
-                    <p className="counterLabel">Кількість книжок</p>
-                    <p className="counterLabel">Кількість днів</p>
-                    {/* {showBooksLeft && ( */}
-                    {/* <p className="counterLabel">Залишилось книжок</p> */}
-                    {/* )} */}
-                </div>
-            </div>
-        </ToGoalStyled>
-    );
+        {activeTraining ? (
+          <div className="booksCounterMore">
+            <p className="counterNumberActive">12</p>
+          </div>
+        ) : (
+          ''
+        )}
+        <div
+          className={
+            activeTraining
+              ? 'counterLabelContainerMore'
+              : 'counterLabelContainer'
+          }
+        >
+          <p className={activeTraining ? 'counterLabelMore' : 'counterLabel'}>
+            Кількість <br></br> книжок
+          </p>
+          <p className={activeTraining ? 'counterLabelMore' : 'counterLabel'}>
+            Кількість <br></br>днів
+          </p>
+          {activeTraining ? (
+            <p className="counterLabelMore">
+              Залишилося <br></br> книжок
+            </p>
+          ) : (
+            ''
+          )}
+        </div>
+      </div>
+    </ToGoalStyled>
+  )
 }
 
 // const mapStateToProps = state => ({

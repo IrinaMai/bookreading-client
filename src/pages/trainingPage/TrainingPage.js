@@ -7,7 +7,7 @@ import BooksListContainer from '../../components/trainingBooksList/booksListCont
 import TrainingBooksList from '../../components/trainingBooksList/TrainingBooksList'
 import TrainingForm from '../../components/trainingForm/TrainingForm'
 import TrainingPageWrapper from './TrainingPageStyled'
-
+import ToGoal from '../../components/to-goal/ToGoal'
 const TrainingPage = () => {
   const onlyWidth = useWindowWidth()
   const location = useLocation()
@@ -15,16 +15,24 @@ const TrainingPage = () => {
   return (
     <div className="container">
       <TrainingPageWrapper>
-        {onlyWidth < 768 && location.pathname === '/training/books' && <BackButton/>}
-        {onlyWidth < 768 && location.pathname === '/training/books' && <TrainingForm />}
+        {onlyWidth < 768 && location.pathname === '/training/books' && (
+          <BackButton />
+        )}
+        {onlyWidth < 768 && location.pathname === '/training/books' && (
+          <TrainingForm />
+        )}
         {onlyWidth > 767 && <TrainingForm />}
         {onlyWidth > 767 && (
           <BooksListContainer>
             <TrainingBooksList />
           </BooksListContainer>
         )}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && <TrainingBooksList />}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && <AddButton/>}
+        {onlyWidth < 768 && location.pathname !== '/training/books' && (
+          <TrainingBooksList />
+        )}
+        {onlyWidth < 768 && location.pathname !== '/training/books' && (
+          <AddButton />
+        )}
       </TrainingPageWrapper>
     </div>
   )
