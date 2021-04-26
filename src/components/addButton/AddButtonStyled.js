@@ -20,7 +20,7 @@ const AddButtonStyled = styled.button`
 
   &:focus,
   &:hover {
-    background: transparent;
+    background: var(--main-background);
     border-color: var(--main-text);
   }
 
