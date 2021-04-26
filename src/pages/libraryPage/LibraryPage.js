@@ -5,6 +5,7 @@ import Modal from '../../components/modal/Modal'
 import modalActions from '../../redux/actions/modalActions'
 import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
 import WellDone from '../../components/wellDone/WellDone'
+import Resume from '../../components/resume/Resume'
 
 const LibraryPage = () => {
   const dispatch = useDispatch()
@@ -14,14 +15,13 @@ const LibraryPage = () => {
 
   return (
     <div>
-        <LibraryForm />
+      <LibraryForm />
       <button onClick={handleClick}>openModal</button>
       <Modal>
-        <LibraryEmpty />
+        <Resume />
       </Modal>
     </div>
   )
 }
-
 
 export default LibraryPage
