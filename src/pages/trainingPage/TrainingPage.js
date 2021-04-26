@@ -27,8 +27,8 @@ const TrainingPage = () => {
         )}
         {onlyWidth < 768 && location.pathname !== '/training/books' && <TrainingBooksList />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && <AddButton/>}
-        <Results/>
         <Chart/>
+        <Results/>
       </TrainingPageWrapper>
     </div>
   )

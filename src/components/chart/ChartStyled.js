@@ -4,7 +4,13 @@ const ChartStyled = styled.div`
   background-color: var(--secondary-background);
   width: 270px;
   height: 290px;
-  padding: 14px 22px;  
+  padding: 14px 22px;
+  margin-bottom:30px;
+  
+  @media screen and (min-width: 768px) {
+    margin-bottom:40px;
+  }
+
   .pagesAverage {
     font-weight: 500;
     font-size: 12px;
