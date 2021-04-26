@@ -17,6 +17,7 @@ const LinkStyled = styled(Link)`
   border: 1px solid var(--accent-color);
   cursor: pointer;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index:1000;
 
   &:focus,
   &:hover {
