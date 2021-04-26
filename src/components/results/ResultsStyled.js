@@ -21,7 +21,7 @@ const ResultsWrapper = styled.div`
   }
 
   .inputGroup {
-    min-width: 110px;
+    width: 110px;
     height: 72px;
   }
 
@@ -48,13 +48,15 @@ const ResultsWrapper = styled.div`
 
   .formButton {
     width: 171px;
+    height: 42px;
+    padding: 5px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     font-weight: 500;
     font-size: 14px;
-    line-height: 2.71;
+    line-height: 1.71;
     text-align: center;
     color: var(--secondary-background);
     outline: none;
@@ -65,9 +67,9 @@ const ResultsWrapper = styled.div`
 
     &:focus,
     &:hover {
-      color:var(--main-text);
-      background: var(--main-background);
-      border-color: var(--main-text);
+      border-color: #d15807;
+      background: #d15807;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     }
   }
 `
