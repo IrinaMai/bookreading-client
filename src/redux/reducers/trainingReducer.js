@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import trainingActions from '../actions/trainingActions'
 
-const initialState = {
+const startInitialState = {
   hardcodeBooks: [
     {
       _id: '1',
@@ -50,10 +50,12 @@ const initialState = {
   finishDate: '',
   booksCount: 0,
   daysCount: 0,
+  // test param delete and add from new state
+  activeTraining: {},
 }
 
 export const bookReducer = createReducer(
-  { ...initialState },
+  { ...startInitialState },
   {
     [trainingActions.addBook]: (state, { payload }) => ({
       ...state,
@@ -83,9 +85,36 @@ export const bookReducer = createReducer(
     }),
   }
 )
+const activeInitialState = {
+  _id: '',
+  startDate: '',
+  finishDate: '',
+  books: [],
+  pagesRead: 0,
+  pagesTotal: 0,
+  progress: [],
+}
+
+const startTrainingReducer = createReducer(
+  { ...activeInitialState },
+  {
+    [trainingActions.addTrainingSuccess]: (state, { payload }) => {
+      return {
+        _id: payload._id,
+        startDate: payload.startDate,
+        finishDate: payload.startDate,
+        books: payload.books,
+        pagesRead: payload.pagesRead,
+        pagesTotal: payload.pagesTotal,
+        progress: payload.progress,
+      }
+    },
+  }
+)
 
 const trainingReducer = combineReducers({
   beforeStart: bookReducer,
+  active: startTrainingReducer,
 })
 
 export default trainingReducer

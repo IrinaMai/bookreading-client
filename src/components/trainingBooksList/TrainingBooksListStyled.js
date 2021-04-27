@@ -3,6 +3,8 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
+  margin-bottom: 35px;
+
   @media (min-width: 768px) and (max-width: 1279px) {
     height: ${({ books }) => (books ? '174px' : 'none')};
   }
@@ -10,7 +12,6 @@ const Wrapper = styled.div`
   @media (min-width: 1280px) {
     height: ${({ books }) => (books ? '196px' : 'none')};
   }
-
 
   .listItem {
     display: ${({ tablet }) => (tablet ? 'flex' : 'block')};
@@ -105,18 +106,18 @@ const Wrapper = styled.div`
 
   .listItem > .description:nth-of-type(3) {
     @media (min-width: 768px) {
-      width: 80px;
+      width: 65px;
     }
   }
   .listItem > .description:nth-of-type(4) {
     @media (min-width: 768px) and (max-width: 1279px) {
       width: 25px;
-      margin-right: 40px;
+      margin-right: 60px;
       text-align: end;
     }
     @media (min-width: 1280px) {
       width: 50px;
-      margin-right: 90px;
+      margin-right: 105px;
       text-align: end;
     }
   }

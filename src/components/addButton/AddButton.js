@@ -1,17 +1,14 @@
 import React from 'react'
-import { Link, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom'
 import PlusIcon from '../icons/PlusIcon'
-import AddButtonStyled from './AddButtonStyled';
+import LinkStyled from './AddButtonStyled'
 
 const AddButton = () => {
-  const match = useRouteMatch();
-
+  const match = useRouteMatch()
   return (
-    <AddButtonStyled type="button">
-      <Link to={`${match.url}/books`}>
-        <PlusIcon/>
-      </Link>
-    </AddButtonStyled>
+    <LinkStyled to={`${match.url}/books`}>
+      <PlusIcon />
+    </LinkStyled>
   )
 }
 
