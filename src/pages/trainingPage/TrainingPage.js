@@ -30,7 +30,7 @@ const TrainingPage = () => {
           <ToGoal />
         )}
 
-        {onlyWidth > 768 && onlyWidth < 1280 && <ToGoal />}
+        {onlyWidth >= 768 && onlyWidth < 1280 && <ToGoal />}
 
         {onlyWidth < 768 && location.pathname === '/training/books' && (
           <BackButton />
@@ -67,7 +67,7 @@ const TrainingPage = () => {
           location.pathname !== '/training/books' &&
           booksList.length > 0 &&
           !activeTrainingID && <StartTrainingBtn />}
-        {onlyWidth > 768 &&
+        {onlyWidth >= 768 &&
           onlyWidth < 1280 &&
           booksList.length > 0 &&
           !activeTrainingID && <StartTrainingBtn />}
@@ -77,11 +77,11 @@ const TrainingPage = () => {
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Chart />
         )}
-        {onlyWidth > 768 && onlyWidth < 1280 && <Chart />}
+        {onlyWidth >= 768 && onlyWidth < 1280 && <Chart />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Results />
         )}
-        {onlyWidth > 768 && onlyWidth < 1280 && <Results />}
+        {onlyWidth >= 768 && onlyWidth < 1280 && <Results />}
         {/* 1280px positioning bottom section*/}
         {onlyWidth > 1279 && (
           <div className="bottomSection">

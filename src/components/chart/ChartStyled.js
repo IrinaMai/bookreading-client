@@ -7,6 +7,8 @@ const ChartStyled = styled.div`
   padding: 14px 22px;
 
   @media (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 40px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
