@@ -8,14 +8,13 @@ import '../node_modules/modern-normalize/modern-normalize.css'
 import './assets/styles/index.css'
 import App from './components/App'
 import store, { persistor } from './redux/store'
-import Timer from './components/timer/Timer'
-
+import TimerContainer from './components/timer/TimerContainer'
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <Timer />
-        <App />
+        <TimerContainer />
+        {/* <App /> */}
       </BrowserRouter>
     </PersistGate>
   </Provider>,

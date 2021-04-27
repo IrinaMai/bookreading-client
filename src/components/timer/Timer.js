@@ -1,71 +1,59 @@
-import React, { Component } from 'react'
-import css from './Timer.module.css'
+import { DateTime } from 'luxon'
+import React from 'react'
+import TimerStyled from './TimerStyled'
 
-export default class Timer extends Component {
-  state = {
-    day: '',
-    hour: '',
-    minute: '',
-    second: '',
-  }
-  componentDidMount() {
-    this.setInt = setInterval(() => {
-      const nowDate = Date.now()
-      const { targetDate } = this.props
-      const time = targetDate - nowDate
+import { useEffect, useState } from 'react'
 
-      this.updateTimer(time)
-    }, 1000)
-  }
-  componentWillUnmount() {
-    clearInterval(this.setInt)
-  }
+export const useTime = (refreshCycle = 1000) => {
+  const [now, setNow] = useState(getTime())
 
-  updateTimer(time) {
-    const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)))
-    const hours = this.pad(
-      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    )
-    const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)))
-    const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000))
+  useEffect(() => {
+    const intervalId = setInterval(() => setNow(getTime()), refreshCycle)
+    return () => clearInterval(intervalId)
+  }, [refreshCycle, setInterval, clearInterval, setNow, getTime])
 
-    this.setState({
-      day: days,
-      hour: hours,
-      minute: mins,
-      second: secs,
-    })
-  }
+  return now
+}
 
-  pad(value) {
-    return String(value).padStart(2, '0')
-  }
+export const getTime = () => {
+  return DateTime.local()
+}
 
-  render() {
-    const { day, hour, minute, second } = this.state
-    const { title } = this.props
+export const Timer = ({ title, dateTime }) => {
+  const now = useTime(1000)
+  const end = dateTime
+  // DateTime.fromISO('2022-08-12')
+  const duration = end
+    .diff(now, ['days', 'hours', 'minutes', 'seconds', 'milliseconds'])
+    .toObject()
 
-    return (
-      <div className={css.time}>
-        <p className={css.title}>{title}</p>
-        <div className={css.timer}>
-          <p className={css.number}>
-            {day}
-            <b className={css.colon}>:</b> <span className={css.span}>дн</span>
+  return (
+    <TimerStyled>
+      <p className="title">{title}</p>
+      <div className="timerContaienr">
+        <div className="timer">
+          <p className="number">
+            {duration.days}
+            <b className="dots">:</b>
           </p>
-          <p className={css.number}>
-            {hour}
-            <b className={css.colon}>:</b> <span className={css.span}>год</span>
+          <p className="number">
+            {duration.hours}
+            <b className="dots">:</b>
           </p>
-          <p className={css.number}>
-            {minute}
-            <b className={css.colon}>:</b> <span className={css.span}>хв</span>
+          <p className="number">
+            {duration.minutes}
+            <b className="dots">:</b>
           </p>
-          <p className={css.number}>
-            {second} <span className={css.span}>сек</span>
-          </p>
+          <p className="number">{duration.seconds}</p>
+        </div>
+        <div className="words">
+          <span>ДН</span>
+          <span>ГОД</span>
+          <span>ХВ</span>
+          <span>СЕК</span>
         </div>
       </div>
-    )
-  }
+    </TimerStyled>
+  )
 }
+export default Timer
