@@ -45,6 +45,7 @@ const logOutOperation = () => async dispatch => {
     dispatch(authActions.logOutSuccess());
   } catch (error) {
     dispatch(authActions.logOutError(error));
+    dispatch(authActions.logOutSuccess());
   }
 };
 
