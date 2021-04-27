@@ -24,7 +24,7 @@ const TrainingForm = () => {
   useEffect(() => {
     formik.setFieldValue('startDate', startDate)
     formik.setFieldValue('finishDate', finishDate)
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
   const validationSchema = yup.object({
@@ -104,7 +104,7 @@ const TrainingForm = () => {
           {formik.touched.book && formik.errors.book ? (
             <span className="error">{formik.errors.book}</span>
           ) : null}
-          <button className="formButton" type="submit" >
+          <button className="formButton" type="submit">
             Додати
           </button>
         </div>
