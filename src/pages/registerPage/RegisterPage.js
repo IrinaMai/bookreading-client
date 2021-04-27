@@ -1,13 +1,16 @@
 import React from 'react';
-import GoogleAuth from '../../components/googleAuth/GoogleAuth'
+
+import RegistrationForm from '../../components/registrationForm/RegistrationForm';
+import RegisterWrapper from './RegisterPageStyled';
 
 const RegisterPage = () => {
-  return (
-    <>
-      <h2>Register Page</h2>
-      <GoogleAuth/>
-    </>
-  )
+	return (
+		<RegisterWrapper>
+			<section>
+				<RegistrationForm />
+			</section>
+		</RegisterWrapper>
+	);
 };
 
 export default RegisterPage;

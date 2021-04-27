@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
 
@@ -6,10 +7,14 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
-import LoginFormWrapper from './LoginFormStyled';
+import RegistrationWrapper from './RegistrationFormStyled';
 
-const LoginForm = () => {
+const RegistrationForm = () => {
 	const validateSchema = yup.object().shape({
+		username: yup
+			.string()
+			.typeError('Повинна бути строкою')
+			.required("Обов'язково"),
 		email: yup.string().email('Введіть вірну адресу').required("Обов'язково"),
 		password: yup
 			.string()
@@ -23,11 +28,11 @@ const LoginForm = () => {
 	const dispatch = useDispatch();
 
 	const onHandleSubmit = values => {
-		dispatch(authOperations.loginOperation(values));
+		dispatch(authOperations.registerOperation(values));
 	};
 
 	return (
-		<LoginFormWrapper>
+		<RegistrationWrapper>
 			<section className='google'>
 				<GoogleAuth />
 			</section>
@@ -91,8 +96,8 @@ const LoginForm = () => {
 					</Form>
 				)}
 			</Formik>
-		</LoginFormWrapper>
+		</RegistrationWrapper>
 	);
 };
 
-export default LoginForm;
+export default RegistrationForm;
