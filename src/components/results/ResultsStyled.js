@@ -59,6 +59,11 @@ const ResultsWrapper = styled.div`
     border: 1px solid #a6abb9;
     background-color: var(--main-background);
     outline: none;
+
+    &:focus {
+      background-color: var(--secondary-background);
+      box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+    }
   }
 
   .label {
