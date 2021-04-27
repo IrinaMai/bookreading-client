@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
 
@@ -11,6 +11,12 @@ import LoginFormWrapper from './LoginFormStyled';
 
 const LoginForm = () => {
 	// const isAuthFlag = useSelector(isAuth);
+
+	const [visiblePassword, setVisiblePassword] = useState(false);
+
+	const handleClickVisiblePassword = e => {
+		e.target.nodeName !== 'INPUT' && setVisiblePassword(!visiblePassword);
+	};
 
 	const validateSchema = yup.object().shape({
 		email: yup.string().email('Введіть вірну адресу').required("Обов'язково"),
@@ -68,10 +74,17 @@ const LoginForm = () => {
 
 								<Field
 									className='formInput'
-									type='password'
+									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
 									placeholder='Пароль'
+								/>
+
+								<i
+									className={`fa ${
+										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
+									} password-icon`}
+									onClick={handleClickVisiblePassword}
 								/>
 
 								<ErrorMessage className='error' name='password' component='section' />
