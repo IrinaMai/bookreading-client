@@ -18,11 +18,11 @@ const LoginForm = () => {
 			.string()
 			.min(8, 'Пароль не менш 8 символів')
 			.max(16, 'Пароль не більш 16 символів')
-			.required("Обов'язково")
-			.matches(
-				// '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^ws]).{8,}/',
-				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
-			),
+			.required("Обов'язково"),
+		// .matches(
+		// 	'/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^ws]).{8,}/',
+		// 	'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
+		// ),
 	});
 
 	const dispatch = useDispatch();
@@ -83,7 +83,7 @@ const LoginForm = () => {
 						<button
 							onClick={handleSubmit}
 							className='formBtn'
-							disabled={!(isValid && dirty) || isSubmitting}
+							disabled={!(isValid && dirty) && isSubmitting}
 							type='submit'>
 							<span>Увійти</span>
 						</button>
