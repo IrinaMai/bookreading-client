@@ -8,6 +8,10 @@ const ToGoalStyled = styled.div`
   order: 2;
   background: var(--secondary-background);
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  margin-bottom: 30px;
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+  }
   .containerMore {
     height: 215px;
   }

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
-// import { useHistory } from 'react-router';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -13,15 +12,19 @@ import LoginFormWrapper from './LoginFormStyled';
 const LoginForm = () => {
 	// const isAuthFlag = useSelector(isAuth);
 
+	const [visiblePassword, setVisiblePassword] = useState(false);
+
+	const handleClickVisiblePassword = e => {
+		e.target.nodeName !== 'INPUT' && setVisiblePassword(!visiblePassword);
+	};
+
 	const validateSchema = yup.object().shape({
 		email: yup.string().email('Введіть вірну адресу').required("Обов'язково"),
 		password: yup
 			.string()
-			.min(8, 'Пароль не менш 8 символів')
-			.max(16, 'Пароль не більш 16 символів')
 			.required("Обов'язково")
 			.matches(
-				'^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$',
+				'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 	});
@@ -34,9 +37,9 @@ const LoginForm = () => {
 
 	return (
 		<LoginFormWrapper>
-			<p className='google'>
+			<section className='google'>
 				<GoogleAuth />
-			</p>
+			</section>
 
 			<Formik
 				initialValues={{ email: '', password: '' }}
@@ -71,10 +74,17 @@ const LoginForm = () => {
 
 								<Field
 									className='formInput'
-									type='password'
+									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
 									placeholder='Пароль'
+								/>
+
+								<i
+									className={`fa ${
+										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
+									} password-icon`}
+									onClick={handleClickVisiblePassword}
 								/>
 
 								<ErrorMessage className='error' name='password' component='section' />
@@ -84,7 +94,7 @@ const LoginForm = () => {
 						<button
 							onClick={handleSubmit}
 							className='formBtn'
-							disabled={(!isValid && !dirty) || isSubmitting}
+							disabled={!(isValid && dirty) && isSubmitting}
 							type='submit'>
 							<span>Увійти</span>
 						</button>
