@@ -130,6 +130,12 @@ const LoginFormWrapper = styled.section`
 		&:hover {
 			color: var(--secondary-background);
 		}
+
+		@media screen and (min-width: 768px) {
+			&:hover {
+				color: var(--secondary-text);
+			}
+		}
 	}
 `;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
-// import { useHistory } from 'react-router';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -21,7 +20,7 @@ const LoginForm = () => {
 			.max(16, 'Пароль не більш 16 символів')
 			.required("Обов'язково")
 			.matches(
-				'^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$',
+				// '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^ws]).{8,}/',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 	});
@@ -34,9 +33,9 @@ const LoginForm = () => {
 
 	return (
 		<LoginFormWrapper>
-			<p className='google'>
+			<section className='google'>
 				<GoogleAuth />
-			</p>
+			</section>
 
 			<Formik
 				initialValues={{ email: '', password: '' }}
@@ -84,7 +83,7 @@ const LoginForm = () => {
 						<button
 							onClick={handleSubmit}
 							className='formBtn'
-							disabled={(!isValid && !dirty) || isSubmitting}
+							disabled={!(isValid && dirty) || isSubmitting}
 							type='submit'>
 							<span>Увійти</span>
 						</button>
