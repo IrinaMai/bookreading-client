@@ -37,8 +37,8 @@ const ResumeWrapper = styled.div`
     margin-top: 20px;
   }
   .buttonBack {
-    width: 98px;
-    height: 40px;
+    min-width: 98px;
+    min-height: 40px;
     border: 1px solid #242a37;
     background-color: var(--secondary-background);
     cursor: pointer;
@@ -55,8 +55,8 @@ const ResumeWrapper = styled.div`
     transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .buttonSave {
-    width: 97px;
-    height: 40px;
+    min-width: 97px;
+    min-height: 40px;
     background: var(--accent-color);
     color: var(--secondary-background);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);

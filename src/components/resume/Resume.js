@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import modalActions from '../../redux/actions/modalActions'
-import StarIcon from '../../components/icons/StarIcon'
 import ResumeWrapper from './Resume.styled'
+import StarRating from '../rating/StarRating'
 
 const Resume = () => {
   const dispatch = useDispatch()
@@ -15,11 +15,7 @@ const Resume = () => {
     <>
       <ResumeWrapper>
         <p className="resumeText">Обрати рейтинг книги</p>
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
+        <StarRating />
         <p className="resumeContent">Резюме</p>
         <textarea className="resumeTextArea" placeholder="..."></textarea>
         <div className="buttonWrapper">
