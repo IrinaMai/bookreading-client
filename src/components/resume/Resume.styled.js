@@ -29,7 +29,7 @@ const ResumeWrapper = styled.div`
     padding: 5px 10px;
     font-size: 14px;
     line-height: 2.71;
-    cursor: pointer;
+    cursor: text;
   }
   .buttonWrapper {
     display: flex;
@@ -37,20 +37,41 @@ const ResumeWrapper = styled.div`
     margin-top: 20px;
   }
   .buttonBack {
-    width: 98px;
-    height: 40px;
+    min-width: 98px;
+    min-height: 40px;
     border: 1px solid #242a37;
     background-color: var(--secondary-background);
     cursor: pointer;
   }
+  .buttonBack:hover,
+  .buttonBack:focus {
+    background: var(--light-text);
+    outline: none;
+    color: var(--secondary-background);
+    border: 1px solid #a6abb9;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    /* transition: background-color 200ms ease-in-out;
+    transition: all 250ms ease-in; */
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
   .buttonSave {
-    width: 97px;
-    height: 40px;
+    min-width: 97px;
+    min-height: 40px;
     background: var(--accent-color);
     color: var(--secondary-background);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     border: none;
     cursor: pointer;
+  }
+  .buttonSave:hover,
+  .buttonSave:focus {
+    background: #d15807;
+    outline: none;
+    border: 1px solid #d15807;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    /* transition: background-color 200ms ease-in-out;
+    transition: all 250ms ease-in; */
+    transition: all 500ms cubic-bezier(1, 1, 1, 1);
   }
   @media (min-width: 768px) {
     .buttonWrapper {

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
 background-color: #F6F7FB;
@@ -76,7 +76,7 @@ color: #898F9F;
         color: #000000;
         background: #F6F7FB;
         border: 1px solid #242A37;
-        background-color: ${props => props.disabled ? "read" : "blue"}
+        background-color: ${props => (props.disabled ? 'read' : 'blue')}
          
         &:hover,
         &:focus {
@@ -88,7 +88,7 @@ color: #898F9F;
 
     .bookError {
         display: block;
-        position: absolute;
+        /* position: absolute; */
         color: #F25137;
         font-weight: bold;
         font-size: 8px;
