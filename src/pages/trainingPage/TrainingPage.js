@@ -17,6 +17,7 @@ import {
   getActiveTrainingID,
 } from '../../redux/selectors/trainingSelectors'
 
+
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
   const activeTrainingID = useSelector(getActiveTrainingID)
@@ -71,6 +72,7 @@ const TrainingPage = () => {
           onlyWidth < 1280 &&
           booksList.length > 0 &&
           !activeTrainingID && <StartTrainingBtn />}
+          
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <AddButton />
         )}

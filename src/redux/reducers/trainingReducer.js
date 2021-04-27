@@ -98,17 +98,22 @@ const activeInitialState = {
 const startTrainingReducer = createReducer(
   { ...activeInitialState },
   {
-    [trainingActions.addTrainingSuccess]: (state, { payload }) => {
-      return {
-        _id: payload._id,
-        startDate: payload.startDate,
-        finishDate: payload.startDate,
-        books: payload.books,
-        pagesRead: payload.pagesRead,
-        pagesTotal: payload.pagesTotal,
-        progress: payload.progress,
-      }
-    },
+    [trainingActions.addTrainingSuccess]: (state, { payload }) => ({
+      _id: payload._id,
+      startDate: payload.startDate,
+      finishDate: payload.finishDate,
+      books: payload.books,
+      pagesRead: payload.pagesRead,
+      pagesTotal: payload.pagesTotal,
+      progress: payload.progress,
+    }),
+
+    [trainingActions.addResultsSuccess]: (state, { payload }) => ({
+      ...state,
+      pagesRead: payload.pagesRead,
+      pagesTotal: payload.pagesTotal,
+      progress: payload.progress,
+    }),
   }
 )
 

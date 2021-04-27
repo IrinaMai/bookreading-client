@@ -7,6 +7,10 @@ const setFinishDate = createAction('trainingBeforeStart/setFinishDate')
 const addTrainingRequest = createAction('training/addTrainingRequest');
 const addTrainingSuccess = createAction('training/addTrainingSuccess');
 const addTrainingError = createAction('training/addTrainingError');
+const addResultsRequest = createAction('training/ResultsRequest');
+const addResultsSuccess = createAction('training/ResultsSuccess');
+const addResultsError = createAction('training/ResultsError');
+
 
 const trainingActions = {
   addBook,
@@ -16,5 +20,8 @@ const trainingActions = {
   addTrainingRequest,
   addTrainingSuccess,
   addTrainingError,
+  addResultsRequest,
+  addResultsSuccess,
+  addResultsError,
 }
 export default trainingActions
