@@ -7,11 +7,8 @@ import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
 import LoginFormWrapper from './LoginFormStyled';
-// import { isAuth } from '../../redux/selectors/authSelectors';
 
 const LoginForm = () => {
-	// const isAuthFlag = useSelector(isAuth);
-
 	const [visiblePassword, setVisiblePassword] = useState(false);
 
 	const handleClickVisiblePassword = e => {
@@ -73,7 +70,7 @@ const LoginForm = () => {
 								</p>
 
 								<Field
-									className='formInput'
+									className='formInput password'
 									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}

@@ -10,13 +10,13 @@ const Login = () => {
 
 	return (
 		<LoginWrapper>
-			<section className='rightSideBar'>
-				<section className='container'>
-					<section className='loginForm'>
-						<LoginForm />
-					</section>
+			<section className='login'>
+				<section className='loginForm'>
+					<LoginForm />
 				</section>
+			</section>
 
+			<section className='rightSideBar'>
 				<section className='loginSideBar'>
 					{onlyWidth >= 1280 && <LoginSideBar />}
 				</section>

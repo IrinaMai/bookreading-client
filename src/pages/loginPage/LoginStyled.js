@@ -2,45 +2,58 @@ import styled from 'styled-components';
 import imageMobile from '../../assets/images/login/mobile1x.jpg';
 import overlayMobile from '../../assets/images/login/overlayMob.png';
 
-import imageDesk from '../../assets/images/login/loginDesktop.jpg';
+import imageTablet from '../../assets/images/login/tablet1x.jpg';
+import overlayTablet from '../../assets/images/login/overlayTabl.png';
+
+import overlayDesk from '../../assets/images/login/overlayDesk.png';
+import imageDesk from '../../assets/images/login/desktop1x.jpg';
 
 const LoginWrapper = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center;
-	background-image: url(${overlayMobile}), url(${imageMobile});
-
 	position: relative;
 
 	@media (max-width: 767px) {
 		padding-top: 30px;
+		background-image: url(${overlayMobile}), url(${imageMobile});
+	}
+
+	@media screen and (min-width: 768px) and (max-width: 1279px) {
+		background-image: url(${overlayTablet}), url(${imageTablet});
 	}
 
 	@media (min-width: 1280px) {
-		background-image: url(${imageDesk});
-		padding: 185px 0px;
+		display: flex;
 	}
 
+	.login {
+		@media (min-width: 1280px) {
+			background-image: url(${overlayDesk}), url(${imageDesk});
+			background-repeat: no-repeat;
+			padding: 185px 82px 185px 83px;
+		}
+	}
 	.loginForm {
 		@media screen and (min-width: 768px) and (max-width: 1279px) {
 			padding: 70px 144px;
-		}
-		@media (min-width: 1280px) {
-			padding-left: 50px;
 		}
 	}
 
 	.rightSideBar {
 		@media (min-width: 1280px) {
-			display: flex;
+			background-color: var(--secondary-background);
+			width: 100%;
 		}
 	}
-
 	.loginSideBar {
 		@media (min-width: 1280px) {
 			position: absolute;
 			top: 30%;
 			right: 10%;
+		}
+		@media (min-width: 1500px) {
+			top: 30%;
+			right: 20%;
 		}
 	}
 `;

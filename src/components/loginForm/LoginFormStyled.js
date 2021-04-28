@@ -55,9 +55,15 @@ const LoginFormWrapper = styled.section`
 		}
 	}
 
+	.password {
+		position: relative;
+	}
 	.error {
 		color: #e63946;
 		font-size: 10px;
+
+		position: absolute;
+		top: calc(100% + 0.2em);
 	}
 
 	.formLabel {
