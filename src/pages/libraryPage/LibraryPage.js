@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import LibraryForm from '../../components/library/LibraryForm'
+import BooksList from '../../components/booksList/BooksList'
 import Modal from '../../components/modal/Modal'
 import modalActions from '../../redux/actions/modalActions'
 import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
@@ -22,7 +23,7 @@ const LibraryPage = () => {
       <button onClick={handleClick}>Резюме</button>
       
         {showModal === "resume" && <Modal><Resume /></Modal>}
-      
+      <BooksList/>
     </div>
   )
 }
