@@ -1,10 +1,8 @@
 import Select from 'react-select'
 import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
-import {
-  getBooksList,
-  getAllBooks,
-} from '../../redux/selectors/trainingSelectors'
+import {getBooksList} from '../../redux/selectors/trainingSelectors'
+import { getAllBooks } from '../../redux/selectors/bookSelectors'
 
 const BookSelect = ({ onChange, value }) => {
   const books = useSelector(getAllBooks) // all books from store
