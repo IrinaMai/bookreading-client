@@ -29,4 +29,14 @@ const addResultsOperation = (date, pages) => async dispatch => {
   }
 }
 
-export { addTrainingOperation, addResultsOperation }
+const getTrainingOperation = (date, pages) => async dispatch => {
+  dispatch(trainingActions.getTrainingRequest())
+  try {
+    const response = await axios.get('/training')
+    dispatch(trainingActions.getTrainingSuccess(response.data.training))
+  } catch (error) {
+    dispatch(trainingActions.getTrainingError(error.message))
+  }
+}
+
+export { addTrainingOperation, addResultsOperation, getTrainingOperation }

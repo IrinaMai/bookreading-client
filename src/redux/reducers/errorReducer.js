@@ -19,9 +19,13 @@ const errorReducer = createReducer(null, {
 
   [trainingActions.addTrainingError]: (_, { payload }) => payload,
   [trainingActions.addResultsError]: (_, { payload }) => payload,
+  [trainingActions.getTrainingError]: (_, { payload }) => payload,
   
   [trainingActions.addTrainingRequest]: () => null,
   [trainingActions.addResultsRequest]: () => null,
+  [trainingActions.getTrainingRequest]: () => null,
+
+
 });
 
 export default errorReducer;

@@ -10,6 +10,9 @@ const addTrainingError = createAction('training/addTrainingError');
 const addResultsRequest = createAction('training/ResultsRequest');
 const addResultsSuccess = createAction('training/ResultsSuccess');
 const addResultsError = createAction('training/ResultsError');
+const getTrainingRequest = createAction('training/getTrainingRequest');
+const getTrainingSuccess = createAction('training/getTrainingSuccess');
+const getTrainingError = createAction('training/getTrainingError');
 
 
 const trainingActions = {
@@ -23,5 +26,8 @@ const trainingActions = {
   addResultsRequest,
   addResultsSuccess,
   addResultsError,
+  getTrainingRequest,
+  getTrainingSuccess,
+  getTrainingError,
 }
 export default trainingActions
