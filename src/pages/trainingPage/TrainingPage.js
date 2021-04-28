@@ -86,15 +86,15 @@ const TrainingPage = () => {
           <Chart />
         )}
         {onlyWidth >= 768 && onlyWidth < 1280 && <Chart />}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
+        {onlyWidth < 768 && location.pathname !== '/training/books' && activeTrainingID && (
           <Results />
         )}
-        {onlyWidth >= 768 && onlyWidth < 1280 && <Results />}
+        {onlyWidth >= 768 && onlyWidth < 1280 && activeTrainingID && <Results />}
         {/* 1280px positioning bottom section*/}
         {onlyWidth > 1279 && (
           <div className="bottomSection">
             <Chart />
-            <Results />
+            {activeTrainingID && <Results />}
           </div>
         )}
         {/* ---------------------------------- */}
