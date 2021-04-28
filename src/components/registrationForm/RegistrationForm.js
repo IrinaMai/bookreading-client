@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
@@ -10,6 +10,12 @@ import authOperations from '../../redux/operations/authOperations';
 import RegistrationWrapper from './RegistrationFormStyled';
 
 const RegistrationForm = () => {
+	const [visiblePassword, setVisiblePassword] = useState(false);
+
+	const handleClickVisiblePassword = e => {
+		e.target.nodeName !== 'INPUT' && setVisiblePassword(!visiblePassword);
+	};
+
 	const validateSchema = yup.object().shape({
 		username: yup
 			.string()
@@ -38,7 +44,7 @@ const RegistrationForm = () => {
 			</section>
 
 			<Formik
-				initialValues={{ email: '', password: '' }}
+				initialValues={{ username: '', email: '', password: '' }}
 				validationSchema={validateSchema}
 				isInitialValid={false}
 				onSubmit={values => {
@@ -70,10 +76,17 @@ const RegistrationForm = () => {
 
 								<Field
 									className='formInput'
-									type='password'
+									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
 									placeholder='Пароль'
+								/>
+
+								<i
+									className={`fa ${
+										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
+									} password-icon`}
+									onClick={handleClickVisiblePassword}
 								/>
 
 								<ErrorMessage className='error' name='password' component='section' />
@@ -85,12 +98,13 @@ const RegistrationForm = () => {
 							className='formBtn'
 							disabled={!(isValid && dirty) && isSubmitting}
 							type='submit'>
-							<span>Увійти</span>
+							<span className='formBtnText'>Зареєструватися</span>
 						</button>
 
 						<p className='formLink'>
-							<a className='registr' href='/register'>
-								Реєстрація
+							<p className='formLinkText'>Вже з нами?</p>
+							<a className='login' href='/login'>
+								Увійти
 							</a>
 						</p>
 					</Form>

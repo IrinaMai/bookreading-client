@@ -24,16 +24,17 @@ const LoginFormWrapper = styled.section`
 		font-size: 17px;
 	}
 
+	//-------------------------------
 	.form {
 		position: relative;
 	}
-
 	.password-icon {
 		position: absolute;
-		top: 75%;
-		left: 93%;
+		top: 83%;
+		left: 90%;
 		cursor: pointer;
 	}
+	//----------------------------------
 
 	.google {
 		width: 150px;

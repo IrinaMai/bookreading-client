@@ -118,9 +118,24 @@ const RegistrationWrapper = styled.section`
 		font-weight: 700;
 		font-size: 14px;
 		line-height: 1.2;
+
+		display: block;
+		margin: auto;
 	}
 
-	.registr {
+	.formLink {
+		display: flex;
+		justify-content: center;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 2.92;
+	}
+	.formLinkText {
+		color: var(--secondary-text);
+	}
+
+	.login {
+		padding-left: 5px;
 		display: block;
 		text-align: center;
 		text-decoration: underline;
