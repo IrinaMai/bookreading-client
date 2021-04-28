@@ -8,7 +8,7 @@ import StatisticsStyled from './StatisticStyled'
 const Statistics = () => {
   const statistic = useSelector(getStatistics)
   const statisticSorted = statistic
-    .slice()
+    ?.slice()
     .sort((a, b) => new Date(a.date) - new Date(b.date))
 
   return (
