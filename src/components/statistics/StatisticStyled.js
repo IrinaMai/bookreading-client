@@ -69,8 +69,16 @@ const StatisticsStyled = styled.div`
   }
 
   .statisticList {
+    overflow-y: auto;
+    @media (max-width: 767px) {
+      height: 110px;
+    }
     @media (min-width: 768px) and (max-width: 1279px) {
-      width: 240px;
+      width: 250px;
+      height: 157px;
+    }
+    @media (min-width: 1280px) {
+      height: 110px;
     }
   }
   .statisticItem {
@@ -79,6 +87,7 @@ const StatisticsStyled = styled.div`
     justify-content: space-around;
     @media (min-width: 768px) and (max-width: 1279px) {
       justify-content: space-between;
+      margin-right: 8px;
     }
   }
 
@@ -92,6 +101,17 @@ const StatisticsStyled = styled.div`
   }
   .pagesText {
     color: var(--secondary-text);
+  }
+
+  // css transition styles
+  .statisticListItem-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  .statisticListItem-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 250ms linear;
   }
 `
 export default StatisticsStyled

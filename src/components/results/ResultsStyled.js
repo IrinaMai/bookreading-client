@@ -5,6 +5,7 @@ const ResultsWrapper = styled.div`
   height: 340px;
   padding: 10px 17px;
   background-color: var(--secondary-background);
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
   @media (min-width: 768px) and (max-width: 1279px) {
     width: 678px;
@@ -24,11 +25,10 @@ const ResultsWrapper = styled.div`
   }
 
   .resultsForm {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     @media (min-width: 768px) and (max-width: 1279px) {
       display: flex;
       align-items: center;
-      margin-bottom: 0;
     }
     @media (min-width: 1280px) {
       width: 240px;
@@ -39,6 +39,9 @@ const ResultsWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    @media (min-width: 768px) and (max-width: 1279px) {
+      margin-bottom: 0;
+    }
   }
 
   .inputGroup {
@@ -98,6 +101,7 @@ const ResultsWrapper = styled.div`
       height: 40px;
       margin: 0;
       margin-left: 30px;
+      margin-top: 22px;
     }
 
     @media (min-width: 1280px) {
