@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const ResultsWrapper = styled.div`
   min-width: 270px;
+  height: 340px;
   padding: 10px 17px;
   background-color: var(--secondary-background);
 
@@ -17,17 +18,17 @@ const ResultsWrapper = styled.div`
   .resultsTitle {
     font-weight: 600;
     font-size: 12px;
-    line-height: 3.17;
+    line-height: 2.17;
     text-align: center;
     text-transform: uppercase;
   }
 
   .resultsForm {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     @media (min-width: 768px) and (max-width: 1279px) {
       display: flex;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 0;
     }
     @media (min-width: 1280px) {
       width: 240px;
