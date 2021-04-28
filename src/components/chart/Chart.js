@@ -2,60 +2,27 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label } from 'recharts';
 import { useWindowWidth } from '@react-hook/window-size';
 import { DateTime } from 'luxon'
+import { useSelector } from 'react-redux';
+import { getActiveTraining } from '../../redux/selectors/trainingSelectors';
 import ChartStyled from './ChartStyled';
 
-const training = {
-    totalPages: 400,
-    startDate: '2021-04-22',
-    finishDate: '2021-04-28',
-    progress: [
-      {
-        name: '2021-04-22',        
-        pagesRead: 40,
-      },
-      {
-        name: '2021-04-23',
-        pagesRead: 60,
-      },
-      {
-        name: '2021-04-24',
-        pagesRead: 90,
-      },
-      {
-        name: '2021-04-25',
-        pagesRead: 20,
-      },
-      {
-        name: '2021-04-26',
-        pagesRead: 40,
-      },
-      {
-        name: '2021-04-27',
-        pagesRead: 70,
-      },
-      {
-        name: '2021-04-28',
-        pagesRead: 80,
-      },
-    ]
-}
 
 
 const Chart = () => {
+  const training = useSelector(getActiveTraining)  
   const onlyWidth = useWindowWidth();
   const start = DateTime.fromISO(training.startDate);
   const finish = DateTime.fromISO(training.finishDate);
   const duration = finish.diff(start, 'days').toObject()?.days + 1;
-  const average = Math.ceil(training.totalPages/duration);
-  const data = training.progress.map((el, idx) => {
+  const average = Math.ceil(training.pagesTotal/duration) || 0;
+  const data = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts).map((el, idx) => {
     return {
-    name: el.name,
-    pagesTotal: Math.min(((idx + 1) * average), training.totalPages),
-    pagesRead: training.progress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pagesRead : 0), 0),
+    date: el.date,
+    pagesTotal: Math.min(((idx + 1) * average), training.pagesTotal),
+    pagesRead: training.progress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pages : 0), 0),
     }
   })
   
-
   const config = {};
   switch (true) {
     case onlyWidth >= 1280:
@@ -88,7 +55,7 @@ const Chart = () => {
         }}
       >
         <CartesianGrid strokeDasharray="0" horizontal={false} stroke="#B1B5C2" />
-        <XAxis dataKey="name" tickLine={false} tick={<></>}>
+        <XAxis dataKey="date" tickLine={false} tick={onlyWidth >= 768 && <></>}>
           <Label value="ЧАС" offset={0} position="insideBottomRight" />
         </XAxis>
         <YAxis tickLine={false} tick={false} />
