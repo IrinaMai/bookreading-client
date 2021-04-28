@@ -5,7 +5,9 @@ const getFinishDate = state => state.training.beforeStart.finishDate
 const getActiveTrainingID = state => state.training.active._id
 const getActiveStartDate = state => state.training.active.startDate
 const getActiveFinishDate = state => state.training.active.finishDate
+const getActiveTraining = state => state.training.active
 const getStatistics = state => state.training.active.progress
+
 
 export {
   getBooksList,
@@ -14,5 +16,6 @@ export {
   getActiveTrainingID,
   getActiveStartDate,
   getActiveFinishDate,
+  getActiveTraining,
   getStatistics,
 }
