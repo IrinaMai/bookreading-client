@@ -114,6 +114,10 @@ const startTrainingReducer = createReducer(
       pagesTotal: payload.pagesTotal,
       progress: payload.progress,
     }),
+
+    [trainingActions.getTrainingSuccess]:(state, { payload }) => ({
+      ...payload
+    })
   }
 )
 
