@@ -15,13 +15,14 @@ const Chart = () => {
   const finish = DateTime.fromISO(training.finishDate);
   const duration = finish.diff(start, 'days').toObject()?.days + 1;
   const average = Math.ceil(training.pagesTotal/duration) || 0;
-  const data = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts).map((el, idx) => {
+  const sortedProgress = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts)
+  const data = sortedProgress.map((el, idx) => {
     return {
     date: el.date,
     pagesTotal: Math.min(((idx + 1) * average), training.pagesTotal),
-    pagesRead: training.progress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pages : 0), 0),
+    pagesRead: sortedProgress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pages : 0), 0),
     }
-  })
+  })  
   
   const config = {};
   switch (true) {
