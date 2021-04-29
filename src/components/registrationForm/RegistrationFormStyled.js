@@ -27,11 +27,10 @@ const RegistrationWrapper = styled.section`
 	.form {
 		position: relative;
 	}
-
 	.password-icon {
 		position: absolute;
-		top: 75%;
-		left: 93%;
+		top: 83%;
+		left: 90%;
 		cursor: pointer;
 	}
 
@@ -54,9 +53,15 @@ const RegistrationWrapper = styled.section`
 		}
 	}
 
+	.password {
+		position: relative;
+	}
 	.error {
 		color: #e63946;
 		font-size: 10px;
+
+		position: absolute;
+		top: calc(100% + 0.2em);
 	}
 
 	.formLabel {

@@ -4,17 +4,18 @@ import imageMobile from '../../assets/images/login/mobile1x.jpg';
 import overlayMobile from '../../assets/images/login/overlayMob.png';
 
 import imageDesk from '../../assets/images/login/loginDesktop.jpg';
+// import overlayDesk from '../../assets/images/login/overlayDesk.png';
+// import imageDesk from '../../assets/images/login/desktop1x.jpg';
 
 const RegisterWrapper = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center;
-	background-image: url(${overlayMobile}), url(${imageMobile});
 
 	position: relative;
 
 	@media (max-width: 767px) {
 		padding-top: 30px;
+		background-image: url(${overlayMobile}), url(${imageMobile});
 	}
 
 	@media (min-width: 1280px) {
