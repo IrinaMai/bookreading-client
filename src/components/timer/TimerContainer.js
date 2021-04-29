@@ -2,9 +2,18 @@ import Timer from './Timer'
 import { DateTime } from 'luxon'
 import TimerContainerSyled from './TimerContainerStyled'
 import { useSelector } from 'react-redux'
+import {
+  getActiveTrainingID,
+  getFinishDate,
+  getActiveFinishDate,
+} from '../../redux/selectors/trainingSelectors'
 
 const TimerContainer = () => {
-  const endTime = useSelector(state => state.training.active.finishDate)
+  const endTimeActive = useSelector(getActiveFinishDate)
+  const endTimeBefore = useSelector(getFinishDate)
+  const activeTraining = useSelector(getActiveTrainingID)
+  const endTime = activeTraining ? endTimeActive : endTimeBefore
+
   return (
     <TimerContainerSyled>
       <Timer

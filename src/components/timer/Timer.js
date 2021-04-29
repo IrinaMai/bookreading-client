@@ -22,7 +22,6 @@ const getTime = () => {
 export const Timer = ({ title, dateTime }) => {
   const now = useTime(1000)
   const end = dateTime
-  // DateTime.fromISO('2022-08-12')
   const duration = end
     .diff(now, ['days', 'hours', 'minutes', 'seconds', 'milliseconds'])
     .toObject()
@@ -31,25 +30,23 @@ export const Timer = ({ title, dateTime }) => {
     <TimerStyled>
       <p className="title">{title}</p>
       <div className="timerContaienr">
-        <div className="timer">
-          <p className="number">
-            {duration.days}
-            <b className="dots">:</b>
-          </p>
-          <p className="number">
-            {duration.hours}
-            <b className="dots">:</b>
-          </p>
-          <p className="number">
-            {duration.minutes}
-            <b className="dots">:</b>
-          </p>
-          <p className="number">{duration.seconds}</p>
-        </div>
-        <div className="words">
+        <div className="partContainer">
+          <p className="number">{duration.days}</p>
           <span>ДН</span>
+        </div>
+        <b className="dots">:</b>
+        <div className="partContainer">
+          <p className="number">{duration.hours}</p>
           <span>ГОД</span>
+        </div>
+        <b className="dots">:</b>
+        <div className="partContainer">
+          <p className="number">{duration.minutes}</p>
           <span>ХВ</span>
+        </div>
+        <b className="dots">:</b>
+        <div className="partContainer">
+          <p className="number">{duration.seconds}</p>
           <span>СЕК</span>
         </div>
       </div>

@@ -2,8 +2,10 @@ import styled from 'styled-components'
 
 const TimerStyled = styled.div`
   .timerContaienr {
-    display: block;
-    justify-content: center;
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 35px;
+    padding-right: 35px;
     width: 270px;
     height: 60px;
     margin: auto;
@@ -13,6 +15,11 @@ const TimerStyled = styled.div`
   .timer {
     display: flex;
     justify-content: center;
+  }
+  .partContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .words {
@@ -34,7 +41,9 @@ const TimerStyled = styled.div`
   }
 
   .dots {
-    margin: 7px;
+    margin-top: 5px;
+    font-size: 25px;
+    justify-content: center;
   }
 
   .number {
@@ -52,8 +61,7 @@ const TimerStyled = styled.div`
     font-size: 10px;
     line-height: 3.8;
     /* identical to box height, or 380% */
-
-    text-align: center;
+    margin-top: -15px;
 
     color: var(--secondary-text);
   }
