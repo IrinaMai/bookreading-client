@@ -18,7 +18,7 @@ const TrainingBooksList = () => {
   const dispatch = useDispatch()
   const onlyWidth = useWindowWidth()
 
-  const booksReading = allBooks.filter(({status}) => status === 'Reading')
+  const booksReading = allBooks.filter(({status}) => status === 'Reading' || status === 'HaveRead' )
   const books = activeTrainingID ? booksReading : booksBeforeStart
 
   const handleDeleteBook = e => {
