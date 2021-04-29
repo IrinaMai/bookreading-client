@@ -9,16 +9,24 @@ import TrainingBooksListItem from './trainingBooksListItem.js/TrainingBooksListI
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import Wrapper from './TrainingBooksListStyled'
 import { useWindowWidth } from '@react-hook/window-size'
-import { getAllBooks } from '../../redux/selectors/bookSelectors'
+import {
+  getAllBooks,
+  getTrainingBooks,
+} from '../../redux/selectors/bookSelectors'
 
 const TrainingBooksList = () => {
   const activeTrainingID = useSelector(getActiveTrainingID)
   const allBooks = useSelector(getAllBooks)
   const booksBeforeStart = useSelector(getBooksList)
+  const trainingBooks = useSelector(getTrainingBooks)
   const dispatch = useDispatch()
   const onlyWidth = useWindowWidth()
 
-  const booksReading = allBooks.filter(({status}) => status === 'Reading')
+  const booksReading = trainingBooks.map(trainingBook => {
+    const book = allBooks.find(book => book._id === trainingBook.bookId)
+    return book ? { ...book } : trainingBook
+  })
+
   const books = activeTrainingID ? booksReading : booksBeforeStart
 
   const handleDeleteBook = e => {

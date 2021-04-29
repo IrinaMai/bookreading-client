@@ -25,6 +25,13 @@ const bookReducer = createReducer([...initialState], {
         ? { ...book, status: updatedStatus?.status }
         : book
     }),
+  [trainingActions.addResultsSuccess]: (state, { payload }) => 
+      state.map(book => {
+        const updatedStatus = payload.books.find(item => item.bookId === book._id)
+        return book._id === updatedStatus?.bookId
+          ? { ...book, status: updatedStatus?.status }
+          : book
+      }),
 })
 
 export default bookReducer

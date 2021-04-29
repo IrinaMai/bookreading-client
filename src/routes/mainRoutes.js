@@ -28,7 +28,7 @@ const mainRoutes = [
   {
     path: '/training',
     name: 'Тренування',
-    icon: TrainingIcon(),
+    icon: TrainingIcon(''),
     exact: false,
     component: lazy(() => import('../pages/trainingPage/TrainingPage' /* webpackChunkName: "TrainingPage"*/)),
     isPrivate: true,
