@@ -2,6 +2,8 @@ import React from 'react'
 import DeleteIcon from '../../icons/DeleteIcon'
 import TrainingIcon from '../../icons/TrainingIcon'
 import { useWindowWidth } from '@react-hook/window-size'
+import { getActiveTrainingID } from '../../../redux/selectors/trainingSelectors'
+import { useSelector } from 'react-redux'
 
 const TrainingBooksListItem = ({
   _id,
@@ -9,13 +11,19 @@ const TrainingBooksListItem = ({
   author,
   year,
   pages,
+  status,
   onDeleteBook,
 }) => {
   const onlyWidth = useWindowWidth()
+  const activeTrainingID = useSelector(getActiveTrainingID)
 
   return (
     <li key={_id} className="listItem">
-      <TrainingIcon className="trainingIcon" />
+      <TrainingIcon
+        className={
+          status === 'HaveRead' ? 'trainingIconActive' : 'trainingIcon'
+        }
+        />
       <p className="description">{title}</p>
       <p className="description">
         {onlyWidth < 768 && <span className="label">Автор:</span>}
@@ -37,7 +45,7 @@ const TrainingBooksListItem = ({
         onClick={onDeleteBook}
         className="deleteButton"
       >
-        {_id && <DeleteIcon className="deleteIcon" />}
+        {_id && !activeTrainingID && <DeleteIcon className="deleteIcon" />}
       </button>
     </li>
   )

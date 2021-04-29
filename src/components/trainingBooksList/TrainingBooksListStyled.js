@@ -31,6 +31,10 @@ const Wrapper = styled.div`
       left: 0px;
     }
 
+    & .trainingIconActive {
+      fill: var(--accent-color);
+    }
+
     @media (min-width: 768px) and (max-width: 1279px) {
       padding: 12px 0px;
     }

@@ -68,6 +68,9 @@ img {
   list-style: none;
 }
 
+.trainingIcon {
+  fill: var(--light-text)
+}
 
 ::-webkit-scrollbar {
   width: 6px;
