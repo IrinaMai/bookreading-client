@@ -17,6 +17,7 @@ import {
   getActiveTrainingID,
 } from '../../redux/selectors/trainingSelectors'
 import { getTrainingOperation } from '../../redux/operations/trainingOperations'
+import TimerContainer from '../../components/timer/TimerContainer'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
@@ -33,6 +34,7 @@ const TrainingPage = () => {
   return (
     <div className="container">
       <TrainingPageWrapper>
+        <TimerContainer />
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <ToGoal />
         )}

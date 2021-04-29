@@ -16,7 +16,7 @@ const Chart = () => {
   const duration = finish.diff(start, 'days').toObject()?.days + 1;
   const average = Math.ceil(training.pagesTotal/duration) || 0;
   const sortedProgress = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts)
-  const data = sortedProgress.map((el, idx) => {
+  const data = sortedProgress?.map((el, idx) => {
     return {
     date: el.date,
     pagesTotal: Math.min(((idx + 1) * average), training.pagesTotal),

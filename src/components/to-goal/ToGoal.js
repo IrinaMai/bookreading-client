@@ -1,63 +1,84 @@
-import { connect } from 'react-redux'
 import ToGoalStyled from './ToGoalStyled'
 import { useSelector } from 'react-redux'
+import {
+  getActiveBooks,
+  getActiveTrainingID,
+  getBooksList,
+} from '../../redux/selectors/trainingSelectors'
+import { DateTime } from 'luxon'
 
 const Goal = () => {
-  //////////////////////////////////////////////// Selectors ////////////////////////
-  const booksToRead = useSelector(
-    state => state.training.beforeStart.booksCount
+  const endActive = DateTime.fromISO(
+    useSelector(state => state.training.active.finishDate)
   )
-  const trainingPeriodDays = useSelector(
-    state => state.training.beforeStart.daysCount
+  const startActive = DateTime.fromISO(
+    useSelector(state => state.training.active.startDate)
   )
-  const activeTraining = useSelector(
-    state => state.training.beforeStart.activeTraining
+  const daysDiffActive = endActive.diff(startActive, 'days').toObject()
+  const endBefore = DateTime.fromISO(
+    useSelector(state => state.training.beforeStart.finishDate)
   )
-  /////////////////////////////////////////////////////////////////////////////////////////
+  const startBefore = DateTime.fromISO(
+    useSelector(state => state.training.beforeStart.startDate)
+  )
+  const daysDiffBefore = endBefore.diff(startBefore, 'days').toObject()
+
+  const booksBeforeStart = useSelector(getBooksList)
+  const activeTrainingID = useSelector(getActiveTrainingID)
+  const activeBooks = useSelector(getActiveBooks)
+  const booksReading = activeBooks.filter(({ status }) => status === 'Reading')
+  const books = activeTrainingID ? booksReading.length : booksBeforeStart.length
+  const daysLeft = activeTrainingID ? daysDiffActive.days : daysDiffBefore.days
 
   return (
     <ToGoalStyled>
-      <h2 className={activeTraining ? 'bookTitleMore' : 'bookTitle'}>
+      <h2 className={activeTrainingID ? 'bookTitleMore' : 'bookTitle'}>
         Моя мета прочитати
       </h2>
       <div
         className={
-          activeTraining ? 'booksCounterContainerMore' : 'booksCounterContainer'
+          activeTrainingID
+            ? 'booksCounterContainerMore'
+            : 'booksCounterContainer'
         }
       >
-        <div className={activeTraining ? 'booksCounterMore' : 'booksCounter'}>
-          <p className={activeTraining ? 'counterNumberMore' : 'counterNumber'}>
-            {booksToRead}
+        <div className={activeTrainingID ? 'booksCounterMore' : 'booksCounter'}>
+          <p
+            className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
+          >
+            {activeBooks.length}
           </p>
         </div>
 
-        <div className={activeTraining ? 'booksCounterMore' : 'booksCounter'}>
-          <p className={activeTraining ? 'counterNumberMore' : 'counterNumber'}>
-            {trainingPeriodDays}
+        <div className={activeTrainingID ? 'booksCounterMore' : 'booksCounter'}>
+          <p
+            className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
+          >
+            {daysLeft}
           </p>
         </div>
 
-        {activeTraining ? (
+        {activeTrainingID ? (
           <div className="booksCounterMore">
-            <p className="counterNumberActive">12</p>
+            <p className="counterNumberActive">{books}</p>
           </div>
         ) : (
           ''
         )}
         <div
           className={
-            activeTraining
+            activeTrainingID
               ? 'counterLabelContainerMore'
               : 'counterLabelContainer'
           }
         >
-          <p className={activeTraining ? 'counterLabelMore' : 'counterLabel'}>
+          <p className={activeTrainingID ? 'counterLabelMore' : 'counterLabel'}>
             Кількість <br></br> книжок
           </p>
-          <p className={activeTraining ? 'counterLabelMore' : 'counterLabel'}>
+          <p className={activeTrainingID ? 'counterLabelMore' : 'counterLabel'}>
             Кількість <br></br>днів
           </p>
-          {activeTraining ? (
+          {activeTrainingID ? (
             <p className="counterLabelMore">
               Залишилося <br></br> книжок
             </p>
@@ -70,12 +91,4 @@ const Goal = () => {
   )
 }
 
-// const mapStateToProps = state => ({
-//     booksToRead: getTrainingBooksCount(state),
-//     // trainingPeriodDays: getTrainingDaysGoal(state),
-//     booksLeft: getTrainingUnreadBooksCount(state),
-// });
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Goal);
 export default Goal
