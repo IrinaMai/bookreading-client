@@ -50,20 +50,6 @@ const LoginForm = () => {
 						<section className='form'>
 							<label className='formLabel'>
 								<p className='formLabelText'>
-									Ім'я <span className='text'>*</span>
-								</p>
-
-								<Field
-									className='formInput'
-									type='text'
-									name='username'
-									value={values.username}
-								/>
-								<ErrorMessage className='error' name='username' component='div' />
-							</label>
-
-							<label className='formLabel'>
-								<p className='formLabelText'>
 									Електронна адреса <span className='text'>*</span>
 								</p>
 
@@ -84,7 +70,7 @@ const LoginForm = () => {
 								</p>
 
 								<Field
-									className='formInput password'
+									className='formInput'
 									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
@@ -98,7 +84,11 @@ const LoginForm = () => {
 									onClick={handleClickVisiblePassword}
 								/>
 
-								<ErrorMessage className='error' name='password' component='section' />
+								<ErrorMessage
+									className='error mistakePassword'
+									name='password'
+									component='section'
+								/>
 							</label>
 						</section>
 

@@ -25,14 +25,18 @@ const LoginFormWrapper = styled.section`
 	}
 
 	//-------------------------------
-	.form {
+	.iconPassword {
 		position: relative;
 	}
 	.password-icon {
-		position: absolute;
-		top: 83%;
-		left: 90%;
 		cursor: pointer;
+		position: absolute;
+		top: 57px;
+		left: 230px;
+		@media (min-width: 768px) {
+			top: 57px;
+			left: 270px;
+		}
 	}
 	//----------------------------------
 
@@ -55,15 +59,12 @@ const LoginFormWrapper = styled.section`
 		}
 	}
 
-	.password {
-		position: relative;
-	}
 	.error {
 		color: #e63946;
 		font-size: 10px;
+		width: 270px;
 
 		position: absolute;
-		top: calc(100% + 0.2em);
 	}
 
 	.formLabel {
@@ -79,6 +80,8 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.formInput {
+		position: relative;
+
 		display: block;
 		padding-left: 10px;
 		width: 270px;

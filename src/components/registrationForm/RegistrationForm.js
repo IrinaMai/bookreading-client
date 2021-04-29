@@ -17,10 +17,7 @@ const RegistrationForm = () => {
 	};
 
 	const validateSchema = yup.object().shape({
-		username: yup
-			.string()
-			.typeError('Повинна бути строкою')
-			.required("Обов'язково"),
+		name: yup.string().typeError('Повинна бути строкою').required("Обов'язково"),
 		email: yup.string().email('Введіть вірну адресу').required("Обов'язково"),
 		password: yup
 			.string()
@@ -29,12 +26,24 @@ const RegistrationForm = () => {
 				'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
+		confirmPassword: yup.string().when('password', {
+			is: val => (val && val.length > 0 ? true : false),
+			then: yup
+				.string()
+				.oneOf([yup.ref('password')], 'Both password need to be the same'),
+		}),
 	});
 
 	const dispatch = useDispatch();
 
 	const onHandleSubmit = values => {
-		dispatch(authOperations.registerOperation(values));
+		dispatch(
+			authOperations.registerOperation({
+				name: values.name,
+				email: values.email,
+				password: values.password,
+			})
+		);
 	};
 
 	return (
@@ -44,15 +53,45 @@ const RegistrationForm = () => {
 			</section>
 
 			<Formik
-				initialValues={{ username: '', email: '', password: '' }}
+				initialValues={{
+					name: '',
+					email: '',
+					password: '',
+					confirmPassword: '',
+				}}
 				validationSchema={validateSchema}
 				isInitialValid={false}
 				onSubmit={values => {
 					onHandleSubmit(values);
 				}}>
-				{({ values, isValid, dirty, isSubmitting, handleSubmit }) => (
+				{({
+					values,
+					isValid,
+					dirty,
+					isSubmitting,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+				}) => (
 					<Form>
 						<section className='form'>
+							<label className='formLabel'>
+								<p className='formLabelText'>
+									Ім'я <span className='text'>*</span>
+								</p>
+
+								<Field
+									className='formInput'
+									type='text'
+									name='name'
+									value={values.name}
+									placeholder='...'
+									onBlur={handleBlur}
+									onChange={handleChange}
+								/>
+								<ErrorMessage className='error' name='name' component='div' />
+							</label>
+
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Електронна адреса <span className='text'>*</span>
@@ -64,6 +103,8 @@ const RegistrationForm = () => {
 									name='email'
 									value={values.email}
 									placeholder='your@email.com'
+									onBlur={handleBlur}
+									onChange={handleChange}
 								/>
 
 								<ErrorMessage className='error' name='email' component='section' />
@@ -79,7 +120,9 @@ const RegistrationForm = () => {
 									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
-									placeholder='Пароль'
+									placeholder='...'
+									onBlur={handleBlur}
+									onChange={handleChange}
 								/>
 
 								<i
@@ -90,6 +133,35 @@ const RegistrationForm = () => {
 								/>
 
 								<ErrorMessage className='error' name='password' component='section' />
+							</label>
+
+							<label className='formLabel'>
+								<p className='formLabelText'>
+									Підтвердити пароль <span className='text'>*</span>
+								</p>
+
+								<Field
+									className='formInput password'
+									type={visiblePassword ? 'text' : 'password'}
+									name='confirmPassword'
+									value={values.confirmPassword}
+									placeholder='...'
+									onBlur={handleBlur}
+									onChange={handleChange}
+								/>
+
+								<i
+									className={`fa ${
+										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
+									} confirmPassword-icon`}
+									onClick={handleClickVisiblePassword}
+								/>
+
+								<ErrorMessage
+									className='error'
+									name='confirmPassword'
+									component='section'
+								/>
 							</label>
 						</section>
 
@@ -102,10 +174,12 @@ const RegistrationForm = () => {
 						</button>
 
 						<p className='formLink'>
-							<p className='formLinkText'>Вже з нами?</p>
-							<a className='login' href='/login'>
-								Увійти
-							</a>
+							<p className='formLinkText'>
+								Вже з нами?
+								<a className='login' href='/login'>
+									Увійти
+								</a>
+							</p>
 						</p>
 					</Form>
 				)}

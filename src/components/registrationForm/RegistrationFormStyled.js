@@ -24,15 +24,39 @@ const RegistrationWrapper = styled.section`
 		font-size: 17px;
 	}
 
-	.form {
+	//-------------------------------
+	.iconPassword {
 		position: relative;
 	}
 	.password-icon {
-		position: absolute;
-		top: 83%;
-		left: 90%;
 		cursor: pointer;
+		position: absolute;
+		top: 54%;
+		left: 80%;
+		@media (min-width: 768px) {
+			top: 55%;
+			left: 65%;
+		}
+		@media (min-width: 1280px) {
+			top: 53.5%;
+			left: 31%;
+		}
 	}
+	.confirmPassword-icon {
+		cursor: pointer;
+		position: absolute;
+		top: 68%;
+		left: 80%;
+		@media (min-width: 768px) {
+			top: 67%;
+			left: 65%;
+		}
+		@media (min-width: 1280px) {
+			top: 62.5%;
+			left: 31%;
+		}
+	}
+	//----------------------------------
 
 	.google {
 		width: 150px;
@@ -53,15 +77,12 @@ const RegistrationWrapper = styled.section`
 		}
 	}
 
-	.password {
-		position: relative;
-	}
 	.error {
 		color: #e63946;
 		font-size: 10px;
+		width: 270px;
 
 		position: absolute;
-		top: calc(100% + 0.2em);
 	}
 
 	.formLabel {
@@ -77,6 +98,8 @@ const RegistrationWrapper = styled.section`
 	}
 
 	.formInput {
+		position: relative;
+
 		display: block;
 		padding-left: 10px;
 		width: 270px;
@@ -107,7 +130,6 @@ const RegistrationWrapper = styled.section`
 
 		@media screen and (min-width: 768px) {
 			height: 42px;
-			padding: 11px 131px 11px 132px;
 		}
 
 		&:hover,
@@ -118,31 +140,23 @@ const RegistrationWrapper = styled.section`
 			color: var(--accent-color);
 		}
 	}
-
 	.formBtnText {
 		font-weight: 700;
 		font-size: 14px;
 		line-height: 1.2;
-
-		display: block;
-		margin: auto;
 	}
 
 	.formLink {
-		display: flex;
-		justify-content: center;
 		font-weight: 500;
 		font-size: 13px;
 		line-height: 2.92;
 	}
 	.formLinkText {
+		text-align: center;
 		color: var(--secondary-text);
 	}
-
 	.login {
-		padding-left: 5px;
-		display: block;
-		text-align: center;
+		padding-left: 10px;
 		text-decoration: underline;
 		cursor: pointer;
 		color: var(--accent-color);
