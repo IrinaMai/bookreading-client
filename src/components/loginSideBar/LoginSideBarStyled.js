@@ -9,12 +9,11 @@ const LoginSideBarWrapper = styled.section`
 	}
 
 	@media screen and (min-width: 768px) and (max-width: 1279px) {
-		margin-top: 50px;
-		min-width: 768px;
 		padding: 40px 40px 30px 40px;
 	}
 
 	.loginSideBar {
+		background-color: var(--secondary-background);
 		width: 229px;
 		margin: 0 auto;
 		text-align: center;

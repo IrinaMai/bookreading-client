@@ -23,6 +23,7 @@ const Modal = ({ children }) => {
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
       dispatch(modalActions.toggleModal())
+      dispatch(modalActions.clearModalContent())
     }
     document.body.style.overflow = 'visible'
   }
@@ -31,10 +32,12 @@ const Modal = ({ children }) => {
       return
     }
     dispatch(modalActions.toggleModal())
+    dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
   const closeModal = () => {
     dispatch(modalActions.offModal())
+    dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
 

@@ -8,10 +8,13 @@ import LoaderSpinner from '../loader/Loader';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 import PublicRoute from '../publicRoute/PublicRoute';
 import authSelectors from '../../redux/selectors/authSelectors';
+import { getModalContent } from '../../redux/selectors/modalSelector';
+import Modal from '../modal/Modal';
+import LogoutModal from '../logoutModal/LogoutModal';
 
 const Main = () => {
   const isAuth = useSelector(authSelectors.isAuth);
-
+  const showModal = useSelector(getModalContent);
   return (
     <>
       <Suspense fallback={<LoaderSpinner />}>
@@ -33,6 +36,7 @@ const Main = () => {
           <Route component={DefaultPage} />
         </Switch>
       </Suspense>
+      {showModal === "logout" && <Modal><LogoutModal/></Modal>}
     </>
   );
 

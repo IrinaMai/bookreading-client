@@ -24,6 +24,11 @@ const InputDateContainer = styled.div`
     @media (min-width: 768px) {
       width: 250px;
     }
+
+    &:focus {
+        background-color: var(--secondary-background);
+        box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+        }
   }
 `
 export default InputDateContainer
