@@ -31,7 +31,7 @@ const Goal = () => {
   const daysLeft = activeTrainingID ? daysDiffActive.days : daysDiffBefore.days
 
   return (
-    <ToGoalStyled>
+    <ToGoalStyled training={activeTrainingID} >
       <h2 className={activeTrainingID ? 'bookTitleMore' : 'bookTitle'}>
         Моя мета прочитати
       </h2>
@@ -46,7 +46,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {activeBooks.length}
+            {activeTrainingID ? activeBooks.length : booksBeforeStart.length}
           </p>
         </div>
 
@@ -54,7 +54,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {daysLeft}
+            {daysLeft ? daysLeft : "0"}
           </p>
         </div>
 
