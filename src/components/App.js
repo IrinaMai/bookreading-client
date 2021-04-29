@@ -19,9 +19,9 @@ function App() {
   }
   const dispatch = useDispatch()
 
-  //   dispatch(authOperations.registerOperation(user))
-  // dispatch(authOperations.loginOperation(user))
-  //   dispatch(authOperations.logOutOperation())
+  // dispatch(authOperations.registerOperation(user));
+  dispatch(authOperations.loginOperation(user))
+  // dispatch(authOperations.logOutOperation());
 
   useEffect(() => {
     googleToken?.token && dispatch(authOperations.loginOperation(googleToken))

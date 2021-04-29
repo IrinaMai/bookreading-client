@@ -11,6 +11,7 @@ import {
   getActiveFinishDate,
   getActiveStartDate,
 } from '../../redux/selectors/trainingSelectors'
+import Statistics from '../statistics/Statistics'
 
 const Results = () => {
   const dispatch = useDispatch()
@@ -91,6 +92,7 @@ const Results = () => {
           Додати результат
         </button>
       </form>
+      <Statistics/>
     </ResultsWrapper>
   )
 }
