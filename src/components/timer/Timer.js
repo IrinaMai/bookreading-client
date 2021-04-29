@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon'
 import React from 'react'
 import TimerStyled from './TimerStyled'
-import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 const useTime = (refreshCycle = 1000) => {

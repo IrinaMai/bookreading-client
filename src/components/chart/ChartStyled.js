@@ -5,6 +5,7 @@ const ChartStyled = styled.div`
   width: 270px;
   height: 290px;
   padding: 14px 22px;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
 
   @media (max-width: 767px) {
     margin-left: auto;

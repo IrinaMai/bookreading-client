@@ -34,7 +34,7 @@ const TrainingPage = () => {
   return (
     <div className="container">
       <TrainingPageWrapper>
-        <TimerContainer />
+        {onlyWidth < 1280 && activeTrainingID && <TimerContainer />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <ToGoal />
         )}
@@ -51,6 +51,7 @@ const TrainingPage = () => {
         {onlyWidth > 1279 && (
           <div className="topSection">
             <div className="sectionGroup">
+              {activeTrainingID && <TimerContainer />}
               {!activeTrainingID && <TrainingForm />}
               <BooksListContainer>
                 <TrainingBooksList />
@@ -103,7 +104,6 @@ const TrainingPage = () => {
             {activeTrainingID && <Results />}
           </div>
         )}
-        {/* ---------------------------------- */}
       </TrainingPageWrapper>
     </div>
   )
