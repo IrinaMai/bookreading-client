@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const HeaderStyled = styled.div`
+  position: fixed;
+  width: 100%;
   background-color: var(--secondary-background);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   .container.header-container {
