@@ -6,7 +6,7 @@ const TimerStyled = styled.div`
     justify-content: space-evenly;
     padding-left: 35px;
     padding-right: 35px;
-    width: 270px;
+    width: 100%;
     height: 60px;
     margin: auto;
     background: var(--secondary-background);
