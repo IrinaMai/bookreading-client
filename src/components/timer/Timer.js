@@ -31,22 +31,26 @@ export const Timer = ({ title, dateTime }) => {
       <p className="title">{title}</p>
       <div className="timerContaienr">
         <div className="partContainer">
-          <p className="number">{duration.days}</p>
+          <p className="number">{dateTime.c !== null ? duration.days : '0'}</p>
           <span>ДН</span>
         </div>
         <b className="dots">:</b>
         <div className="partContainer">
-          <p className="number">{duration.hours}</p>
+          <p className="number">{dateTime.c !== null ? duration.hours : '0'}</p>
           <span>ГОД</span>
         </div>
         <b className="dots">:</b>
         <div className="partContainer">
-          <p className="number">{duration.minutes}</p>
+          <p className="number">
+            {dateTime.c !== null ? duration.minutes : '0'}
+          </p>
           <span>ХВ</span>
         </div>
         <b className="dots">:</b>
         <div className="partContainer">
-          <p className="number">{duration.seconds}</p>
+          <p className="number">
+            {dateTime.c !== null ? duration.seconds : '0'}
+          </p>
           <span>СЕК</span>
         </div>
       </div>

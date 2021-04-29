@@ -18,7 +18,6 @@ const TimerContainer = () => {
     <TimerContainerSyled>
       <Timer
         title="До закінчення року залишилось"
-        // dateTime={DateTime.fromISO('2022-08-12')
         dateTime={DateTime.fromISO('2022-01-01')}
       />
       <Timer
