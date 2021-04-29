@@ -31,6 +31,8 @@ const ModalWindow = styled.div`
     min-height: 50px;
     box-shadow: 0px 22px 40px 0px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    z-index: 12000;
+
     @media (max-width: 767px) {
     }
     @media (min-width: 768px) {

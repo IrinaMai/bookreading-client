@@ -84,7 +84,7 @@ const LoginForm = () => {
 								</p>
 
 								<Field
-									className='formInput'
+									className='formInput password'
 									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}

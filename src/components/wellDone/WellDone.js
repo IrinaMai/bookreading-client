@@ -8,6 +8,7 @@ const WellDone = () => {
   const dispatch = useDispatch()
   const closeModal = () => {
     dispatch(modalActions.offModal())
+    dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
   return (

@@ -33,8 +33,19 @@ const WellDoneWrapper = styled.div`
     outline: none;
     border: none;
     color: var(--secondary-background);
-    background: #d15807;
+    background: var(--accent-color);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+  .mobileButton:hover,
+  .mobileButton:focus {
+    background: #d15807;
+    outline: none;
+    border: 1px solid #d15807;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    /* transition: background-color 200ms ease-in-out;
+    transition: all 250ms ease-in; */
+    transition: all 500ms cubic-bezier(1, 1, 1, 1);
   }
   @media (min-width: 768px) {
     .textWrapper {

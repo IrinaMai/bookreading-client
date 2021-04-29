@@ -1,6 +1,6 @@
 import { useWindowWidth } from '@react-hook/window-size'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import AddButton from '../../components/addButton/AddButton'
 import BackButton from '../../components/backButton/BackButton'
@@ -16,12 +16,19 @@ import {
   getBooksList,
   getActiveTrainingID,
 } from '../../redux/selectors/trainingSelectors'
+import { getTrainingOperation } from '../../redux/operations/trainingOperations'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
   const activeTrainingID = useSelector(getActiveTrainingID)
   const onlyWidth = useWindowWidth()
   const location = useLocation()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTrainingOperation())
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="container">
@@ -71,9 +78,10 @@ const TrainingPage = () => {
           onlyWidth < 1280 &&
           booksList.length > 0 &&
           !activeTrainingID && <StartTrainingBtn />}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
-          <AddButton />
-        )}
+
+        {onlyWidth < 768 &&
+          location.pathname !== '/training/books' &&
+          !activeTrainingID && <AddButton />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Chart />
         )}
