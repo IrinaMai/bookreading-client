@@ -9,7 +9,7 @@ const Statistics = () => {
   const statistic = useSelector(getStatistics)
   const statisticSorted = statistic
     ?.slice()
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
 
   return (
     <StatisticsStyled>
