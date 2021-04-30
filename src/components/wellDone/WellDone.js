@@ -11,8 +11,8 @@ const WellDone = () => {
     dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
+
   return (
-    <>
       <WellDoneWrapper>
         <WellDoneIcon />
         <div className="textWrapper">
@@ -20,13 +20,12 @@ const WellDone = () => {
             Ти молодчина, <br />
             але потрібно швидше!
           </p>
-          <p className="wellDoneText">Наступного разу тобі все вдасться)</p>
+          <p className="wellDoneText">Наступного разу тобі все вдасться 🙂</p>
         </div>
         <button className="mobileButton" type="button" onClick={closeModal}>
           Ok
         </button>
       </WellDoneWrapper>
-    </>
   )
 }
 

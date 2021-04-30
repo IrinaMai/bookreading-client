@@ -6,10 +6,6 @@ const startInitialState = {
   startDate: '',
   finishDate: '',
   booksList: [],
-  booksCount: 0,
-  daysCount: 0,
-  // test param delete and add from new state
-  activeTraining: {},
 }
 
 export const bookReducer = createReducer(

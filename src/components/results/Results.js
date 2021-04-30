@@ -10,13 +10,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getActiveFinishDate,
   getActiveStartDate,
+  getActiveTraining,
 } from '../../redux/selectors/trainingSelectors'
 import Statistics from '../statistics/Statistics'
+import modalActions from '../../redux/actions/modalActions'
+import getAveragePages from '../../utils/getAveragePages'
 
 const Results = () => {
   const dispatch = useDispatch()
   const startDate = useSelector(getActiveStartDate)
   const finishDate = useSelector(getActiveFinishDate)
+  const training = useSelector(getActiveTraining)
 
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
@@ -32,6 +36,13 @@ const Results = () => {
     onSubmit: values => {
       const date = convertDate(values.date)
       dispatch(addResultsOperation(date, values.pages))
+      
+     const averagePages = getAveragePages( startDate, finishDate, training.pagesTotal)
+
+      if(values.pages < averagePages){
+      dispatch(modalActions.setModalContent('wellDone'))
+      dispatch(modalActions.toggleModal())
+      }
     },
   })
 
