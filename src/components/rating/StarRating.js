@@ -1,11 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
 import StarIcon from './StarIcon'
-
 import StarStyled from './StarStyled.js'
 
-const Star = () => {
-  const [rating, setRating] = useState(null)
+const StarRating = ({ rating, setRating }) => {
   return (
     <StarStyled>
       {[...Array(5)].map((star, i) => {
@@ -31,4 +28,4 @@ const Star = () => {
   )
 }
 
-export default Star
+export default StarRating
