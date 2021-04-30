@@ -8,12 +8,17 @@ import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
 import RegistrationWrapper from './RegistrationFormStyled';
+import { Link } from 'react-router-dom';
 
 const RegistrationForm = () => {
 	const [visiblePassword, setVisiblePassword] = useState(false);
+	const [visibleConfirmPassword, setConfirmPassword] = useState(false);
 
 	const handleClickVisiblePassword = e => {
 		e.target.nodeName !== 'INPUT' && setVisiblePassword(!visiblePassword);
+	};
+	const handleClickVisibleConfirmPassword = e => {
+		e.target.nodeName !== 'INPUT' && setConfirmPassword(!visibleConfirmPassword);
 	};
 
 	const validateSchema = yup.object().shape({
@@ -128,7 +133,7 @@ const RegistrationForm = () => {
 								<i
 									className={`fa ${
 										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
-									} password-icon`}
+									} icon password-icon`}
 									onClick={handleClickVisiblePassword}
 								/>
 
@@ -141,8 +146,8 @@ const RegistrationForm = () => {
 								</p>
 
 								<Field
-									className='formInput password'
-									type={visiblePassword ? 'text' : 'password'}
+									className='formInput'
+									type={visibleConfirmPassword ? 'text' : 'password'}
 									name='confirmPassword'
 									value={values.confirmPassword}
 									placeholder='...'
@@ -152,9 +157,9 @@ const RegistrationForm = () => {
 
 								<i
 									className={`fa ${
-										visiblePassword ? 'fa-eye' : 'fa-eye-slash'
-									} confirmPassword-icon`}
-									onClick={handleClickVisiblePassword}
+										visibleConfirmPassword ? 'fa-eye' : 'fa-eye-slash'
+									} icon confirmPassword-icon`}
+									onClick={handleClickVisibleConfirmPassword}
 								/>
 
 								<ErrorMessage
@@ -176,9 +181,9 @@ const RegistrationForm = () => {
 						<p className='formLink'>
 							<p className='formLinkText'>
 								Вже з нами?
-								<a className='login' href='/login'>
+								<Link className='loginLink' to='/login'>
 									Увійти
-								</a>
+								</Link>
 							</p>
 						</p>
 					</Form>

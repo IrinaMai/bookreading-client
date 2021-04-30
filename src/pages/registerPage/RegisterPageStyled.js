@@ -45,14 +45,14 @@ const RegisterWrapper = styled.section`
 			width: 100%;
 		}
 	}
-	.loginSideBar {
+	.registrSideBar {
 		@media (min-width: 1280px) {
 			position: absolute;
-			top: 30%;
+			top: 13%;
 			right: 10%;
 		}
 		@media (min-width: 1500px) {
-			top: 30%;
+			top: 13%;
 			right: 20%;
 		}
 	}

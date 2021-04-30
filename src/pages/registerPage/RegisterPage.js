@@ -6,6 +6,8 @@ import RegistrSideBar from '../../components/registrSideBar/RegistrSideBar';
 import RegisterWrapper from './RegisterPageStyled';
 
 const RegisterPage = () => {
+	const onlyWidth = useWindowWidth();
+
 	return (
 		<RegisterWrapper>
 			<section className='login'>
@@ -15,12 +17,12 @@ const RegisterPage = () => {
 			</section>
 
 			<section className='rightSideBar'>
-				<section className='loginSideBar'>
+				<section className='registrSideBar'>
 					{onlyWidth >= 1280 && <RegistrSideBar />}
 				</section>
 			</section>
 
-			<section className='loginSideBar'>
+			<section className='registrSideBar'>
 				{onlyWidth < 1280 && <RegistrSideBar />}
 			</section>
 

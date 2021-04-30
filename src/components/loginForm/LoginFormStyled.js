@@ -25,9 +25,7 @@ const LoginFormWrapper = styled.section`
 	}
 
 	//-------------------------------
-	.iconPassword {
-		position: relative;
-	}
+
 	.password-icon {
 		cursor: pointer;
 		position: absolute;
@@ -68,9 +66,10 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.formLabel {
-		&:not(:last-child) {
-			margin-bottom: 48px;
-		}
+		position: relative;
+		display: block;
+
+		margin-bottom: 28px;
 
 		@media screen and (min-width: 768px) {
 			&:not(:last-child) {
@@ -107,7 +106,7 @@ const LoginFormWrapper = styled.section`
 		width: 100%;
 		height: 44px;
 		display: block;
-		margin-top: 30px;
+		margin-top: 40px;
 		margin-bottom: 15px;
 
 		@media screen and (min-width: 768px) {

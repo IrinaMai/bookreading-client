@@ -84,11 +84,7 @@ const LoginForm = () => {
 									onClick={handleClickVisiblePassword}
 								/>
 
-								<ErrorMessage
-									className='error mistakePassword'
-									name='password'
-									component='section'
-								/>
+								<ErrorMessage className='error' name='password' component='section' />
 							</label>
 						</section>
 
