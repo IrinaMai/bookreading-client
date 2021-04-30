@@ -28,8 +28,10 @@ const LoginWrapper = styled.section`
 
 	.login {
 		@media (min-width: 1280px) {
+			width: 80%;
 			background-image: url(${overlayDesk}), url(${imageDesk});
 			background-repeat: no-repeat;
+			background-size: cover;
 			padding: 185px 82px 185px 83px;
 		}
 	}

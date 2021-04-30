@@ -12,7 +12,7 @@ const RegisterWrapper = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-
+	
 	@media (max-width: 767px) {
 		padding-top: 30px;
 		background-image: url(${overlayMobile}), url(${imageMobile});
@@ -28,12 +28,14 @@ const RegisterWrapper = styled.section`
 
 	.login {
 		@media (min-width: 1280px) {
+			width: 80%;
 			background-image: url(${overlayDesk}), url(${imageDesk});
 			background-repeat: no-repeat;
+			background-size: cover;
 			padding: 92px 82px 185px 83px;
 		}
 	}
-	.RegistrForm {
+	.RegistrForm {		
 		@media screen and (min-width: 768px) and (max-width: 1279px) {
 			padding: 70px 144px;
 		}

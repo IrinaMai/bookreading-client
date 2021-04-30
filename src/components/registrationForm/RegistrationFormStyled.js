@@ -3,10 +3,7 @@ import styled from 'styled-components';
 const RegistrationWrapper = styled.section`
 	width: 270px;
 	padding-bottom: 40px;
-
-	@media screen and (max-width: 1279px) {
-		margin: 0 auto;
-	}
+	margin: 0 auto;
 
 	@media screen and (min-width: 768px) {
 		min-width: 400px;
@@ -54,7 +51,7 @@ const RegistrationWrapper = styled.section`
 			top: 65%;
 		}
 		@media (min-width: 1280px) {
-			top: 60%;
+			top: 65%;
 		}
 	}
 	//----------------------------------
