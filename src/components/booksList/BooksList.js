@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { getAllBooks } from '../../redux/selectors/trainingSelectors.js'
+import { getAllBooks } from '../../redux/selectors/bookSelectors'
 import WillRead from './listItems/WillRead'
 import HeaderTitles from './listItems/HeaderTitles'
 import BooksListStyled from './BooksListStyles'
