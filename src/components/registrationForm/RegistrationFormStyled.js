@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginFormWrapper = styled.section`
+const RegistrationWrapper = styled.section`
 	width: 270px;
 	padding-bottom: 40px;
 
@@ -25,15 +25,36 @@ const LoginFormWrapper = styled.section`
 	}
 
 	//-------------------------------
-
-	.password-icon {
-		cursor: pointer;
+	.icon {
 		position: absolute;
-		top: 57px;
-		left: 230px;
+		cursor: pointer;
+		left: 240px;
+
 		@media (min-width: 768px) {
-			top: 57px;
-			left: 270px;
+			left: 85%;
+		}
+		@media (min-width: 1280px) {
+			left: 85%;
+		}
+	}
+	.password-icon {
+		top: 57px;
+
+		@media (min-width: 768px) {
+			top: 65%;
+		}
+		@media (min-width: 1280px) {
+			top: 65%;
+		}
+	}
+	.confirmPassword-icon {
+		top: 65%;
+
+		@media (min-width: 768px) {
+			top: 65%;
+		}
+		@media (min-width: 1280px) {
+			top: 60%;
 		}
 	}
 	//----------------------------------
@@ -58,18 +79,23 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.error {
+		position: absolute;
 		color: #e63946;
 		font-size: 10px;
 		width: 270px;
 
-		position: absolute;
+		@media screen and (min-width: 768px) {
+			width: 320px;
+		}
 	}
 
 	.formLabel {
 		position: relative;
 		display: block;
 
-		margin-bottom: 28px;
+		&:not(:last-child) {
+			margin-bottom: 18px;
+		}
 
 		@media screen and (min-width: 768px) {
 			&:not(:last-child) {
@@ -79,8 +105,6 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.formInput {
-		position: relative;
-
 		display: block;
 		padding-left: 10px;
 		width: 270px;
@@ -97,7 +121,7 @@ const LoginFormWrapper = styled.section`
 	}
 
 	.formBtn {
-		padding: 13px 48px;
+		padding: 0px 48px;
 		border: 1px solid var(--accent-color);
 		background-color: var(--accent-color);
 		color: var(--secondary-background);
@@ -106,12 +130,11 @@ const LoginFormWrapper = styled.section`
 		width: 100%;
 		height: 44px;
 		display: block;
-		margin-top: 40px;
+		margin-top: 30px;
 		margin-bottom: 15px;
 
-		@media screen and (min-width: 768px) {
+		@media screen and (min-width: 768px) and (max-width: 768px) {
 			height: 42px;
-			padding: 11px 131px 11px 132px;
 		}
 
 		&:hover,
@@ -122,16 +145,29 @@ const LoginFormWrapper = styled.section`
 			color: var(--accent-color);
 		}
 	}
-
 	.formBtnText {
-		font-weight: 700;
-		font-size: 14px;
-		line-height: 1.2;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 2.37;
+
+		@media screen and (min-width: 768px) {
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 1.2;
+		}
 	}
 
-	.registr {
-		display: block;
+	.formLink {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 2.92;
+	}
+	.formLinkText {
 		text-align: center;
+		color: var(--secondary-text);
+	}
+	.loginLink {
+		padding-left: 10px;
 		text-decoration: underline;
 		cursor: pointer;
 		color: var(--accent-color);
@@ -148,4 +184,4 @@ const LoginFormWrapper = styled.section`
 	}
 `;
 
-export default LoginFormWrapper;
+export default RegistrationWrapper;
