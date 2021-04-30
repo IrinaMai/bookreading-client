@@ -1,8 +1,10 @@
 import React from 'react'
-import HomeIcon from '../../icons/LibraryIcon'
+import TrainingIcon from '../../icons/TrainingIcon'
 import ListItemStyles from './ListItemStyles'
 
-const WillRead = ({
+const WillRead = (
+  {
+  iconColor,
   _id,
   title,
   author,
@@ -12,7 +14,7 @@ const WillRead = ({
   return (
     <ListItemStyles>
       <li key={_id} className='list-item'>
-        <span className='item-icon'><HomeIcon/></span>
+        <span className='item-icon'><TrainingIcon className={iconColor}/></span>
         <span className='item-book item'>{title}</span>
         <span className='item-author item'>{author}</span>
         <span className='item-year item'>{year}</span>
