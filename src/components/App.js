@@ -13,8 +13,13 @@ function App() {
   const googleToken = {
     token: query.get('token'),
   }
+  // const user = {
+  //   email: 'darthvader@deathstar.com',
+  //   password: 'PaDmE#123456',
+  // }
   const user = {
-    email: 'darthvader@deathstar.com',
+    name: 'Obi Wan Kenobi',
+    email: 'obiwankenobi@jedi.com',
     password: 'PaDmE#123456',
   }
   const dispatch = useDispatch()
