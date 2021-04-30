@@ -13,7 +13,7 @@ const LibraryPage = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(getModalContent)
   const handleClick = () => {
-    dispatch(modalActions.setModalContent("resume"))
+    dispatch(modalActions.setModalContent('resume'))
     dispatch(modalActions.toggleModal())
   }
 
@@ -21,9 +21,12 @@ const LibraryPage = () => {
     <div>
       <LibraryForm />
       <button onClick={handleClick}>Резюме</button>
-      
-        {showModal === "resume" && <Modal><Resume /></Modal>}
-      <BooksList/>
+
+      {showModal === 'resume' && (
+        <Modal>
+          <Resume />
+        </Modal>
+      )}
     </div>
   )
 }

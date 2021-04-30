@@ -1,6 +1,6 @@
 import { useWindowWidth } from '@react-hook/window-size'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import AddButton from '../../components/addButton/AddButton'
 import BackButton from '../../components/backButton/BackButton'
@@ -16,16 +16,25 @@ import {
   getBooksList,
   getActiveTrainingID,
 } from '../../redux/selectors/trainingSelectors'
+import { getTrainingOperation } from '../../redux/operations/trainingOperations'
+import TimerContainer from '../../components/timer/TimerContainer'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
   const activeTrainingID = useSelector(getActiveTrainingID)
   const onlyWidth = useWindowWidth()
   const location = useLocation()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTrainingOperation())
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="container">
       <TrainingPageWrapper>
+        {onlyWidth < 1280 && activeTrainingID && <TimerContainer />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <ToGoal />
         )}
@@ -42,7 +51,8 @@ const TrainingPage = () => {
         {onlyWidth > 1279 && (
           <div className="topSection">
             <div className="sectionGroup">
-              <TrainingForm />
+              {activeTrainingID && <TimerContainer />}
+              {!activeTrainingID && <TrainingForm />}
               <BooksListContainer>
                 <TrainingBooksList />
               </BooksListContainer>
@@ -54,7 +64,9 @@ const TrainingPage = () => {
           </div>
         )}
         {/* ---------------------------------- */}
-        {onlyWidth > 767 && onlyWidth < 1280 && <TrainingForm />}
+        {onlyWidth > 767 && onlyWidth < 1280 && !activeTrainingID && (
+          <TrainingForm />
+        )}
         {onlyWidth > 767 && onlyWidth < 1280 && (
           <BooksListContainer>
             <TrainingBooksList />
@@ -71,25 +83,27 @@ const TrainingPage = () => {
           onlyWidth < 1280 &&
           booksList.length > 0 &&
           !activeTrainingID && <StartTrainingBtn />}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
-          <AddButton />
-        )}
+
+        {onlyWidth < 768 &&
+          location.pathname !== '/training/books' &&
+          !activeTrainingID && <AddButton />}
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <Chart />
         )}
         {onlyWidth >= 768 && onlyWidth < 1280 && <Chart />}
-        {onlyWidth < 768 && location.pathname !== '/training/books' && (
+        {onlyWidth < 768 &&
+          location.pathname !== '/training/books' &&
+          activeTrainingID && <Results />}
+        {onlyWidth >= 768 && onlyWidth < 1280 && activeTrainingID && (
           <Results />
         )}
-        {onlyWidth >= 768 && onlyWidth < 1280 && <Results />}
         {/* 1280px positioning bottom section*/}
         {onlyWidth > 1279 && (
           <div className="bottomSection">
             <Chart />
-            <Results />
+            {activeTrainingID && <Results />}
           </div>
         )}
-        {/* ---------------------------------- */}
       </TrainingPageWrapper>
     </div>
   )

@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
 const ToGoalStyled = styled.div`
-  /* height: 320px; */
   display: block;
-  /* flex-wrap: wrap; */
   justify-content: center;
   order: 2;
   background: var(--secondary-background);
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   margin-bottom: 30px;
-  @media (min-width: 768px) {
-    margin-bottom: 40px;
-  }
+  @media (min-width: 1280px) {
+    margin-bottom: ${({ training }) => (training ? "40px" : "0")}; 
+    margin-top: ${({ training }) => (training ? "40px" : "0")}; 
+   }
   .containerMore {
     height: 215px;
   }
@@ -19,9 +18,7 @@ const ToGoalStyled = styled.div`
   .bookTitle,
   .bookTitleMore {
     height: 60px;
-    /* left: 25px;
-    top: 90px; */
-
+  
     background: #b1b5c2;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
     color: #fff;
@@ -37,15 +34,11 @@ const ToGoalStyled = styled.div`
   }
   .booksCounterContainer,
   .booksCounterContainerMore {
-    /* height: 100px; */
     width: 100%;
     padding: 55px 25px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* padding: 30px 10px 0 10px;
-  margin-bottom: 15px; */
   }
   .booksCounterContainerMore {
     padding: 30px 25px 30px 25px;
@@ -112,7 +105,7 @@ const ToGoalStyled = styled.div`
     text-align: center;
     color: var(--secondary-text);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     height: 125px;
     margin: 0 0 40px 0;
     padding: 23px 30px 42px 30px;

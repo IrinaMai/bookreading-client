@@ -4,11 +4,23 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import 'react-datepicker/dist/react-datepicker.css'
 import ResultsWrapper from './ResultsStyled'
+import { addResultsOperation } from '../../redux/operations/trainingOperations'
+import convertDate from '../../utils/dateConverter'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getActiveFinishDate,
+  getActiveStartDate,
+} from '../../redux/selectors/trainingSelectors'
+import Statistics from '../statistics/Statistics'
 
 const Results = () => {
+  const dispatch = useDispatch()
+  const startDate = useSelector(getActiveStartDate)
+  const finishDate = useSelector(getActiveFinishDate)
+
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.string().required(`Обов'язкове поле`),
+    pages: yup.number().required(`Обов'язкове поле`),
   })
 
   const formik = useFormik({
@@ -18,7 +30,8 @@ const Results = () => {
     },
     validationSchema,
     onSubmit: values => {
-      console.log(`values`, values)
+      const date = convertDate(values.date)
+      dispatch(addResultsOperation(date, values.pages))
     },
   })
 
@@ -46,16 +59,16 @@ const Results = () => {
               name="data"
               placeholderText="д.мм.рррр"
               className="formInputDate"
-              minDate={new Date()}
-              maxDate={new Date('2021-05-10')}
+              minDate={new Date(startDate)}
+              maxDate={new Date(finishDate)}
               popperProps={{
                 positionFixed: true,
               }}
               id="date"
             />
-              {formik.touched.date && formik.errors.date ? (
-            <span className="error ">{formik.errors.date}</span>
-          ) : null}
+            {formik.touched.date && formik.errors.date ? (
+              <span className="error ">{formik.errors.date}</span>
+            ) : null}
           </div>
           <div className="inputGroup">
             <label className="label" htmlFor="pages">
@@ -70,15 +83,16 @@ const Results = () => {
               onChange={formik.handleChange}
               value={formik.values.pages}
             />
-          {formik.touched.pages && formik.errors.pages ? (
-            <span className="error ">{formik.errors.pages}</span>
-          ) : null}
+            {formik.touched.pages && formik.errors.pages ? (
+              <span className="error ">{formik.errors.pages}</span>
+            ) : null}
           </div>
         </div>
         <button type="submit" className="formButton">
           Додати результат
         </button>
       </form>
+      <Statistics/>
     </ResultsWrapper>
   )
 }

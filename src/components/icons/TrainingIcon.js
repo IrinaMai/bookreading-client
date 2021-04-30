@@ -1,4 +1,5 @@
 import React from 'react'
+
 const TrainingIcon = ({className='trainingIcon'}) => {
   return (
     <svg
@@ -28,4 +29,6 @@ const TrainingIcon = ({className='trainingIcon'}) => {
     </svg>
   )
 }
+
+
 export default TrainingIcon

@@ -8,12 +8,16 @@ import LoaderSpinner from '../loader/Loader';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 import PublicRoute from '../publicRoute/PublicRoute';
 import authSelectors from '../../redux/selectors/authSelectors';
+import { getModalContent } from '../../redux/selectors/modalSelector';
+import Modal from '../modal/Modal';
+import LogoutModal from '../logoutModal/LogoutModal';
+import MainStyled from './MainStyled';
 
 const Main = () => {
   const isAuth = useSelector(authSelectors.isAuth);
-
+  const showModal = useSelector(getModalContent);
   return (
-    <>
+    <MainStyled>
       <Suspense fallback={<LoaderSpinner />}>
         <Switch>
           {mainRoutes.map(route => {
@@ -33,7 +37,8 @@ const Main = () => {
           <Route component={DefaultPage} />
         </Switch>
       </Suspense>
-    </>
+      {showModal === "logout" && <Modal><LogoutModal/></Modal>}
+    </MainStyled>
   );
 
 };

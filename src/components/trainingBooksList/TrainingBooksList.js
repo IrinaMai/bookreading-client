@@ -1,20 +1,37 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import trainingActions from '../../redux/actions/trainingActions'
-import { getBooksList } from '../../redux/selectors/trainingSelectors'
+import {
+  getActiveTrainingID,
+  getBooksList,
+} from '../../redux/selectors/trainingSelectors'
 import TrainingBooksListItem from './trainingBooksListItem.js/TrainingBooksListItem'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import Wrapper from './TrainingBooksListStyled'
 import { useWindowWidth } from '@react-hook/window-size'
+import {
+  getAllBooks,
+  getTrainingBooks,
+} from '../../redux/selectors/bookSelectors'
 
 const TrainingBooksList = () => {
-  const books = useSelector(getBooksList)
+  const activeTrainingID = useSelector(getActiveTrainingID)
+  const allBooks = useSelector(getAllBooks)
+  const booksBeforeStart = useSelector(getBooksList)
+  const trainingBooks = useSelector(getTrainingBooks)
   const dispatch = useDispatch()
   const onlyWidth = useWindowWidth()
 
+  const booksReading = trainingBooks.map(trainingBook => {
+    const book = allBooks.find(book => book._id === trainingBook.bookId)
+    return book ? { ...book } : trainingBook
+  })
+
+  const books = activeTrainingID ? booksReading : booksBeforeStart
+
   const handleDeleteBook = e => {
     const { id } = e.currentTarget.dataset
-     dispatch(trainingActions.deleteBook(id))
+    dispatch(trainingActions.deleteBook(id))
   }
 
   return (

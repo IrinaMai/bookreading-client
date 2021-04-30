@@ -5,6 +5,7 @@ const ChartStyled = styled.div`
   width: 270px;
   height: 290px;
   padding: 14px 22px;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
 
   @media (max-width: 767px) {
     margin-left: auto;
@@ -35,10 +36,20 @@ const ChartStyled = styled.div`
     background: #f5f7fa;
   }
   ul.recharts-default-legend {
-    /* width: max-content; */
     display: flex;
     flex-direction: column;
-    /* text-align: left; */
+    /* right: -60px;
+    bottom: 50%;
+    position: absolute; */
+  }
+  .recharts-legend-item-text{
+  padding: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 3.17;
+  text-transform: uppercase;
+  background: #F5F7FA;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   }
   @media screen and (min-width: 768px) {
     width: 678px;
