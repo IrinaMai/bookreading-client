@@ -1,7 +1,18 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from '@reduxjs/toolkit'
 
-const postBookRequest = createAction("@book/postBookRequest");
-const postBookSuccess = createAction("@book/postBookSuccess");
-const postBookError = createAction("@book/postBookError");
+const postBookRequest = createAction('@book/postBookRequest')
+const postBookSuccess = createAction('@book/postBookSuccess')
+const postBookError = createAction('@book/postBookError')
 
-export { postBookRequest, postBookSuccess, postBookError}
+const patchBookRequest = createAction('@book/patchBookRequest')
+const patchBookSuccess = createAction('@book/patchBookSuccess')
+const patchBookError = createAction('@book/patchBookError')
+
+export {
+  postBookRequest,
+  postBookSuccess,
+  postBookError,
+  patchBookRequest,
+  patchBookSuccess,
+  patchBookError,
+}
