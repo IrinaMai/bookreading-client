@@ -53,6 +53,7 @@ const startTrainingReducer = createReducer(
   { ...activeInitialState },
   {
     [trainingActions.addTrainingSuccess]: (state, { payload }) => ({
+      ...state,
       _id: payload._id,
       startDate: payload.startDate,
       finishDate: payload.finishDate,

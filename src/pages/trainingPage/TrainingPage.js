@@ -15,15 +15,12 @@ import StartTrainingBtn from '../../components/startTrainingBtn/StartTrainingBtn
 import {
   getBooksList,
   getActiveTrainingID,
-  getActiveTraining,
 } from '../../redux/selectors/trainingSelectors'
 import authSelectors from '../../redux/selectors/authSelectors'
 import { getTrainingOperation } from '../../redux/operations/trainingOperations'
 import TimerContainer from '../../components/timer/TimerContainer'
 import Modal from '../../components/modal/Modal'
-import getAveragePages from '../../utils/getAveragePages'
 import WellDone from '../../components/wellDone/WellDone'
-import modalActions from '../../redux/actions/modalActions'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 
 const TrainingPage = () => {
@@ -33,29 +30,12 @@ const TrainingPage = () => {
   const onlyWidth = useWindowWidth()
   const location = useLocation()
   const dispatch = useDispatch()
-
-  const training = useSelector(getActiveTraining)
   const showModal = useSelector(getModalContent)
-  // console.log(
-  //   `fvc`,
-  //   getAveragePages(
-  //     training.startDate,
-  //     training.finishDate,
-  //     training.pagesTotal
-  //   )
-  // )
-
-  // const test = getAveragePages(
-  //   training.startDate,
-  //   training.finishDate,
-  //   training.pagesTotal
-  // )
 
   useEffect(() => {
     userActiveTraining && dispatch(getTrainingOperation())
     // eslint-disable-next-line
   }, [])
-
 
   return (
     <div className="container">
