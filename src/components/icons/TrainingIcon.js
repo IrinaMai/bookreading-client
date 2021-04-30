@@ -30,4 +30,5 @@ const TrainingIcon = ({className='trainingIcon'}) => {
   )
 }
 
+
 export default TrainingIcon
