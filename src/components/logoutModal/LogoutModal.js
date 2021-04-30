@@ -5,13 +5,11 @@ import modalActions from '../../redux/actions/modalActions'
 import authOperations from '../../redux/operations/authOperations'
 import LogoutModalStyled from './LogoutModalStyled'
 
-const LogoutModal = () => {
-  const history = useHistory()
+const LogoutModal = () => {  
   const dispatch = useDispatch()
 
   const logOut = () => {
-    dispatch(authOperations.logOutOperation())
-    history.push('/login')
+    dispatch(authOperations.logOutOperation())    
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
   }

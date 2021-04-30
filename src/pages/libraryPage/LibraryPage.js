@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import LibraryForm from '../../components/library/LibraryForm'
 import BooksList from '../../components/booksList/BooksList'
@@ -10,7 +10,7 @@ import Resume from '../../components/resume/Resume'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 
-const LibraryPage = () => {
+const LibraryPage = () => {  
   const dispatch = useDispatch()
   const showModal = useSelector(getModalContent)
   const bookList = useSelector(getAllBooks)
@@ -19,38 +19,19 @@ const LibraryPage = () => {
     dispatch(modalActions.setModalContent('resume'))
     dispatch(modalActions.toggleModal())
   }
-  // dispatch(modalActions.setModalContent('libraryEmpty'))
-  // useEffect(() => {
-  //   if (!bookList.length) {
-  //     showModal === '' && dispatch(modalActions.setModalContent('libraryEmpty'))
-  //     dispatch(modalActions.toggleModal())
-  //   }
-  //   return () => {
-  //     dispatch(modalActions.clearModalContent())
-  //     dispatch(modalActions.offModal())
-  //   }
-  // }, [])
-
-  const handler = useCallback(value => {
-    console.log(value)
-    // !value && dispatch(modalActions.setModalContent('libraryEmpty'))
-    // dispatch(modalActions.toggleModal())
-  }, [])
-
+  
   useEffect(() => {
-    handler(bookList.length)
-    // return () => {
-    //   dispatch(modalActions.clearModalContent())
-    //   dispatch(modalActions.offModal())
-    // }
-  }, [handler, bookList.length])
+    if (!bookList.length) {     
+      dispatch(modalActions.setModalContent('libraryEmpty'))
+      && dispatch(modalActions.toggleModal())
+    }
+    return () => {
+      dispatch(modalActions.clearModalContent())
+      dispatch(modalActions.offModal())
+    }
+  }, [bookList.length])
 
-  // useCallback(() => {
-  //   if (!bookList.length) {
-  //     dispatch(modalActions.setModalContent('libraryEmpty'))
-  //     dispatch(modalActions.toggleModal())
-  //   }
-  // }, [bookList.length])
+  
 
   return (
     <div>
