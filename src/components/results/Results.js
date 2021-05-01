@@ -24,9 +24,11 @@ const Results = () => {
   const training = useSelector(getActiveTraining)
   const statistic = useSelector(getStatistics)
 
+  const pagesRegExp = /^-?[1-9]\d*(\.\d+)?$/
+
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.number().required(`Обов'язкове поле`)
+    pages: yup.string().matches(pagesRegExp, 'TEST').required(`Обов'язкове поле`)
   })
 
   const formik = useFormik({
@@ -37,9 +39,12 @@ const Results = () => {
     validationSchema,
     onSubmit: values => {
       const date = convertDate(values.date)
-
       const pagesPerDay =
       statistic?.find(day => day.date === date)?.pages + values.pages
+
+      if (values.pages < 0 && Math.abs(values.pages) > pagesPerDay) {
+        formik.setErrors({ pages: 'This is a dummy procedure error' });
+      }
 
       const averagePages = getAveragePages(
         startDate,
