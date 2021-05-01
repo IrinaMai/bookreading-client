@@ -70,7 +70,7 @@ const LoginForm = () => {
 								</p>
 
 								<Field
-									className='formInput password'
+									className='formInput'
 									type={visiblePassword ? 'text' : 'password'}
 									name='password'
 									value={values.password}
@@ -93,7 +93,7 @@ const LoginForm = () => {
 							className='formBtn'
 							disabled={!(isValid && dirty) && isSubmitting}
 							type='submit'>
-							<span>Увійти</span>
+							<span className='formBtnText'>Увійти</span>
 						</button>
 
 						<p className='formLink'>
