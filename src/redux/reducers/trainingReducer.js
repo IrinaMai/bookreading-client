@@ -37,6 +37,7 @@ export const bookReducer = createReducer(
       ...state,
       finishDate: payload,
     }),
+    [trainingActions.removeStartData]: () => startInitialState
   }
 )
 const activeInitialState = {
@@ -70,9 +71,17 @@ const startTrainingReducer = createReducer(
       progress: payload.progress,
     }),
 
-    [trainingActions.getTrainingSuccess]: (state, { payload }) => ({
-      ...payload,
+    [trainingActions.getTrainingSuccess]: (_, { payload }) => ({
+      _id: payload._id,
+      startDate: payload.startDate,
+      finishDate: payload.finishDate,
+      books: payload.books,
+      pagesRead: payload.pagesRead,
+      pagesTotal: payload.pagesTotal,
+      progress: payload.progress,
     }),
+    [trainingActions.removeActiveTraining]: () => activeInitialState
+  
   }
 )
 

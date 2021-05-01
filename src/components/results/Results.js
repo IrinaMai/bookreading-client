@@ -39,7 +39,7 @@ const Results = () => {
       const date = convertDate(values.date)
 
       const pagesPerDay =
-      statistic.find(day => day.date === date)?.pages + values.pages
+      statistic?.find(day => day.date === date)?.pages + values.pages
 
       const averagePages = getAveragePages(
         startDate,
