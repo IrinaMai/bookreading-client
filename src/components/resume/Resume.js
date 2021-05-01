@@ -6,8 +6,7 @@ import StarRating from '../rating/StarRating'
 import { patchBookAtDB } from '../../redux/operations/bookOperation'
 
 const initialValue = {
-  id: '608018a31175c9411812cbe8',
-  rating: '',
+  id: '608ce4bd4b21e2122c38a46c',
   review: '',
 }
 
@@ -20,9 +19,13 @@ const Resume = () => {
     dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
+   
   const handleClick = e => {
     e.preventDefault()
-    dispatch(patchBookAtDB(book.id, book))
+    dispatch(patchBookAtDB(book.id, { review: book.review, rating: rating }))
+    setRating(0)
+    setBook({ ...initialValue })
+    closeModal()
   }
   const reviewChng = e => {
     setBook(prev => ({ ...prev, [e.target.name]: e.target.value }))

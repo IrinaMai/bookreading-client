@@ -28,7 +28,7 @@ const LibraryForm = () => {
       >
         {({ errors, touched, values, handleChange, isValid }) => (
           <Form>
-            <label htmlFor="title" class="bookLabel bookTitle">
+            <label htmlFor="title" className="bookLabel bookTitle">
               {' '}
               Назва книги
               <Field
@@ -37,14 +37,13 @@ const LibraryForm = () => {
                 value={values.title}
                 onChange={handleChange}
                 placeholder="..."
-                autofocus
-                class="bookInput"
+                className="bookInput"
               />
-              <ErrorMessage component="div" name="title" class="bookError" />
+              <ErrorMessage component="div" name="title" className="bookError" />
             </label>
 
-            <div class="planshetWrapper">
-              <label htmlFor="author" class="bookLabel bookAuthor">
+            <div className="planshetWrapper">
+              <label htmlFor="author" className="bookLabel bookAuthor">
                 Автор книги
                 <Field
                   id="author"
@@ -52,12 +51,12 @@ const LibraryForm = () => {
                   value={values.author}
                   onChange={handleChange}
                   placeholder="..."
-                  class="bookInput"
+                  className="bookInput"
                 />
-                <ErrorMessage component="div" name="author" class="bookError" />
+                <ErrorMessage component="div" name="author" className="bookError" />
               </label>
 
-              <label htmlFor="year" class="bookLabel bookNumber">
+              <label htmlFor="year" className="bookLabel bookNumber">
                 Рік випуску
                 <Field
                   id="year"
@@ -65,13 +64,13 @@ const LibraryForm = () => {
                   value={values.year}
                   onChange={handleChange}
                   placeholder="..."
-                  autocomplete="on"
-                  class="bookInput"
+                  autoComplete="on"
+                  className="bookInput"
                 />
-                <ErrorMessage component="div" name="year" class="bookError" />
+                <ErrorMessage component="div" name="year" className="bookError" />
               </label>
 
-              <label htmlFor="pages" class="bookLabel bookNumber">
+              <label htmlFor="pages" className="bookLabel bookNumber">
                 Кількість сторінок
                 <Field
                   id="pages"
@@ -79,15 +78,15 @@ const LibraryForm = () => {
                   value={values.pages}
                   onChange={handleChange}
                   placeholder="..."
-                  class="bookInput"
+                  className="bookInput"
                 />
-                <ErrorMessage component="div" name="pages" class="bookError" />
+                <ErrorMessage component="div" name="pages" className="bookError" />
               </label>
             </div>
 
             {/* <LibraryButton disabled = {!isValid}/>  */}
 
-            <button type="submit" class="bookButton">
+            <button type="submit" className="bookButton">
               Додати
             </button>
           </Form>
