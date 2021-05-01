@@ -10,17 +10,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getActiveFinishDate,
   getActiveStartDate,
+  getActiveTraining,
+  getStatistics,
 } from '../../redux/selectors/trainingSelectors'
 import Statistics from '../statistics/Statistics'
+import modalActions from '../../redux/actions/modalActions'
+import getAveragePages from '../../utils/getAveragePages'
 
 const Results = () => {
   const dispatch = useDispatch()
   const startDate = useSelector(getActiveStartDate)
   const finishDate = useSelector(getActiveFinishDate)
+  const training = useSelector(getActiveTraining)
+  const statistic = useSelector(getStatistics)
 
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.number().required(`Обов'язкове поле`),
+    pages: yup.number().required(`Обов'язкове поле`)
   })
 
   const formik = useFormik({
@@ -31,7 +37,32 @@ const Results = () => {
     validationSchema,
     onSubmit: values => {
       const date = convertDate(values.date)
+
+      const pagesPerDay =
+      statistic?.find(day => day.date === date)?.pages + values.pages
+
+      const averagePages = getAveragePages(
+        startDate,
+        finishDate,
+        training.pagesTotal
+        )
+
       dispatch(addResultsOperation(date, values.pages))
+
+      if (!pagesPerDay && values.pages < averagePages) {
+        dispatch(modalActions.setModalContent('wellDone'))
+        dispatch(modalActions.toggleModal())
+      }
+
+      if (!statistic.length && values.pages < averagePages) {
+        dispatch(modalActions.setModalContent('wellDone'))
+        dispatch(modalActions.toggleModal())
+      }
+
+      if (pagesPerDay < averagePages && values.pages > 0) {
+        dispatch(modalActions.setModalContent('wellDone'))
+        dispatch(modalActions.toggleModal())
+      }
     },
   })
 
@@ -60,7 +91,9 @@ const Results = () => {
               placeholderText="д.мм.рррр"
               className="formInputDate"
               minDate={new Date(startDate)}
-              maxDate={new Date(finishDate)}
+              maxDate={
+                new Date(finishDate) <= new Date() ? null : new Date(finishDate)
+              }
               popperProps={{
                 positionFixed: true,
               }}
@@ -92,7 +125,7 @@ const Results = () => {
           Додати результат
         </button>
       </form>
-      <Statistics/>
+      <Statistics />
     </ResultsWrapper>
   )
 }
