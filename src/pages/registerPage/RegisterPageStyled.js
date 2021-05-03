@@ -8,11 +8,11 @@ import overlayTablet from '../../assets/images/login/overlayTabl.png';
 import overlayDesk from '../../assets/images/login/overlayDesk.png';
 import imageDesk from '../../assets/images/login/desktop1x.jpg';
 
-const LoginWrapper = styled.section`
+const RegisterWrapper = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-
+	
 	@media (max-width: 767px) {
 		padding-top: 30px;
 		background-image: url(${overlayMobile}), url(${imageMobile});
@@ -32,10 +32,10 @@ const LoginWrapper = styled.section`
 			background-image: url(${overlayDesk}), url(${imageDesk});
 			background-repeat: no-repeat;
 			background-size: cover;
-			padding: 185px 82px 185px 83px;
+			padding: 92px 82px 185px 83px;
 		}
 	}
-	.loginForm {
+	.RegistrForm {		
 		@media screen and (min-width: 768px) and (max-width: 1279px) {
 			padding: 70px 144px;
 		}
@@ -47,17 +47,17 @@ const LoginWrapper = styled.section`
 			width: 100%;
 		}
 	}
-	.loginSideBar {
+	.registrSideBar {
 		@media (min-width: 1280px) {
 			position: absolute;
-			top: 30%;
+			top: 13%;
 			right: 10%;
 		}
 		@media (min-width: 1500px) {
-			top: 30%;
+			top: 13%;
 			right: 20%;
 		}
 	}
 `;
 
-export default LoginWrapper;
+export default RegisterWrapper;

@@ -15,21 +15,42 @@ import StartTrainingBtn from '../../components/startTrainingBtn/StartTrainingBtn
 import {
   getBooksList,
   getActiveTrainingID,
+  getActiveTraining,
 } from '../../redux/selectors/trainingSelectors'
+import authSelectors from '../../redux/selectors/authSelectors'
 import { getTrainingOperation } from '../../redux/operations/trainingOperations'
 import TimerContainer from '../../components/timer/TimerContainer'
+import Modal from '../../components/modal/Modal'
+import WellDone from '../../components/wellDone/WellDone'
+import { getModalContent } from '../../redux/selectors/modalSelector'
+import modalActions from '../../redux/actions/modalActions'
+import trainingActions from '../../redux/actions/trainingActions'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
   const activeTrainingID = useSelector(getActiveTrainingID)
+  const activeTraining = useSelector(getActiveTraining)
+  const userActiveTraining = useSelector(authSelectors.getUserActiveTraining)
   const onlyWidth = useWindowWidth()
   const location = useLocation()
   const dispatch = useDispatch()
+  const showModal = useSelector(getModalContent)
 
   useEffect(() => {
-    dispatch(getTrainingOperation())
+    userActiveTraining && dispatch(getTrainingOperation())
     // eslint-disable-next-line
   }, [])
+
+  if (
+    activeTraining.pagesRead >= activeTraining.pagesTotal &&
+    activeTraining.pagesRead &&
+    activeTraining.pagesTotal
+  ) {
+    dispatch(trainingActions.removeActiveTraining())
+    dispatch(trainingActions.removeStartData())
+    dispatch(modalActions.setModalContent('endOfTraining'))
+    dispatch(modalActions.toggleModal())
+  }
 
   return (
     <div className="container">
@@ -105,6 +126,16 @@ const TrainingPage = () => {
           </div>
         )}
       </TrainingPageWrapper>
+      {showModal === 'wellDone' && (
+        <Modal>
+          <WellDone />
+        </Modal>
+      )}
+      {showModal === 'endOfTraining' && (
+        <Modal>
+          <h1>Фініш</h1>
+        </Modal>
+      )}
     </div>
   )
 }

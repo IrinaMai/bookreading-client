@@ -13,6 +13,8 @@ const addResultsError = createAction('training/ResultsError');
 const getTrainingRequest = createAction('training/getTrainingRequest');
 const getTrainingSuccess = createAction('training/getTrainingSuccess');
 const getTrainingError = createAction('training/getTrainingError');
+const removeStartData = createAction('training/removeStartData');
+const removeActiveTraining = createAction('training/removeActiveTraining');
 
 
 const trainingActions = {
@@ -29,5 +31,7 @@ const trainingActions = {
   getTrainingRequest,
   getTrainingSuccess,
   getTrainingError,
+  removeStartData,
+  removeActiveTraining,
 }
 export default trainingActions

@@ -1,9 +1,9 @@
 
-const LibraryButton = (disabled) => {
+// const LibraryButton = (disabled) => {
 
-    return (
-        <button type="submit" class="bookButton"  >Додати</button>
-    )
-}
+//     return (
+//         <button type="submit" className="bookButton"  >Додати</button>
+//     )
+// }
 
-export default LibraryButton
+// export default LibraryButton
