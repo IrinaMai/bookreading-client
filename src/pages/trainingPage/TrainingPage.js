@@ -25,6 +25,7 @@ import WellDone from '../../components/wellDone/WellDone'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import modalActions from '../../redux/actions/modalActions'
 import trainingActions from '../../redux/actions/trainingActions'
+import FinishModal from '../../components/finishModal/FinishModal'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
@@ -133,7 +134,7 @@ const TrainingPage = () => {
       )}
       {showModal === 'endOfTraining' && (
         <Modal>
-          <h1>Фініш</h1>
+          <FinishModal/>
         </Modal>
       )}
     </div>
