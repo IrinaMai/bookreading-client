@@ -53,6 +53,7 @@ const LibraryPage = () => {
           <Resume />
         </Modal>
       )}
+      <BooksList/>
     </div>
   )
 }
