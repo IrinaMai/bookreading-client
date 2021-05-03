@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWindowWidth } from '@react-hook/window-size'
-import TrainingIcon from '../../icons/TrainingIcon'
+import TrainingIcon from '../../../icons/TrainingIcon'
 import HeaderTitles from './HeaderTitles'
 import ListItemStyles from './ListItemStyles'
 

@@ -70,6 +70,9 @@ list-style-type: none;
     position: relative;
     flex-wrap: wrap;
     margin-bottom: 15px;
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 18px 5px 25px 55px;
   }
 
@@ -96,6 +99,7 @@ list-style-type: none;
 
   .item-book {
     width: 100%;
+    padding-right: 20%;
     margin-bottom: 17px;
   }
 
@@ -166,7 +170,7 @@ list-style-type: none;
   }
 
   .item-year {
-    width: 127px;
+    min-width: 90px;
   }
 
   .dots {
