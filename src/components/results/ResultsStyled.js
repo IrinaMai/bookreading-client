@@ -119,11 +119,14 @@ const ResultsWrapper = styled.div`
 
   .error {
     position: absolute;
-    top: 72px;
-    left: 10px;
+    top: 69px;
+    left: 6px;
     color: rgb(225, 22, 22);
     font-size: 10px;
     font-weight: 400;
+  }
+  .pagesError {
+    width: 150px
   }
 `
 export default ResultsWrapper

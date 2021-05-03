@@ -28,7 +28,27 @@ const Results = () => {
 
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.string().matches(pagesRegExp, 'TEST').required(`Обов'язкове поле`)
+    pages: yup
+      .string()
+      .matches(pagesRegExp, 'К-сть сторінок має бути більше 0')
+      .required(`Обов'язкове поле`)
+      .when('date', (date, schema) => {
+        return schema.test({
+          test: pages => {
+            const pagesPerDay = statistic?.find(
+              day => day.date === convertDate(date)
+            )?.pages
+            if (pages < 0 && Math.abs(pages) <= pagesPerDay) {
+              return true
+            } else if (pages > 0) {
+              return true
+            } else {
+              return false
+            }
+          },
+          message: 'К-сть сторінок не може бути меншою, ніж прочитано',
+        })
+      }),
   })
 
   const formik = useFormik({
@@ -39,18 +59,15 @@ const Results = () => {
     validationSchema,
     onSubmit: values => {
       const date = convertDate(values.date)
-      const pagesPerDay =
-      statistic?.find(day => day.date === date)?.pages + values.pages
 
-      if (values.pages < 0 && Math.abs(values.pages) > pagesPerDay) {
-        formik.setErrors({ pages: 'This is a dummy procedure error' });
-      }
+      const pagesPerDay =
+        statistic?.find(day => day.date === date)?.pages + values.pages
 
       const averagePages = getAveragePages(
         startDate,
         finishDate,
         training.pagesTotal
-        )
+      )
 
       dispatch(addResultsOperation(date, values.pages))
 
@@ -105,7 +122,7 @@ const Results = () => {
               id="date"
             />
             {formik.touched.date && formik.errors.date ? (
-              <span className="error ">{formik.errors.date}</span>
+              <span className="error">{formik.errors.date}</span>
             ) : null}
           </div>
           <div className="inputGroup">
@@ -122,7 +139,7 @@ const Results = () => {
               value={formik.values.pages}
             />
             {formik.touched.pages && formik.errors.pages ? (
-              <span className="error ">{formik.errors.pages}</span>
+              <span className="error pagesError">{formik.errors.pages}</span>
             ) : null}
           </div>
         </div>
