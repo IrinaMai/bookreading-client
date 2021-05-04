@@ -9,7 +9,7 @@ import WellDone from '../../components/wellDone/WellDone'
 import Resume from '../../components/resume/Resume'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
-import WillRead from '../../components/booksList/listItems/WillRead'
+// import WillRead from '../../components/booksList/listItems/willRead/WillRead'
 
 const LibraryPage = () => {  
   const dispatch = useDispatch()
@@ -43,7 +43,7 @@ const LibraryPage = () => {
         </Modal>
       )}
 
-      {bookList.length &&  <WillRead/> }
+      {/* {bookList.length &&  <WillRead/> } */}
 
  
       <button onClick={handleClick}>Резюме</button>
@@ -53,6 +53,7 @@ const LibraryPage = () => {
           <Resume />
         </Modal>
       )}
+      <BooksList/>
     </div>
   )
 }
