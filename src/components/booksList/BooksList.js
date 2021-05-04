@@ -12,34 +12,45 @@ import BooksListStyled from './BooksListStyles'
 const BooksList = () => {
   const iconOrange = 'orangeIcon'
   const iconGray = 'grayIcon'
-  const books = useSelector(getAllBooks)
+  const allBooks = useSelector(getAllBooks)
   const onlyWidth = useWindowWidth()
-  console.log(books);
 
   return (
     <BooksListStyled>
       <div className='list-container container'>
-        <h3 className='read-title'>Прочитано</h3>
-        {onlyWidth >= 768 && <BeenReadHeaderTytles />}
-        <ul className='willRead-list'>
-          {books.map(book => (
-            <BeenRead iconColor={iconGray} {...book} key={book._id} />
-          ))}
-        </ul>
-        <h3 className='read-title'>Читаю</h3>
-        {onlyWidth >= 768 && <HeaderTitles />}
-        <ul className='willRead-list'>
-          {books.map(book => (
-            <WillRead iconColor={iconOrange} {...book} key={book._id} />
-          ))}
-        </ul>
-        <h3 className='read-title'>Маю намір прочитати</h3>
-        {onlyWidth >= 768 && <HeaderTitles />}
-        <ul>
-          {books.map(book => (
-            <WillRead {...book} key={book._id} />
-          ))}
-        </ul>
+        {allBooks.some(book => book.status === 'HaveRead') && (
+          <>
+            <h3 className='read-title'>Прочитано</h3>
+            {onlyWidth >= 768 && <BeenReadHeaderTytles />}
+            <ul className='willRead-list'>
+              {allBooks.map(book => (
+                book.status === 'HaveRead' && <BeenRead iconColor={iconGray} {...book} key={book._id} />
+              ))}
+            </ul>
+          </>
+        )}
+        {allBooks.some(book => book.status === 'Reading') && (
+          <>
+            <h3 className='read-title'>Читаю</h3>
+            {onlyWidth >= 768 && <HeaderTitles />}
+            <ul className='willRead-list'>
+              {allBooks.map(book => (
+                book.status === 'Reading' && <WillRead iconColor={iconOrange} {...book} key={book._id} />
+              ))}
+            </ul>
+          </>
+        )}
+        {allBooks.some(book => book.status === 'WillRead') && (
+          <>
+            <h3 className='read-title'>Маю намір прочитати</h3>
+            {onlyWidth >= 768 && <HeaderTitles />}
+            <ul>
+              {allBooks.map(book => (
+                book.status === 'WillRead' && <WillRead {...book} key={book._id} />
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </BooksListStyled>
   )
