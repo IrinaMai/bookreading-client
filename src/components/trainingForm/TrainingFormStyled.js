@@ -78,8 +78,9 @@ const FormContainer = styled.div`
     }
   }
 
-// select styles
-  .css-2b097c-container, .css-14jk2my-container{
+  // select styles
+  .css-2b097c-container,
+  .css-14jk2my-container {
     @media (min-width: 768px) {
       width: 482px;
       height: 42px;
@@ -91,7 +92,6 @@ const FormContainer = styled.div`
       width: 670px;
     }
   }
-
 
   .formButton {
     min-width: 171px;

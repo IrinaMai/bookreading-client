@@ -30,7 +30,7 @@ const Results = () => {
     date: yup.string().required('Виберіть дату'),
     pages: yup
       .string()
-      .matches(pagesRegExp, 'К-сть сторінок має бути більше 0')
+      .matches(pagesRegExp, 'Число повинно бути більше 0')
       .required(`Обов'язкове поле`)
       .when('date', (date, schema) => {
         return schema.test({
@@ -46,7 +46,7 @@ const Results = () => {
               return false
             }
           },
-          message: 'К-сть сторінок не може бути меншою, ніж прочитано',
+          message:'Число некоректне',
         })
       }),
   })
@@ -91,7 +91,7 @@ const Results = () => {
   const handleDateChange = date => {
     formik.setFieldValue('date', date)
   }
-
+console.log(`formik`, formik)
   return (
     <ResultsWrapper>
       <p className="resultsTitle">Результати</p>
@@ -143,7 +143,7 @@ const Results = () => {
             ) : null}
           </div>
         </div>
-        <button type="submit" className="formButton">
+        <button type="submit" className="formButton" disabled={!formik.isValid}>
           Додати результат
         </button>
       </form>

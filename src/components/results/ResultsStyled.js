@@ -109,24 +109,36 @@ const ResultsWrapper = styled.div`
       height: 40px;
     }
 
-    &:focus,
-    &:hover {
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
       border-color: #d15807;
       background: #d15807;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &:disabled {
+      border: none;
+      background-color: #ff6b08a8;
     }
   }
 
   .error {
     position: absolute;
-    top: 69px;
-    left: 6px;
-    color: rgb(225, 22, 22);
-    font-size: 10px;
+    top: 70px;
+    left: 3px;
+    font-size: 9px;
     font-weight: 400;
+    color: rgb(225, 22, 22);
+    @media (min-width: 768px) {
+      font-size: 10px;
+      line-height: 1.2;
+    }
   }
   .pagesError {
-    width: 150px
+    width: 130px;
+    @media (min-width: 768px) and (max-width: 1279px) {
+      width: 145px;
+    }
   }
 `
 export default ResultsWrapper
