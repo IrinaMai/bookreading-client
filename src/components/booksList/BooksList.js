@@ -2,7 +2,6 @@ import React from 'react'
 import { useWindowWidth } from '@react-hook/window-size'
 import { useSelector } from 'react-redux'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
-import { getBooksList } from '../../redux/selectors/trainingSelectors'
 import WillRead from './listItems/willRead/WillRead'
 import BeenRead from './listItems/beenRead/BeenRead'
 import HeaderTitles from './listItems/willRead/HeaderTitles'
@@ -14,7 +13,6 @@ const BooksList = () => {
   const iconOrange = 'orangeIcon'
   const iconGray = 'grayIcon'
   const allBooks = useSelector(getAllBooks)
-  const activeBooks = useSelector(getBooksList)
   const onlyWidth = useWindowWidth()
 
   return (
@@ -27,13 +25,13 @@ const BooksList = () => {
             <BeenRead iconColor={iconGray} {...book} key={book._id} />
           ))}
         </ul>
-        {activeBooks.length > 0 && (
+        {allBooks.length > 0 && (
           <>
             <h3 className='read-title'>Читаю</h3>
             {onlyWidth >= 768 && <HeaderTitles />}
             <ul className='willRead-list'>
-              {activeBooks.map(book => (
-                <WillRead iconColor={iconOrange} {...book} key={book._id} />
+              {allBooks.map(book => (
+                book.status === 'WillRead' && <WillRead iconColor={iconOrange} {...book} key={book._id} />
               ))}
             </ul>
           </>
