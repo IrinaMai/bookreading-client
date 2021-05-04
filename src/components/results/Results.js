@@ -91,7 +91,7 @@ const Results = () => {
   const handleDateChange = date => {
     formik.setFieldValue('date', date)
   }
-console.log(`formik`, formik)
+
   return (
     <ResultsWrapper>
       <p className="resultsTitle">Результати</p>
