@@ -35,12 +35,9 @@ const LoginForm = () => {
 	const notification = useSelector(notifSelectors.getNotifState)
 	const serverError = useSelector(errorSelector.getError)
 
-	const onHandleSubmit = values => {
-		dispatch(authOperations.loginOperation(values));
-	};
-	useEffect(() => {
-		notification && (document.querySelector('.formBtn').disabled = false);		
-	}, [notification])
+	const onHandleSubmit = async values => {
+		await dispatch(authOperations.loginOperation(values));
+	};	
 
 	return (
 		<LoginFormWrapper>
@@ -52,8 +49,8 @@ const LoginForm = () => {
 				initialValues={{ email: '', password: '' }}
 				validationSchema={validateSchema}
 				isInitialValid={false}
-				onSubmit={values => {
-					onHandleSubmit(values);
+				onSubmit={async values => {
+					await onHandleSubmit(values);
 				}}>
 				{({ values, isValid, isSubmitting }) => (
 					<Form>

@@ -49,8 +49,8 @@ const RegistrationForm = () => {
 	const notification = useSelector(notifSelectors.getNotifState)
 	const serverError = useSelector(errorSelector.getError)
 
-	const onHandleSubmit = values => {
-		dispatch(
+	const onHandleSubmit = async values => {
+		await dispatch(
 			authOperations.registerOperation({
 				name: values.name,
 				email: values.email,
@@ -58,10 +58,6 @@ const RegistrationForm = () => {
 			})
 		);
 	};
-	useEffect(() => {
-		notification && (document.querySelector('.formBtn').disabled = false);		
-	}, [notification])
-
 	return (
 		<RegistrationWrapper>
 			<section className='google'>
@@ -77,8 +73,8 @@ const RegistrationForm = () => {
 				}}
 				validationSchema={validateSchema}
 				isInitialValid={false}
-				onSubmit={values => {
-					onHandleSubmit(values);
+				onSubmit={async values => {
+					await onHandleSubmit(values);
 				}}>
 				{({ values, isValid, isSubmitting, handleChange, handleBlur }) => (
 					<Form>
