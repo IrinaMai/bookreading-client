@@ -11,6 +11,10 @@ const userReducer = createReducer(initialState, {
     id: payload.id,
     books: payload.books,
   }),
+  [authActions.toggleUserTraining]: (state, _) => ({
+    ...state,
+    activeTraining: !state.activeTraining,
+  }),
   [authActions.logOutSuccess]: () => initialState,
 });
 const tokenReducer = createReducer(null, {

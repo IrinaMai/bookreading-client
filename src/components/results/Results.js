@@ -76,7 +76,7 @@ const Results = () => {
         dispatch(modalActions.toggleModal())
       }
 
-      if (!statistic.length && values.pages < averagePages) {
+      if (!statistic?.length && values.pages < averagePages) {
         dispatch(modalActions.setModalContent('wellDone'))
         dispatch(modalActions.toggleModal())
       }

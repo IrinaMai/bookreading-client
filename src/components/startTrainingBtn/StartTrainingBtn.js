@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import authActions from '../../redux/actions/authActions'
 import { addTrainingOperation } from '../../redux/operations/trainingOperations'
 import {
   getBooksList,
@@ -17,6 +18,7 @@ const StartTrainingBtn = () => {
 
   const handleClick = () => {
     dispatch(addTrainingOperation( startDate, finishDate, booksIdArr ))
+    dispatch(authActions.toggleUserTraining())
   }
 
   return (
