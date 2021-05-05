@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from '../actions/authActions';
+import notifActions from '../actions/notifActions';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -21,6 +22,10 @@ const registerOperation = data => async dispatch => {
     dispatch(authActions.registerSuccess(response.data));
     dispatch(loginOperation(loginValues));
   } catch (error) {
+    dispatch(notifActions.showNotification());
+    setTimeout(() => {
+      dispatch(notifActions.hideNotification());
+    }, 2000);
     dispatch(authActions.registerError(error.response.data.message));
   }
 };
@@ -33,6 +38,10 @@ const loginOperation = data => async dispatch => {
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
+    dispatch(notifActions.showNotification());
+    setTimeout(() => {
+      dispatch(notifActions.hideNotification());
+    }, 2000);
     dispatch(authActions.loginError(error.response.data.message));
   }
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
@@ -9,6 +9,10 @@ import * as yup from 'yup';
 import authOperations from '../../redux/operations/authOperations';
 import RegistrationWrapper from './RegistrationFormStyled';
 import { Link } from 'react-router-dom';
+import Notification from '../notification/Notification';
+import { useSelector } from 'react-redux';
+import notifSelectors from '../../redux/selectors/notifSelectors';
+import errorSelector from '../../redux/selectors/errorSelector';
 
 const RegistrationForm = () => {
 	const [visiblePassword, setVisiblePassword] = useState(false);
@@ -28,7 +32,7 @@ const RegistrationForm = () => {
 			.string()
 			.required("Обов'язково")
 			.matches(
-				'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$',
+				'^(?=.*[0-9])(?=.*[!@#$%^&*"№;:?])[а-яА-ЯёЁa-zA-Z0-9!@#$%^&*"№;:?]{8,16}$',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 		confirmPassword: yup.string().when('password', {
@@ -42,6 +46,9 @@ const RegistrationForm = () => {
 
 	const dispatch = useDispatch();
 
+	const notification = useSelector(notifSelectors.getNotifState)
+	const serverError = useSelector(errorSelector.getError)
+
 	const onHandleSubmit = values => {
 		dispatch(
 			authOperations.registerOperation({
@@ -51,6 +58,9 @@ const RegistrationForm = () => {
 			})
 		);
 	};
+	useEffect(() => {
+		notification && (document.querySelector('.formBtn').disabled = false);		
+	}, [notification])
 
 	return (
 		<RegistrationWrapper>
@@ -73,6 +83,7 @@ const RegistrationForm = () => {
 				{({ values, isValid, isSubmitting, handleChange, handleBlur }) => (
 					<Form>
 						<section className='form'>
+						{notification && <Notification error={serverError}/>}
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Ім'я <span className='text'>*</span>
