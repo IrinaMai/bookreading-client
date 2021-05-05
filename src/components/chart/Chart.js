@@ -1,10 +1,11 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label } from 'recharts';
 import { useWindowWidth } from '@react-hook/window-size';
-import { DateTime } from 'luxon'
+import { DateTime, Interval } from 'luxon'
 import { useSelector } from 'react-redux';
 import { getActiveTraining } from '../../redux/selectors/trainingSelectors';
 import ChartStyled from './ChartStyled';
+import getAveragePages from '../../utils/getAveragePages';
 
 
 
@@ -13,14 +14,27 @@ const Chart = () => {
   const onlyWidth = useWindowWidth();
   const start = DateTime.fromISO(training.startDate);
   const finish = DateTime.fromISO(training.finishDate);
-  const duration = finish.diff(start, 'days').toObject()?.days + 1;
-  const average = Math.ceil(training.pagesTotal/duration) || 0;
-  const sortedProgress = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts)
-  const data = sortedProgress?.map((el, idx) => {
+  // const duration = finish.diff(start, 'days').toObject()?.days + 1;
+  const average = getAveragePages(training.startDate, training.finishDate, training.pagesTotal) || 0;
+  const interval = Interval.fromDateTimes(start, finish);  
+  function* days(interval) {
+    if (!start) return;
+    let cursor = interval.start?.startOf("day");
+    while (cursor <= interval.end) {
+      yield cursor;
+      cursor = cursor.plus({ days: 1 });
+    }
+  }
+  const progress = Array.from(days(interval)).map(day => day.toISODate()).map(day => {
+    const dayFromProgress = training?.progress?.find(progressDay => progressDay.date === day )
+    return dayFromProgress ? dayFromProgress : {date: day, pages: 0} 
+  });  
+  // const sortedProgress = training?.progress?.slice().sort((a, b) => DateTime.fromISO(a.date).ts - DateTime.fromISO(b.date).ts)
+  const data = progress.map((el, idx) => {
     return {
     date: el.date,
     pagesTotal: Math.min(((idx + 1) * average), training.pagesTotal),
-    pagesRead: sortedProgress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pages : 0), 0),
+    pagesRead: progress.reduce((acc, value, index) => acc + (index < idx + 1 ? value.pages : 0), 0),
     }
   })  
   
