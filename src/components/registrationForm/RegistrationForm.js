@@ -36,7 +36,7 @@ const RegistrationForm = () => {
 			then: yup
 				.string()
 				.required("Обов'язково")
-				.oneOf([yup.ref('password')], 'Both password need to be the same'),
+				.oneOf([yup.ref('password')], 'Обидва паролі повинні бути однаковими'),
 		}),
 	});
 
