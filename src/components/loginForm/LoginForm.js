@@ -45,7 +45,7 @@ const LoginForm = () => {
 				onSubmit={values => {
 					onHandleSubmit(values);
 				}}>
-				{({ values, isValid, dirty, isSubmitting, handleSubmit }) => (
+				{({ values, isValid, isSubmitting }) => (
 					<Form>
 						<section className='form'>
 							<label className='formLabel'>
@@ -89,9 +89,8 @@ const LoginForm = () => {
 						</section>
 
 						<button
-							onClick={handleSubmit}
 							className='formBtn'
-							disabled={!(isValid && dirty) && isSubmitting}
+							disabled={!isValid || isSubmitting}
 							type='submit'>
 							<span className='formBtnText'>Увійти</span>
 						</button>

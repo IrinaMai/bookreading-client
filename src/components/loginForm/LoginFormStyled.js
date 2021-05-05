@@ -111,12 +111,20 @@ const LoginFormWrapper = styled.section`
 			padding: 11px 131px 11px 132px;
 		}
 
-		&:hover,
-		&:focus {
+		&:focus:not([disabled]),
+		&:hover:not([disabled]) {
 			cursor: pointer;
 			outline: none;
-			background-color: var(--secondary-background);
+
 			color: var(--accent-color);
+			border-color: #d15807;
+			background: #d15807;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+		}
+
+		&:disabled {
+			border: none;
+			background-color: #ff6b08a8;
 		}
 	}
 
