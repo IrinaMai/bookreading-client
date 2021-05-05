@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
 
@@ -7,6 +7,10 @@ import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
 import LoginFormWrapper from './LoginFormStyled';
+import Notification from '../notification/Notification';
+import { useSelector } from 'react-redux';
+import notifSelectors from '../../redux/selectors/notifSelectors';
+import errorSelector from '../../redux/selectors/errorSelector';
 
 const LoginForm = () => {
 	const [visiblePassword, setVisiblePassword] = useState(false);
@@ -21,16 +25,19 @@ const LoginForm = () => {
 			.string()
 			.required("Обов'язково")
 			.matches(
-				'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$',
+				'^(?=.*[0-9])(?=.*[!@#$%^&*"№;:?])[а-яА-ЯёЁa-zA-Z0-9!@#$%^&*"№;:?]{8,16}$',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 	});
 
 	const dispatch = useDispatch();
 
-	const onHandleSubmit = values => {
-		dispatch(authOperations.loginOperation(values));
-	};
+	const notification = useSelector(notifSelectors.getNotifState)
+	const serverError = useSelector(errorSelector.getError)
+
+	const onHandleSubmit = async values => {
+		await dispatch(authOperations.loginOperation(values));
+	};	
 
 	return (
 		<LoginFormWrapper>
@@ -42,12 +49,13 @@ const LoginForm = () => {
 				initialValues={{ email: '', password: '' }}
 				validationSchema={validateSchema}
 				isInitialValid={false}
-				onSubmit={values => {
-					onHandleSubmit(values);
+				onSubmit={async values => {
+					await onHandleSubmit(values);
 				}}>
 				{({ values, isValid, isSubmitting }) => (
 					<Form>
 						<section className='form'>
+						<Notification notification={notification} error={serverError}/>
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Електронна адреса <span className='text'>*</span>
