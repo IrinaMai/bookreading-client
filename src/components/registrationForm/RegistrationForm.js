@@ -35,6 +35,7 @@ const RegistrationForm = () => {
 			is: val => (val && val.length > 0 ? true : false),
 			then: yup
 				.string()
+				.required("Обов'язково")
 				.oneOf([yup.ref('password')], 'Both password need to be the same'),
 		}),
 	});
