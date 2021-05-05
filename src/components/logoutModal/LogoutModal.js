@@ -12,6 +12,7 @@ const LogoutModal = () => {
     dispatch(authOperations.logOutOperation())    
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
+    document.body.style.overflow = 'visible'
   }
   const logOutCancel = () => {
     dispatch(modalActions.clearModalContent())
