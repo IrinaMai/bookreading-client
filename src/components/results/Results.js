@@ -24,9 +24,31 @@ const Results = () => {
   const training = useSelector(getActiveTraining)
   const statistic = useSelector(getStatistics)
 
+  const pagesRegExp = /^-?[1-9]\d*(\.\d+)?$/
+
   const validationSchema = yup.object({
     date: yup.string().required('Виберіть дату'),
-    pages: yup.number().required(`Обов'язкове поле`)
+    pages: yup
+      .string()
+      .matches(pagesRegExp, 'Число повинно бути більше 0')
+      .required(`Обов'язкове поле`)
+      .when('date', (date, schema) => {
+        return schema.test({
+          test: pages => {
+            const pagesPerDay = statistic?.find(
+              day => day.date === convertDate(date)
+            )?.pages
+            if (pages < 0 && Math.abs(pages) <= pagesPerDay) {
+              return true
+            } else if (pages > 0) {
+              return true
+            } else {
+              return false
+            }
+          },
+          message:'Число некоректне',
+        })
+      }),
   })
 
   const formik = useFormik({
@@ -39,13 +61,13 @@ const Results = () => {
       const date = convertDate(values.date)
 
       const pagesPerDay =
-      statistic?.find(day => day.date === date)?.pages + values.pages
+        statistic?.find(day => day.date === date)?.pages + values.pages
 
       const averagePages = getAveragePages(
         startDate,
         finishDate,
         training.pagesTotal
-        )
+      )
 
       dispatch(addResultsOperation(date, values.pages))
 
@@ -100,7 +122,7 @@ const Results = () => {
               id="date"
             />
             {formik.touched.date && formik.errors.date ? (
-              <span className="error ">{formik.errors.date}</span>
+              <span className="error">{formik.errors.date}</span>
             ) : null}
           </div>
           <div className="inputGroup">
@@ -117,11 +139,11 @@ const Results = () => {
               value={formik.values.pages}
             />
             {formik.touched.pages && formik.errors.pages ? (
-              <span className="error ">{formik.errors.pages}</span>
+              <span className="error pagesError">{formik.errors.pages}</span>
             ) : null}
           </div>
         </div>
-        <button type="submit" className="formButton">
+        <button type="submit" className="formButton" disabled={!formik.isValid}>
           Додати результат
         </button>
       </form>
