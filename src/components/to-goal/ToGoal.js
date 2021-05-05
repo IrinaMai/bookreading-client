@@ -14,7 +14,10 @@ const Goal = () => {
   const startActive = DateTime.fromISO(
     useSelector(state => state.training.active.startDate)
   )
-  const daysDiffActive = endActive.diff(startActive, 'days').toObject()
+  const daysDiffActive = endActive
+    .diff(startActive, 'days')
+    .plus({ days: -1 })
+    .toObject()
   const endBefore = DateTime.fromISO(
     useSelector(state => state.training.beforeStart.finishDate)
   )
@@ -29,9 +32,10 @@ const Goal = () => {
   const booksReading = activeBooks.filter(({ status }) => status === 'Reading')
   const books = activeTrainingID ? booksReading.length : booksBeforeStart.length
   const daysLeft = activeTrainingID ? daysDiffActive.days : daysDiffBefore.days
+  const defaultDays = '0'
 
   return (
-    <ToGoalStyled training={activeTrainingID} >
+    <ToGoalStyled training={activeTrainingID}>
       <h2 className={activeTrainingID ? 'bookTitleMore' : 'bookTitle'}>
         Моя мета прочитати
       </h2>
@@ -46,7 +50,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {activeTrainingID ? activeBooks.length : booksBeforeStart.length}
+            {books ? books : defaultDays}
           </p>
         </div>
 
@@ -54,7 +58,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {daysLeft ? daysLeft : "0"}
+            {daysLeft ? daysLeft : '0'}
           </p>
         </div>
 
