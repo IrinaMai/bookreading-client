@@ -7,7 +7,7 @@ list-style-type: none;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  background-color: var(--secondary-background);
+  background-color: ${(props) => props.theme.MAIN_BACKGROUND};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 }
 

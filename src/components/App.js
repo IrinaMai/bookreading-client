@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import { switchTheme } from '../redux/actions/themeActions'
+import { lightTheme, darkTheme } from '../utils/theme'
+import { createGlobalStyle } from 'styled-components'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
@@ -13,6 +17,7 @@ function App() {
   const googleToken = {
     token: query.get('token'),
   }
+  const theme = useSelector(state => state.theme.theme)
   // const user = {
   //   email: 'darthvader@deathstar.com',
   //   password: 'PaDmE#123456',
@@ -32,11 +37,24 @@ function App() {
     googleToken?.token && dispatch(authOperations.loginOperation(googleToken))
   }, [googleToken])
 
+  const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
+    color: ${(props) => props.theme.MAIN_TEXT}
+    font-family: "Montserrat", sans-serif;
+  }`
+
   return (
-    <>
-      <Header />
-      <Main />
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+        <Header />
+        <Main />
+        {theme.mode === 'light' ? (
+          <button onClick={() => dispatch(switchTheme(darkTheme))}>Change to Dark Theme</button>
+        ) : (
+          <button onClick={() => dispatch(switchTheme(lightTheme))}>Change to Light theme</button>
+        )}
+    </ThemeProvider>
   )
 }
 
