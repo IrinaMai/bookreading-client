@@ -16,6 +16,8 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const toggleUserTraining = createAction('auth/toggleUserTraining');
+
 const authActions = {
   registerRequest,
   registerSuccess,
@@ -29,6 +31,7 @@ const authActions = {
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+  toggleUserTraining,
 };
 
 export default authActions;

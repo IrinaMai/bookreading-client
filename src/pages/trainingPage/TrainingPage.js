@@ -19,12 +19,13 @@ import {
 } from '../../redux/selectors/trainingSelectors'
 import authSelectors from '../../redux/selectors/authSelectors'
 import { getTrainingOperation } from '../../redux/operations/trainingOperations'
-import TimerContainer from '../../components/timer/TimerContainer'
-import Modal from '../../components/modal/Modal'
-import WellDone from '../../components/wellDone/WellDone'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import modalActions from '../../redux/actions/modalActions'
 import trainingActions from '../../redux/actions/trainingActions'
+import authActions from '../../redux/actions/authActions'
+import TimerContainer from '../../components/timer/TimerContainer'
+import Modal from '../../components/modal/Modal'
+import WellDone from '../../components/wellDone/WellDone'
 import FinishModal from '../../components/finishModal/FinishModal'
 
 const TrainingPage = () => {
@@ -49,6 +50,7 @@ const TrainingPage = () => {
   ) {
     dispatch(trainingActions.removeActiveTraining())
     dispatch(trainingActions.removeStartData())
+    dispatch(authActions.toggleUserTraining())
     dispatch(modalActions.setModalContent('endOfTraining'))
     dispatch(modalActions.toggleModal())
   }
