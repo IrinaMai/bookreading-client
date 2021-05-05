@@ -58,7 +58,7 @@ const LoginForm = () => {
 				{({ values, isValid, isSubmitting }) => (
 					<Form>
 						<section className='form'>
-						{notification && <Notification error={serverError}/>}
+						<Notification notification={notification} error={serverError}/>
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Електронна адреса <span className='text'>*</span>

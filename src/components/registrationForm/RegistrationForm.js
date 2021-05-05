@@ -83,7 +83,7 @@ const RegistrationForm = () => {
 				{({ values, isValid, isSubmitting, handleChange, handleBlur }) => (
 					<Form>
 						<section className='form'>
-						{notification && <Notification error={serverError}/>}
+						<Notification notification={notification} error={serverError}/>
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Ім'я <span className='text'>*</span>
