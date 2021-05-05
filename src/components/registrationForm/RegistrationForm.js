@@ -69,15 +69,7 @@ const RegistrationForm = () => {
 				onSubmit={values => {
 					onHandleSubmit(values);
 				}}>
-				{({
-					values,
-					isValid,
-					dirty,
-					isSubmitting,
-					handleChange,
-					handleBlur,
-					handleSubmit,
-				}) => (
+				{({ values, isValid, isSubmitting, handleChange, handleBlur }) => (
 					<Form>
 						<section className='form'>
 							<label className='formLabel'>
@@ -171,9 +163,8 @@ const RegistrationForm = () => {
 						</section>
 
 						<button
-							onClick={handleSubmit}
 							className='formBtn'
-							disabled={!(isValid && dirty) && isSubmitting}
+							disabled={!isValid || isSubmitting}
 							type='submit'>
 							<span className='formBtnText'>Зареєструватися</span>
 						</button>
