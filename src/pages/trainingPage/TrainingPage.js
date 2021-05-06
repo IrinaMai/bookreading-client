@@ -42,18 +42,21 @@ const TrainingPage = () => {
     userActiveTraining && dispatch(getTrainingOperation())
     // eslint-disable-next-line
   }, [])
-
-  if (
-    activeTraining.pagesRead >= activeTraining.pagesTotal &&
-    activeTraining.pagesRead &&
-    activeTraining.pagesTotal
-  ) {
-    dispatch(trainingActions.removeActiveTraining())
-    dispatch(trainingActions.removeStartData())
-    dispatch(authActions.toggleUserTraining())
-    dispatch(modalActions.setModalContent('endOfTraining'))
-    dispatch(modalActions.toggleModal())
-  }
+  
+  useEffect(() => {
+    if (
+      activeTraining.pagesRead >= activeTraining.pagesTotal &&
+      activeTraining.pagesRead &&
+      activeTraining.pagesTotal
+    ) {
+      dispatch(trainingActions.removeActiveTraining())
+      dispatch(trainingActions.removeStartData())
+      dispatch(authActions.toggleUserTraining())
+      dispatch(modalActions.setModalContent('endOfTraining'))
+      dispatch(modalActions.toggleModal())
+    }
+    // eslint-disable-next-line
+  }, [activeTraining])
 
   return (
     <div className="container">
@@ -136,7 +139,7 @@ const TrainingPage = () => {
       )}
       {showModal === 'endOfTraining' && (
         <Modal>
-          <FinishModal/>
+          <FinishModal />
         </Modal>
       )}
     </div>

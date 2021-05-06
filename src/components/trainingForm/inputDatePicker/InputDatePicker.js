@@ -4,14 +4,15 @@ import 'react-datepicker/dist/react-datepicker.css'
 import CalendarIcon from '../../icons/CalendarIcon'
 import InputDateContainer from './InputDatePickerStyled'
 
-const InputDatePicker = ({ pickedDate, placeholderText, onChange }) => {
+const InputDatePicker = ({ name, pickedDate, placeholderText, onChange, onBlur }) => {
   return (
     <InputDateContainer>
       <DatePicker
         selected={pickedDate === '' ? null : pickedDate}
         onChange={date => onChange(date)}
+        onBlur={onBlur}
         dateFormat="d.MM.yyyy"
-        name="data"
+        name={name}
         placeholderText={placeholderText}
         className="formInputDate"
         minDate={new Date()}

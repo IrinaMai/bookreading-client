@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useWindowWidth } from '@react-hook/window-size'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
@@ -20,6 +21,8 @@ const TrainingForm = () => {
   const finishDate = useSelector(getFinishDate)
   const dispatch = useDispatch()
   const history = useHistory()
+  const onlyWidth = useWindowWidth()
+  const selectRef = useRef()
 
   useEffect(() => {
     formik.setFieldValue('startDate', startDate)
@@ -51,9 +54,15 @@ const TrainingForm = () => {
       book: '',
     },
     validationSchema,
-    onSubmit: values => {
+    onSubmit: () => {
       dispatch(trainingActions.addBook(option))
-      history.push('/training')
+
+      selectRef.current.select.setValue('')
+      formik.resetForm()
+      formik.setFieldValue('startDate', startDate)
+      formik.setFieldValue('finishDate', finishDate)
+
+      onlyWidth < 768 && history.push('/training')
     },
   })
 
@@ -77,19 +86,21 @@ const TrainingForm = () => {
         <p className="formTitle">Моє тренування</p>
         <div className="inputGroup">
           <InputDatePicker
+            name="startDate"
             pickedDate={startDate ? new Date(startDate) : ''}
             onChange={handleStartDate}
-            // value={formik.values.startDate}
             placeholderText="Початок"
+            onBlur={formik.handleBlur}
           />
           {formik.touched.startDate && formik.errors.startDate ? (
             <span className="error start">{formik.errors.startDate}</span>
           ) : null}
           <InputDatePicker
+            name="finishDate"
             pickedDate={finishDate ? new Date(finishDate) : ''}
             onChange={handleFinishtDate}
-            // value={formik.values.finishDate}
             placeholderText="Завершення"
+            onBlur={formik.handleBlur}
           />
           {formik.touched.finishDate && formik.errors.finishDate ? (
             <span className="error finish">{formik.errors.finishDate}</span>
@@ -97,14 +108,20 @@ const TrainingForm = () => {
         </div>
         <div className="selectGroup">
           <BookSelect
+            selectRef={selectRef}
             className="formSelect"
             value={formik.values.book}
             onChange={handleChange}
+            onBlur={formik.handleBlur}
           />
           {formik.touched.book && formik.errors.book ? (
             <span className="error">{formik.errors.book}</span>
           ) : null}
-          <button className="formButton" type="submit">
+          <button
+            className="formButton"
+            type="submit"
+            disabled={!formik.dirty}
+          >
             Додати
           </button>
         </div>
@@ -114,3 +131,4 @@ const TrainingForm = () => {
 }
 
 export default TrainingForm
+
