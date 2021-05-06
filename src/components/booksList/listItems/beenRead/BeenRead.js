@@ -26,7 +26,7 @@ const BeenRead = (
           <span className='item-pages item'>{onlyWidth < 768 && <span className='header-pages header-item'>Стор.: </span>}{pages}</span>
           <span className='item-rating item'>{onlyWidth < 768 && <span className='header-rating header-item'>Рейтинг: </span>}<StarRating/></span>
         </div>
-          <SummaryBtn/>
+        <SummaryBtn id={ _id}/>
       </li>
     </BeenReadStyles>
   )

@@ -5,14 +5,15 @@ import ResumeWrapper from './Resume.styled'
 import StarRating from '../rating/StarRating'
 import { patchBookAtDB } from '../../redux/operations/bookOperation'
 
+
 const initialValue = {
-  id: '608ce4bd4b21e2122c38a46c',
+  id: '',
   review: '',
 }
 
-const Resume = () => {
+const Resume = ({id}) => {
   const [rating, setRating] = useState()
-  const [book, setBook] = useState({ ...initialValue })
+  const [book, setBook] = useState({ ...initialValue, id: id })
   const dispatch = useDispatch()
   const closeModal = () => {
     dispatch(modalActions.offModal())
@@ -22,6 +23,7 @@ const Resume = () => {
    
   const handleClick = e => {
     e.preventDefault()
+    // console.log(book, rating)
     dispatch(patchBookAtDB(book.id, { review: book.review, rating: rating }))
     setRating(0)
     setBook({ ...initialValue })

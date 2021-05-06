@@ -7,6 +7,7 @@ import modalActions from '../../redux/actions/modalActions'
 import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
+import GoonButton from '../../components/goonButton/GoonButon'
 // import WillRead from '../../components/booksList/listItems/willRead/WillRead'
 
 const LibraryPage = () => {
@@ -39,6 +40,8 @@ const LibraryPage = () => {
         </Modal>
       )}
       <BooksList />
+      {bookList.length > 0 && <GoonButton />}
+      
     </div>
   )
 }
