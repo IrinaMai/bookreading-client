@@ -14,10 +14,7 @@ const Goal = () => {
   const startActive = DateTime.fromISO(
     useSelector(state => state.training.active.startDate)
   )
-  const daysDiffActive = endActive
-    .diff(startActive, 'days')
-    .plus({ days: -1 })
-    .toObject()
+  const daysDiffActive = endActive.diff(startActive, 'days').toObject()
   const endBefore = DateTime.fromISO(
     useSelector(state => state.training.beforeStart.finishDate)
   )
