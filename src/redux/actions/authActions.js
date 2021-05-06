@@ -16,6 +16,10 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const refreshRequest = createAction('auth/refreshRequest');
+const refreshSuccess = createAction('auth/refreshSuccess');
+const refreshError = createAction('auth/refreshError');
+
 const toggleUserTraining = createAction('auth/toggleUserTraining');
 
 const authActions = {
@@ -28,6 +32,9 @@ const authActions = {
   logOutRequest,
   logOutSuccess,
   logOutError,
+  refreshRequest,
+  refreshSuccess,
+  refreshError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
