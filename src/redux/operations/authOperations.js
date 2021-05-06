@@ -58,10 +58,34 @@ const logOutOperation = () => async dispatch => {
   }
 };
 
+const refreshOperation = () => async (dispatch, getState) => {
+  const {
+    auth: {
+      refreshToken: persistRefreshToken,      
+    },
+  } = getState();
+  if (!persistRefreshToken) return;
+  token.set(persistRefreshToken);
+  dispatch(authActions.refreshRequest());
+  try {
+    const response = await axios.post(`/auth/refresh`);
+    if (response?.data) {
+      dispatch(authActions.refreshSuccess(response.data));
+      token.set(response.data.newToken);      
+      dispatch(authActions.getCurrentUserSuccess(response.data.user));
+    }
+  } catch (error) {
+    await dispatch(authActions.refreshError(error.message));
+    await dispatch(authActions.logOutSuccess());    
+    // throw new Error(error);
+  }
+};
+
 const authOperations = {
   registerOperation,
   loginOperation,
   logOutOperation,
+  refreshOperation,
 };
 
 export default authOperations;

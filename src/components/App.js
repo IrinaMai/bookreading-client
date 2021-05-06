@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
@@ -26,6 +26,7 @@ function App() {
   //   password: 'PaDmE#123456',
   // }
   const dispatch = useDispatch()
+  const history = useHistory();  
 
   // dispatch(authOperations.registerOperation(user));
   // dispatch(authOperations.loginOperation(user))
@@ -37,6 +38,13 @@ function App() {
   useEffect(() => {
     !modal && (document.body.style.overflow = 'visible')
   }, [modal])
+
+  useEffect(() => {
+    dispatch(authOperations.refreshOperation())
+    // .catch(error => {
+    //   history.push('/login');
+    // });
+  }, []);
 
   return (
     <>

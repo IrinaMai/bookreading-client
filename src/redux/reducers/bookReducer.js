@@ -17,6 +17,7 @@ const bookReducer = createReducer([...initialState], {
   },
   [authActions.loginSuccess]: (_, { payload }) => payload.user.books,
   [authActions.logOutSuccess]: () => initialState,
+  [authActions.refreshSuccess]: (_, { payload }) => payload.user.books,
 
   [trainingActions.addTrainingSuccess]: (state, { payload }) =>
     state.map(book => {
