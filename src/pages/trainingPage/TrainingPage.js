@@ -41,8 +41,8 @@ const TrainingPage = () => {
   useEffect(() => {
     userActiveTraining && dispatch(getTrainingOperation())
     // eslint-disable-next-line
-  }, [])
-  
+  }, [userActiveTraining])
+
   useEffect(() => {
     if (
       activeTraining.pagesRead >= activeTraining.pagesTotal &&

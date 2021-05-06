@@ -15,8 +15,8 @@ import notificationReducer from './notifReducer'
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: [],
-  // whitelist: ['token'],
+  // whitelist: [],
+  whitelist: ['token', 'refreshToken'],
   // whitelist: ['accessToken', 'refreshToken', 'sid'],
 }
 
