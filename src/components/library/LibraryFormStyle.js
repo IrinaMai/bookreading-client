@@ -121,19 +121,20 @@ color: #898F9F;
 
 @media (min-width: 1280px) {
 
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
     align-items: center;
       
     margin-top: 30px;
     margin-bottom: 30px;
-    margin-left: 39px;
-    width: 1150px;
+    width: 1202px;
     
     form {
         display: flex;
-        width: 1100%;
+        width: 100%;
         align-items: flex-end;
+        margin-left: auto;
+        margin-right: auto;
     }
    
 
@@ -159,6 +160,7 @@ color: #898F9F;
         margin-left: 26px;
         margin-top: 0;
         margin-bottom: 1px;
+        margin-right: 85px;
 
     }
 
