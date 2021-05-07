@@ -1,10 +1,10 @@
 import Select from 'react-select'
 import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
-import {getBooksList} from '../../redux/selectors/trainingSelectors'
+import { getBooksList } from '../../redux/selectors/trainingSelectors'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 
-const BookSelect = ({ onChange, value }) => {
+const BookSelect = ({ onChange, value, selectRef, onBlur }) => {
   const books = useSelector(getAllBooks) // all books from store
   const booksList = useSelector(getBooksList)
 
@@ -60,9 +60,11 @@ const BookSelect = ({ onChange, value }) => {
 
   return (
     <Select
+      ref={selectRef}
       value={defaultValue(filteredOptions, value)}
       options={filteredOptions}
       onChange={value => onChange(value)}
+      onBlur={onBlur}
       theme={customTheme}
       placeholder="Обрати книги з бібліотеки"
       autoFocus
@@ -76,7 +78,6 @@ const BookSelect = ({ onChange, value }) => {
       styles={customStyles}
       myFontSize="10px"
       isDisabled={!filteredOptions.length}
-      // isMulti
     />
   )
 }
