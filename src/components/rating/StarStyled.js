@@ -15,6 +15,11 @@ const StarStyled = styled.section`
   input[type='radio'] {
     display: none;
   }
+  ${props =>
+      !props.modal &&
+      `
+   pointer-events: none;
+    `}
 `
 
 export default StarStyled

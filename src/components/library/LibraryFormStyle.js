@@ -80,6 +80,7 @@ color: #898F9F;
         color: #000000;
         background: #F6F7FB;
         border: 1px solid #242A37;
+        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
                 
         &:hover:not([disabled]),

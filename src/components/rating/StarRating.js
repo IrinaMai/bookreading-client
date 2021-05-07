@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import getModalState from '../../redux/selectors/modalSelector'
 import StarIcon from './StarIcon'
 import StarStyled from './StarStyled.js'
 
 const StarRating = ({ rating, setRating }) => {
+  const modal = useSelector(getModalState)
   return (
-    <StarStyled>
+    <StarStyled modal={modal}>
       {[...Array(5)].map((star, i) => {
         const ratingValue = i + 1
         return (

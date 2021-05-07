@@ -129,6 +129,7 @@ const RegistrationWrapper = styled.section`
 		display: block;
 		margin-top: 30px;
 		margin-bottom: 15px;
+		transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 		@media screen and (min-width: 768px) and (max-width: 768px) {
 			height: 42px;

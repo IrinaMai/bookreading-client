@@ -49,7 +49,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {activeTrainingID ? booksBeforeStart.length : booksCount}
+            {activeTrainingID ? activeBooks.length : booksCount}
           </p>
         </div>
 

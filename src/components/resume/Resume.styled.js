@@ -30,6 +30,7 @@ const ResumeWrapper = styled.div`
     font-size: 14px;
     line-height: 2.71;
     cursor: text;
+    outline: none;
   }
   .buttonWrapper {
     display: flex;

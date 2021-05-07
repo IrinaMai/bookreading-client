@@ -14,7 +14,7 @@ const initialValue = {
 }
 
 const Resume = ({bookId}) => {
-  const [rating, setRating] = useState()
+  const [rating, setRating] = useState('')
   const [book, setBook] = useState({ ...initialValue, id: bookId})
   const dispatch = useDispatch()
   const bookList = useSelector(getAllBooks)
@@ -57,7 +57,7 @@ const Resume = ({bookId}) => {
           className="resumeTextArea"
           placeholder="..."
           name="review"
-          value={book.review}
+          value={book.review || ''}
           onChange={reviewChng}
         ></textarea>
         <div className="buttonWrapper">
