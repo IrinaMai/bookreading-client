@@ -86,7 +86,7 @@ const LibraryForm = () => {
 
             {/* <LibraryButton disabled = {!isValid}/>  */}
 
-            <button type="submit" className="bookButton">
+            <button type="submit" disabled={!isValid} className="bookButton">
               Додати
             </button>
           </Form>

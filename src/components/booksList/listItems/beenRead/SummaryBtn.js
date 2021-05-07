@@ -1,30 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Modal from '../../../modal/Modal'
-import Resume from '../../../resume/Resume'
 import modalActions from '../../../../redux/actions/modalActions'
 import { getModalContent } from '../../../../redux/selectors/modalSelector'
 
-import BeenReadStyles from './BeenReadStyles'
 
-const SummaryBtn = () => {
+
+const SummaryBtn = ({ id, setBookId }) => {
   const dispatch = useDispatch()
   const showModal = useSelector(getModalContent)
-  const handleClick = () => {
+
+
+  const handleClick = (e) => {
     dispatch(modalActions.setModalContent('resume'))
     dispatch(modalActions.toggleModal())
+    setBookId(e.currentTarget.dataset.id)
   }
   return (
-    <BeenReadStyles>
-      <button type="button" className="summaryBtn" onClick={handleClick}>
+    <>
+      <button type="button" className="summaryBtn" data-id={id} onClick={handleClick}>
         Резюме
       </button>
-      {showModal === 'resume' && (
-        <Modal>
-          <Resume />
-        </Modal>
-      )}
-    </BeenReadStyles>
+    </>
   )
 }
 

@@ -15,8 +15,8 @@ const WillRead = (
   }) => {
   const onlyWidth = useWindowWidth()
   return (
-    <ListItemStyles>
-      <li key={_id} className='list-item'>
+    <ListItemStyles key={_id}>
+      <div  className='list-item'>
         <span className='item-icon'><TrainingIcon className={iconColor}/></span>
         <span className='item-book item'>{title}</span>
         {onlyWidth < 768 && <HeaderTitles />}
@@ -25,7 +25,7 @@ const WillRead = (
           <span className='item-year item'>{year}</span>
           <span className='item-pages item'>{pages}</span>
         </div>
-      </li>
+      </div>
     </ListItemStyles>
   )
 }
