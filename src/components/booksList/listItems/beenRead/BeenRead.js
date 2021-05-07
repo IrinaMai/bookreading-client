@@ -13,11 +13,12 @@ const BeenRead = (
   author,
   year,
   pages,
+  setBookId
   }) => {
   const onlyWidth = useWindowWidth()
   return (
-    <BeenReadStyles>
-      <li key={_id} className='list-item'>
+    <BeenReadStyles key={_id}>
+      <div  className='list-item'>
         <span className='item-icon'><TrainingIcon className={iconColor}/></span>
         <span className='item-book item'>{title}</span>
         <div className='description-container'>
@@ -26,8 +27,8 @@ const BeenRead = (
           <span className='item-pages item'>{onlyWidth < 768 && <span className='header-pages header-item'>Стор.: </span>}{pages}</span>
           <span className='item-rating item'>{onlyWidth < 768 && <span className='header-rating header-item'>Рейтинг: </span>}<StarRating/></span>
         </div>
-        <SummaryBtn id={ _id}/>
-      </li>
+        <SummaryBtn id={_id} setBookId={setBookId }/>
+      </div>
     </BeenReadStyles>
   )
 }

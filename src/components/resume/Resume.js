@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import modalActions from '../../redux/actions/modalActions'
 import ResumeWrapper from './Resume.styled'
 import StarRating from '../rating/StarRating'
 import { patchBookAtDB } from '../../redux/operations/bookOperation'
+import { getAllBooks } from '../../redux/selectors/bookSelectors'
+import userEvent from '@testing-library/user-event'
 
 
 const initialValue = {
@@ -11,19 +13,31 @@ const initialValue = {
   review: '',
 }
 
-const Resume = ({id}) => {
+const Resume = ({bookId}) => {
   const [rating, setRating] = useState()
-  const [book, setBook] = useState({ ...initialValue, id: id })
+  const [book, setBook] = useState({ ...initialValue, id: bookId})
   const dispatch = useDispatch()
+  const bookList = useSelector(getAllBooks)
+
+
+  useEffect(() => {
+    if (bookId) {
+      const currentBook = bookList.find(item => item._id === bookId)
+      setBook({ ...book, review: currentBook.review })
+      setRating(currentBook.rating)
+    }
+
+  }, [])
+  
   const closeModal = () => {
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
-   
+
+  
   const handleClick = e => {
     e.preventDefault()
-    // console.log(book, rating)
     dispatch(patchBookAtDB(book.id, { review: book.review, rating: rating }))
     setRating(0)
     setBook({ ...initialValue })

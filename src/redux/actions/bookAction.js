@@ -8,7 +8,6 @@ const patchBookRequest = createAction('@book/patchBookRequest')
 const patchBookSuccess = createAction('@book/patchBookSuccess')
 const patchBookError = createAction('@book/patchBookError')
 
-const getCurrentBook = createAction('@book/getCurrentBook')
 
 export {
   postBookRequest,
@@ -17,5 +16,4 @@ export {
   patchBookRequest,
   patchBookSuccess,
   patchBookError,
-  getCurrentBook
 }

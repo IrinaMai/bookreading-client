@@ -64,7 +64,10 @@ color: #898F9F;
 
     
     .bookButton {
- 
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 2.714;
+        
         display: block;
         width: 171px;
         height: 42px;
@@ -72,16 +75,26 @@ color: #898F9F;
         margin-left: auto;
         margin-right: auto;
         outline: none;
+        cursor: pointer;
         
         color: #000000;
         background: #F6F7FB;
         border: 1px solid #242A37;
-        background-color: ${props => (props.disabled ? 'read' : 'blue')}
-         
-        &:hover,
-        &:focus {
+
+                
+        &:hover:not([disabled]),
+        &:focus:not([disabled]) {
             outline: none;
-            border: 1px solid #F25137;
+            border: 1px solid #6d7a8d;
+            background-color: #6d7a8d;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+            color: #fff;
+
+
+        }
+        &:disabled {
+            color: #6d7a8d;
+            border: 1px solid #6d7a8d;
         }
     
     }

@@ -48,7 +48,6 @@ const LoginForm = () => {
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validationSchema={validateSchema}
-				isInitialValid={false}
 				onSubmit={async values => {
 					await onHandleSubmit(values);
 				}}>
