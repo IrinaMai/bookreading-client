@@ -11,12 +11,13 @@ import trainingReducer from './trainingReducer'
 import modalReducer from './modalReducer'
 import modalContentReducer from './modalContentReducer'
 import themeReducer from './themeReducer'
+import notificationReducer from './notifReducer'
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: [],
-  // whitelist: ['token'],
+  // whitelist: [],
+  whitelist: ['token', 'refreshToken'],
   // whitelist: ['accessToken', 'refreshToken', 'sid'],
 }
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   modal: modalReducer,
   modalContent: modalContentReducer,
-  theme: themeReducer
+  theme: themeReducer,
+  notification: notificationReducer
 })
 export default rootReducer

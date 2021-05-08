@@ -78,8 +78,9 @@ const FormContainer = styled.div`
     }
   }
 
-// select styles
-  .css-2b097c-container, .css-14jk2my-container{
+  // select styles
+  .css-2b097c-container,
+  .css-14jk2my-container {
     @media (min-width: 768px) {
       width: 482px;
       height: 42px;
@@ -91,7 +92,6 @@ const FormContainer = styled.div`
       width: 670px;
     }
   }
-
 
   .formButton {
     min-width: 171px;
@@ -113,13 +113,17 @@ const FormContainer = styled.div`
       margin-top: 20px;
     }
 
-    &:hover,
-    &:focus {
+    &:hover:not([disabled]),
+    &:focus:not([disabled]) {
       background: #6d7a8d;
       outline: none;
       color: var(--secondary-background);
       border: 1px solid #6d7a8d;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &:disabled {
+      border-color: #a6abb9;
     }
   }
 

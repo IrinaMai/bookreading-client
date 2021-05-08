@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { switchTheme } from '../redux/actions/themeActions'
 import { lightTheme, darkTheme } from '../utils/theme'
 import { createGlobalStyle } from 'styled-components'
+import { useHistory, useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
+import getModalState from '../redux/selectors/modalSelector'
 
 function App() {
   function useQuery() {
@@ -18,6 +19,7 @@ function App() {
     token: query.get('token'),
   }
   const theme = useSelector(state => state.theme.theme)
+  const modal = useSelector(getModalState)
   // const user = {
   //   email: 'darthvader@deathstar.com',
   //   password: 'PaDmE#123456',
@@ -28,6 +30,7 @@ function App() {
   //   password: 'PaDmE#123456',
   // }
   const dispatch = useDispatch()
+  const history = useHistory();  
 
   // dispatch(authOperations.registerOperation(user));
   // dispatch(authOperations.loginOperation(user))
@@ -36,6 +39,16 @@ function App() {
   useEffect(() => {
     googleToken?.token && dispatch(authOperations.loginOperation(googleToken))
   }, [googleToken])
+  useEffect(() => {
+    !modal && (document.body.style.overflow = 'visible')
+  }, [modal])
+
+  useEffect(() => {
+    dispatch(authOperations.refreshOperation())
+    // .catch(error => {
+    //   history.push('/login');
+    // });
+  }, []);
 
   const GlobalStyle = createGlobalStyle`
   body {

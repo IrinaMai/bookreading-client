@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from '../actions/authActions';
+import notifActions from '../actions/notifActions';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -21,6 +22,10 @@ const registerOperation = data => async dispatch => {
     dispatch(authActions.registerSuccess(response.data));
     dispatch(loginOperation(loginValues));
   } catch (error) {
+    dispatch(notifActions.showNotification());
+    setTimeout(() => {
+      dispatch(notifActions.hideNotification());
+    }, 2000);
     dispatch(authActions.registerError(error.response.data.message));
   }
 };
@@ -33,6 +38,10 @@ const loginOperation = data => async dispatch => {
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
+    dispatch(notifActions.showNotification());
+    setTimeout(() => {
+      dispatch(notifActions.hideNotification());
+    }, 2000);
     dispatch(authActions.loginError(error.response.data.message));
   }
 };
@@ -49,10 +58,34 @@ const logOutOperation = () => async dispatch => {
   }
 };
 
+const refreshOperation = () => async (dispatch, getState) => {
+  const {
+    auth: {
+      refreshToken: persistRefreshToken,      
+    },
+  } = getState();
+  if (!persistRefreshToken) return;
+  token.set(persistRefreshToken);
+  dispatch(authActions.refreshRequest());
+  try {
+    const response = await axios.post(`/auth/refresh`);
+    if (response?.data) {
+      dispatch(authActions.refreshSuccess(response.data));
+      token.set(response.data.newToken);      
+      dispatch(authActions.getCurrentUserSuccess(response.data.user));
+    }
+  } catch (error) {
+    await dispatch(authActions.refreshError(error.message));
+    await dispatch(authActions.logOutSuccess());    
+    // throw new Error(error);
+  }
+};
+
 const authOperations = {
   registerOperation,
   loginOperation,
   logOutOperation,
+  refreshOperation,
 };
 
 export default authOperations;

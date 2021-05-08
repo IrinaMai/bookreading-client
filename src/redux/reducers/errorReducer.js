@@ -8,11 +8,13 @@ const errorReducer = createReducer(null, {
   [authActions.loginError]: (_, { payload }) => payload,
   [authActions.logOutError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
+  [authActions.refreshError]: (_, { payload }) => payload.message,
 
   [authActions.registerRequest]: () => null,
   [authActions.loginRequest]: () => null,
   [authActions.logOutRequest]: () => null,
   [authActions.getCurrentUserRequest]: () => null,
+  [authActions.refreshRequest]: () => null,
 
   [postBookError]: (_, {payload}) => payload,
   [postBookRequest]: () => null,

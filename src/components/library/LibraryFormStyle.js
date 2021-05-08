@@ -64,7 +64,10 @@ color: #898F9F;
 
     
     .bookButton {
- 
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 2.714;
+        
         display: block;
         width: 171px;
         height: 42px;
@@ -72,16 +75,27 @@ color: #898F9F;
         margin-left: auto;
         margin-right: auto;
         outline: none;
+        cursor: pointer;
         
         color: #000000;
         background: #F6F7FB;
         border: 1px solid #242A37;
-        background-color: ${props => (props.disabled ? 'read' : 'blue')}
-         
-        &:hover,
-        &:focus {
+        transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+                
+        &:hover:not([disabled]),
+        &:focus:not([disabled]) {
             outline: none;
-            border: 1px solid #F25137;
+            border: 1px solid #6d7a8d;
+            background-color: #6d7a8d;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+            color: #fff;
+
+
+        }
+        &:disabled {
+            color: #6d7a8d;
+            border: 1px solid #6d7a8d;
         }
     
     }
@@ -121,19 +135,20 @@ color: #898F9F;
 
 @media (min-width: 1280px) {
 
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
     align-items: center;
       
     margin-top: 30px;
     margin-bottom: 30px;
-    margin-left: 39px;
-    width: 1150px;
+    width: 1202px;
     
     form {
         display: flex;
-        width: 1100%;
+        width: 100%;
         align-items: flex-end;
+        margin-left: auto;
+        margin-right: auto;
     }
    
 
@@ -159,6 +174,7 @@ color: #898F9F;
         margin-left: 26px;
         margin-top: 0;
         margin-bottom: 1px;
+        margin-right: 85px;
 
     }
 

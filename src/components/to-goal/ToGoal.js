@@ -27,11 +27,14 @@ const Goal = () => {
   const activeTrainingID = useSelector(getActiveTrainingID)
   const activeBooks = useSelector(getActiveBooks)
   const booksReading = activeBooks.filter(({ status }) => status === 'Reading')
-  const books = activeTrainingID ? booksReading.length : booksBeforeStart.length
-  const daysLeft = activeTrainingID ? daysDiffActive.days : daysDiffBefore.days
+  // const books = activeTrainingID ? booksReading.length : booksBeforeStart.length
+  // const daysLeft = activeTrainingID ? daysDiffActive.days : daysDiffBefore.days
+  const defaultDays = '0'
+  const booksCount = booksBeforeStart ? booksBeforeStart.length : defaultDays
+  const daysCount = daysDiffBefore.days ? daysDiffBefore.days : defaultDays
 
   return (
-    <ToGoalStyled training={activeTrainingID} >
+    <ToGoalStyled>
       <h2 className={activeTrainingID ? 'bookTitleMore' : 'bookTitle'}>
         Моя мета прочитати
       </h2>
@@ -46,7 +49,7 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {activeTrainingID ? activeBooks.length : booksBeforeStart.length}
+            {activeTrainingID ? activeBooks.length : booksCount}
           </p>
         </div>
 
@@ -54,13 +57,13 @@ const Goal = () => {
           <p
             className={activeTrainingID ? 'counterNumberMore' : 'counterNumber'}
           >
-            {daysLeft ? daysLeft : "0"}
+            {activeTrainingID ? daysDiffActive.days : daysCount}
           </p>
         </div>
 
         {activeTrainingID ? (
           <div className="booksCounterMore">
-            <p className="counterNumberActive">{books}</p>
+            <p className="counterNumberActive">{booksReading.length}</p>
           </div>
         ) : (
           ''

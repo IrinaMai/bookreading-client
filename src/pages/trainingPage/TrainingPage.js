@@ -19,12 +19,14 @@ import {
 } from '../../redux/selectors/trainingSelectors'
 import authSelectors from '../../redux/selectors/authSelectors'
 import { getTrainingOperation } from '../../redux/operations/trainingOperations'
-import TimerContainer from '../../components/timer/TimerContainer'
-import Modal from '../../components/modal/Modal'
-import WellDone from '../../components/wellDone/WellDone'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import modalActions from '../../redux/actions/modalActions'
 import trainingActions from '../../redux/actions/trainingActions'
+import authActions from '../../redux/actions/authActions'
+import TimerContainer from '../../components/timer/TimerContainer'
+import Modal from '../../components/modal/Modal'
+import WellDone from '../../components/wellDone/WellDone'
+import FinishModal from '../../components/finishModal/FinishModal'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
@@ -39,18 +41,22 @@ const TrainingPage = () => {
   useEffect(() => {
     userActiveTraining && dispatch(getTrainingOperation())
     // eslint-disable-next-line
-  }, [])
+  }, [userActiveTraining])
 
-  if (
-    activeTraining.pagesRead >= activeTraining.pagesTotal &&
-    activeTraining.pagesRead &&
-    activeTraining.pagesTotal
-  ) {
-    dispatch(trainingActions.removeActiveTraining())
-    dispatch(trainingActions.removeStartData())
-    dispatch(modalActions.setModalContent('endOfTraining'))
-    dispatch(modalActions.toggleModal())
-  }
+  useEffect(() => {
+    if (
+      activeTraining.pagesRead >= activeTraining.pagesTotal &&
+      activeTraining.pagesRead &&
+      activeTraining.pagesTotal
+    ) {
+      dispatch(trainingActions.removeActiveTraining())
+      dispatch(trainingActions.removeStartData())
+      dispatch(authActions.toggleUserTraining())
+      dispatch(modalActions.setModalContent('endOfTraining'))
+      dispatch(modalActions.toggleModal())
+    }
+    // eslint-disable-next-line
+  }, [activeTraining])
 
   return (
     <div className="container">
@@ -133,7 +139,7 @@ const TrainingPage = () => {
       )}
       {showModal === 'endOfTraining' && (
         <Modal>
-          <h1>Фініш</h1>
+          <FinishModal />
         </Modal>
       )}
     </div>

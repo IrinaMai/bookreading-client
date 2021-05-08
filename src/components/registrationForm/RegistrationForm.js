@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
@@ -9,6 +9,10 @@ import * as yup from 'yup';
 import authOperations from '../../redux/operations/authOperations';
 import RegistrationWrapper from './RegistrationFormStyled';
 import { Link } from 'react-router-dom';
+import Notification from '../notification/Notification';
+import { useSelector } from 'react-redux';
+import notifSelectors from '../../redux/selectors/notifSelectors';
+import errorSelector from '../../redux/selectors/errorSelector';
 
 const RegistrationForm = () => {
 	const [visiblePassword, setVisiblePassword] = useState(false);
@@ -28,21 +32,25 @@ const RegistrationForm = () => {
 			.string()
 			.required("Обов'язково")
 			.matches(
-				'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$',
+				'^(?=.*[0-9])(?=.*[!@#$%^&*"№;:?])[а-яА-ЯёЁa-zA-Z0-9!@#$%^&*"№;:?]{8,16}$',
 				'Не менше 8 символів, 1 верхній регістр, 1 нижній регістр, 1 число та 1 символ спеціального регістру'
 			),
 		confirmPassword: yup.string().when('password', {
 			is: val => (val && val.length > 0 ? true : false),
 			then: yup
 				.string()
-				.oneOf([yup.ref('password')], 'Both password need to be the same'),
+				.required("Обов'язково")
+				.oneOf([yup.ref('password')], 'Обидва паролі повинні бути однаковими'),
 		}),
 	});
 
 	const dispatch = useDispatch();
 
-	const onHandleSubmit = values => {
-		dispatch(
+	const notification = useSelector(notifSelectors.getNotifState)
+	const serverError = useSelector(errorSelector.getError)
+
+	const onHandleSubmit = async values => {
+		await dispatch(
 			authOperations.registerOperation({
 				name: values.name,
 				email: values.email,
@@ -50,7 +58,6 @@ const RegistrationForm = () => {
 			})
 		);
 	};
-
 	return (
 		<RegistrationWrapper>
 			<section className='google'>
@@ -65,21 +72,13 @@ const RegistrationForm = () => {
 					confirmPassword: '',
 				}}
 				validationSchema={validateSchema}
-				isInitialValid={false}
-				onSubmit={values => {
-					onHandleSubmit(values);
+				onSubmit={async values => {
+					await onHandleSubmit(values);
 				}}>
-				{({
-					values,
-					isValid,
-					dirty,
-					isSubmitting,
-					handleChange,
-					handleBlur,
-					handleSubmit,
-				}) => (
+				{({ values, isValid, isSubmitting, handleChange, handleBlur }) => (
 					<Form>
 						<section className='form'>
+						<Notification notification={notification} error={serverError}/>
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Ім'я <span className='text'>*</span>
@@ -171,9 +170,8 @@ const RegistrationForm = () => {
 						</section>
 
 						<button
-							onClick={handleSubmit}
 							className='formBtn'
-							disabled={!(isValid && dirty) && isSubmitting}
+							disabled={!isValid || isSubmitting}
 							type='submit'>
 							<span className='formBtnText'>Зареєструватися</span>
 						</button>

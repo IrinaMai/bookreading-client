@@ -56,6 +56,8 @@ list-style-type: none;
   background: #6D7A8D;
   padding: 1px 35.7px 1px 35.7px  ;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  outline: none;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .summaryBtn:hover {
@@ -132,6 +134,10 @@ list-style-type: none;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+  }
+
+  .item-rating section {
+    pointer-events: none;
   }
 
   .ratingHidden {

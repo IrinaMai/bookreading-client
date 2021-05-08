@@ -41,7 +41,8 @@ const ModalWindow = styled.div`
       transform: translate(-50%, -50%);
     }
     @media (min-width: 1280px) and (orientation: landscape) {
-      top: 38%;
+      top: 50%;
+      transform: translate(-50%, -50%)
     }
   }
 `

@@ -129,17 +129,26 @@ const RegistrationWrapper = styled.section`
 		display: block;
 		margin-top: 30px;
 		margin-bottom: 15px;
+		transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 		@media screen and (min-width: 768px) and (max-width: 768px) {
 			height: 42px;
 		}
 
-		&:hover,
-		&:focus {
+		&:focus:not([disabled]),
+		&:hover:not([disabled]) {
 			cursor: pointer;
 			outline: none;
-			background-color: var(--secondary-background);
+
 			color: var(--accent-color);
+			border-color: #d15807;
+			background: #d15807;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+		}
+
+		&:disabled {
+			border: none;
+			background-color: #ff6b08a8;
 		}
 	}
 	.formBtnText {

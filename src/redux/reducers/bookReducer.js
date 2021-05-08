@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { postBookSuccess, patchBookSuccess } from '../actions/bookAction'
+import { postBookSuccess, patchBookSuccess, getCurrentBook } from '../actions/bookAction'
 import authActions from '../actions/authActions'
 import trainingActions from '../actions/trainingActions'
 
@@ -17,6 +17,7 @@ const bookReducer = createReducer([...initialState], {
   },
   [authActions.loginSuccess]: (_, { payload }) => payload.user.books,
   [authActions.logOutSuccess]: () => initialState,
+  [authActions.refreshSuccess]: (_, { payload }) => payload.user.books,
 
   [trainingActions.addTrainingSuccess]: (state, { payload }) =>
     state.map(book => {
