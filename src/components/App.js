@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { switchTheme } from '../redux/actions/themeActions'
-import { lightTheme, darkTheme } from '../utils/theme'
 import { createGlobalStyle } from 'styled-components'
 import { useHistory, useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
+import ThemeBtn from './themeBtn/ThemeBtn'
 import getModalState from '../redux/selectors/modalSelector'
 
 function App() {
@@ -51,22 +50,19 @@ function App() {
   }, []);
 
   const GlobalStyle = createGlobalStyle`
+  html {
+    color: ${(props) => props.theme.MAIN_TEXT}
+  }
   body {
     background-color: ${(props) => props.theme.MAIN_BACKGROUND};
-    color: ${(props) => props.theme.MAIN_TEXT}
     font-family: "Montserrat", sans-serif;
   }`
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle/>
-        <Header />
-        <Main />
-        {theme.mode === 'light' ? (
-          <button onClick={() => dispatch(switchTheme(darkTheme))}>Change to Dark Theme</button>
-        ) : (
-          <button onClick={() => dispatch(switchTheme(lightTheme))}>Change to Light theme</button>
-        )}
+      <Header />
+      <Main />
     </ThemeProvider>
   )
 }
