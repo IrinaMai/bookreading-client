@@ -55,7 +55,7 @@ const LibraryPage = () => {
         )}
     
 
-        {onlyWidth < 768  &&  location.pathname === '/library/books' &&(
+        {onlyWidth < 768  &&  location.pathname === '/library/books' && bookList.length >0 &&(
           <>
           <BooksList/>
           <GoonButton />
