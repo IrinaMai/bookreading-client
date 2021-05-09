@@ -13,7 +13,7 @@ const Notification = ({notification = false, error = 'Щось пішло не �
           unmountOnExit>
             <div className="notification">
                 <Exclamation width = {32} height = {32}/><p className="notification-text">{error}</p>
-            </div>          
+            </div>
         </CSSTransition>
         </NotificationStyled>
     )
