@@ -60,7 +60,7 @@ const Wrapper = styled.div`
     background-color: transparent;
     cursor: pointer;
     outline: none;
-
+    
     & > svg {
       fill: var(--light-text);
       transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,7 +77,7 @@ const Wrapper = styled.div`
     font-weight: 500;
     font-size: 12px;
     line-height: 3.17;
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
 
   .listItem > .description:nth-of-type(2) .label {
@@ -128,6 +128,7 @@ const Wrapper = styled.div`
 
   .description {
     text-overflow: ellipsis;
+    color: ${(props) => props.theme.MAIN_TEXT};
     white-space: nowrap;
     overflow: hidden;
     @media (min-width: 768px) {

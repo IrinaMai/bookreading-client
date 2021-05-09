@@ -21,7 +21,7 @@ const StarRating = ({ rating, setRating }) => {
             <StarIcon
               className="star"
               width={17}
-              fill={ratingValue <= rating ? '#FF6B08' : 'white'}
+              fill={ratingValue <= rating ? '#FF6B08' : 'transparent'}
               stroke={rating > 0 ? '#FF6B08' : '#a6abb9'}
             />
           </label>

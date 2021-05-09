@@ -25,6 +25,8 @@ const ResumeWrapper = styled.div`
     width: 100%;
     height: 170px;
     border: 1px solid #a6abb9;
+    color: ${(props) => props.theme.MAIN_TEXT};
+    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
     resize: none;
     padding: 5px 10px;
     font-size: 14px;
@@ -40,8 +42,9 @@ const ResumeWrapper = styled.div`
   .buttonBack {
     min-width: 98px;
     min-height: 40px;
-    border: 1px solid #242a37;
-    background-color: var(--secondary-background);
+    border: 1px solid ${(props) => props.theme.MAIN_TEXT};
+    background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
+    color: ${(props) => props.theme.MAIN_TEXT};
     cursor: pointer;
   }
   .buttonBack:hover,
