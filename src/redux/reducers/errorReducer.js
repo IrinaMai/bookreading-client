@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import authActions from '../actions/authActions';
-import { postBookRequest, postBookError} from "../actions/bookAction";
+import { postBookRequest, postBookError, patchBookRequest, patchBookError} from "../actions/bookAction";
 import trainingActions from '../actions/trainingActions';
 
 const errorReducer = createReducer(null, {
@@ -17,7 +17,9 @@ const errorReducer = createReducer(null, {
   [authActions.refreshRequest]: () => null,
 
   [postBookError]: (_, {payload}) => payload,
+  [patchBookError]: (_, {payload}) => payload,
   [postBookRequest]: () => null,
+  [patchBookRequest]: () => null,
 
   [trainingActions.addTrainingError]: (_, { payload }) => payload,
   [trainingActions.addResultsError]: (_, { payload }) => payload,

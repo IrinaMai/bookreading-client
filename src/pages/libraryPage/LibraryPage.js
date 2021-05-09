@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react'
+import { useWindowWidth } from '@react-hook/window-size'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router'
+import AddButton from '../../components/addButton/AddButton'
+import BackButton from '../../components/backButton/BackButton'
 import LibraryForm from '../../components/library/LibraryForm'
 import BooksList from '../../components/booksList/BooksList'
 import Modal from '../../components/modal/Modal'
@@ -8,12 +12,16 @@ import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 import GoonButton from '../../components/goonButton/GoonButon'
-// import WillRead from '../../components/booksList/listItems/willRead/WillRead'
+import  LibraryWrapper from "./LibraryPageStyled";
+
+
 
 const LibraryPage = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(getModalContent)
   const bookList = useSelector(getAllBooks)
+  const onlyWidth = useWindowWidth()
+  const location = useLocation()
 
   const handleClick = () => {
     dispatch(modalActions.setModalContent('resume'))
@@ -32,8 +40,33 @@ const LibraryPage = () => {
   }, [bookList.length])
 
   return (
-    <div>
-      <LibraryForm />
+    <LibraryWrapper>
+
+        {onlyWidth < 768 && location.pathname === '/library' && (
+          <>
+          <BackButton />
+          <LibraryForm/>
+          </>
+        )}
+        {onlyWidth < 768 && !bookList.length && location.pathname === '/library' && showModal === 'libraryEmpty' &&(
+          <Modal>
+            <LibraryEmpty />
+          </Modal>
+        )}
+    
+
+        {onlyWidth < 768  &&  location.pathname === '/library/books' &&(
+          <>
+          <BooksList/>
+          <GoonButton />
+          <AddButton/>
+          </>
+        )}
+
+
+{onlyWidth >= 768 && location.pathname === '/library' &&
+<>
+<LibraryForm />
       {showModal === 'libraryEmpty' && (
         <Modal>
           <LibraryEmpty />
@@ -41,8 +74,11 @@ const LibraryPage = () => {
       )}
       <BooksList />
       {bookList.length > 0 && <GoonButton />}
-      
-    </div>
+</>
+
+}
+  
+    </LibraryWrapper>
   )
 }
 

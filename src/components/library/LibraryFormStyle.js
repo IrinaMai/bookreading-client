@@ -5,23 +5,6 @@ background-color: #F6F7FB;
 display: block;
 
 
-@media (max-width: 767px) {
-margin-top: 52px;
-margin-bottom: 109px;
-margin-left: auto;
-margin-right: auto;
-max-width: 450px;
-}
-
-@media (max-width: 480px) {
-margin-top: 52px;
-margin-bottom: 109px;
-margin-left: 25px;
-margin-right: 25px;
-max-width: 450px;
-}
-
-
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
@@ -35,12 +18,10 @@ color: #898F9F;
         margin-top: 10px;
         &.bookTitle {
             margin-top: 0;
-        }
-    }
-
+        };
+    };
 
     .bookInput {
-
         font-family: Montserrat;
         font-style: normal;
         font-weight: 500;
@@ -102,7 +83,7 @@ color: #898F9F;
 
     .bookError {
         display: block;
-        /* position: absolute; */
+        position: absolute; 
         color: #F25137;
         font-weight: bold;
         font-size: 8px;
