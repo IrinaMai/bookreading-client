@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import authActions from '../actions/authActions';
-import { postBookRequest, postBookSuccess, postBookError} from "../actions/bookAction";
+import { postBookRequest, postBookSuccess, postBookError,   patchBookRequest,
+  patchBookSuccess,   patchBookError,} from "../actions/bookAction";
 
 const loaderReducer = createReducer(false, {
   [authActions.registerRequest]: () => true,
@@ -13,7 +14,11 @@ const loaderReducer = createReducer(false, {
 
   [postBookRequest]: () => true,
   [postBookSuccess]: () => false,
-  [postBookError] : () => false
+  [postBookError] : () => false,
+
+  [patchBookRequest]: () => true,
+  [patchBookSuccess]: () => false,
+  [patchBookError]: () => false,
 
 });
 

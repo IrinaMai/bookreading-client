@@ -4,7 +4,11 @@ import Wrapper from './LibraryFormStyle.js'
 import { addBookToDb } from '../../redux/operations/bookOperation'
 import BookAddSchema from './yup.js'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
-// import LibraryButton from "./libraryButton"
+import notifSelectors from '../../redux/selectors/notifSelectors';
+import { useSelector } from 'react-redux';
+import Notification from '../notification/Notification';
+import errorSelector from '../../redux/selectors/errorSelector';
+
 
 const initialState = {
   title: '',
@@ -15,6 +19,8 @@ const initialState = {
 
 const LibraryForm = () => {
   const dispatch = useDispatch()
+  const notification = useSelector(notifSelectors.getNotifState)
+  const serverError = useSelector(errorSelector.getError)
 
   return (
     <Wrapper>
@@ -39,7 +45,8 @@ const LibraryForm = () => {
                 placeholder="..."
                 className="bookInput"
               />
-              <ErrorMessage component="div" name="title" className="bookError" />
+              <Notification notification={notification} error={serverError}/>
+              <ErrorMessage component="div" name="title" className="bookError"/>
             </label>
 
             <div className="planshetWrapper">
@@ -84,7 +91,7 @@ const LibraryForm = () => {
               </label>
             </div>
 
-            {/* <LibraryButton disabled = {!isValid}/>  */}
+          
 
             <button type="submit" disabled={!isValid} className="bookButton">
               Додати
