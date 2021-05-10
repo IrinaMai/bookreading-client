@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import themeReducer from '../../redux/reducers/themeReducer'
 
 const FormContainer = styled.div`
   @media (max-width: 767px) {
@@ -19,9 +20,9 @@ const FormContainer = styled.div`
     margin-bottom: 20px;
     padding: 11px 38px;
     height: 60px;
-    background-color: #b1b5c2;
+    background-color: ${(props) => props.theme.TITLE_BACKGROUND};
     text-align: center;
-    color: var(--secondary-background);
+    color: #ffff;
     font-weight: 600;
     font-size: 20px;
     line-height: 1.9;
@@ -78,6 +79,14 @@ const FormContainer = styled.div`
     }
   }
 
+  .css-krgdfr-control {
+    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
+  }
+
+  .css-krgdfr-control {
+    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
+  }
+
   // select styles
   .css-2b097c-container,
   .css-14jk2my-container {
@@ -103,6 +112,7 @@ const FormContainer = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 2.7;
+    color: ${(props) => props.theme.SECONDARY_TEXT};
     background-color: transparent;
     border: 1px solid var(--main-text);
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -117,7 +127,7 @@ const FormContainer = styled.div`
     &:focus:not([disabled]) {
       background: #6d7a8d;
       outline: none;
-      color: var(--secondary-background);
+      color: ${(props) => props.theme.SECONDARY_BACKGROUND};
       border: 1px solid #6d7a8d;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     }
