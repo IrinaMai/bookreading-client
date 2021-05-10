@@ -18,8 +18,8 @@ const StatisticsStyled = styled.div`
         vertical-align: middle;
         width: 33%;
         height: 1px;
-        background: #e0e5eb;
-        border: solid var(--secondary-background);
+        background: ${(props) => props.theme.DECOR_COLOR};
+        border: solid ${(props) => props.theme.SECONDARY_BACKGROUND};
         border-width: 0 10px;
       }
       &:before {
@@ -37,8 +37,8 @@ const StatisticsStyled = styled.div`
         vertical-align: middle;
         width: 31%;
         height: 1px;
-        background: #e0e5eb;
-        border: solid var(--secondary-background);
+        background: ${(props) => props.theme.DECOR_COLOR};
+        border: solid ${(props) => props.theme.SECONDARY_BACKGROUND};
         border-width: 0 8px;
       }
       &:after {

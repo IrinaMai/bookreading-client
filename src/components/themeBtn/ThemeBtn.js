@@ -14,12 +14,12 @@ const ThemeBtn = () => {
       {theme.mode === 'light' ? (
         <>
           <input className='themeInput' id='dark' name='dark' type='checkbox' onChange={() => dispatch(switchTheme(darkTheme))}></input>
-          <label for='dark' className='themeBtn'><MoonIcon/></label>
+          <label htmlFor='dark' className='themeBtn'><MoonIcon/></label>
         </>
       ) : (
         <>
           <input className='themeInput' id='light' type='checkbox' onChange={() => dispatch(switchTheme(lightTheme))}></input>
-          <label for='light' className='themeBtn'><SunIcon/></label>
+          <label htmlFor='light' className='themeBtn'><SunIcon/></label>
         </>
       )}
     </ThemeBtnStyles>
