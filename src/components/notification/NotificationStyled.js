@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 const NotificationStyled = styled.div`
-    position: relative;
+    /* position: relative; */
 
     .notification {
         display: flex;
         /* justify-content: center; */
         align-items: center;
-        position: absolute;
+        position: fixed;
         z-index: 1000;
+        top: 25%;
         left: 50%;
         transform: translateX(-50%);
         width: 280px;

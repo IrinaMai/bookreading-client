@@ -27,17 +27,13 @@ import TimerContainer from '../../components/timer/TimerContainer'
 import Modal from '../../components/modal/Modal'
 import WellDone from '../../components/wellDone/WellDone'
 import FinishModal from '../../components/finishModal/FinishModal'
-import notifSelectors from '../../redux/selectors/notifSelectors'
-import errorSelector from '../../redux/selectors/errorSelector'
-import Notification from '../../components/notification/Notification'
 
 const TrainingPage = () => {
   const booksList = useSelector(getBooksList)
   const activeTrainingID = useSelector(getActiveTrainingID)
   const activeTraining = useSelector(getActiveTraining)
   const userActiveTraining = useSelector(authSelectors.getUserActiveTraining)
-  const notification = useSelector(notifSelectors.getNotifState)
-	const serverError = useSelector(errorSelector.getError)
+
   const onlyWidth = useWindowWidth()
   const location = useLocation()
   const dispatch = useDispatch()
@@ -70,7 +66,6 @@ const TrainingPage = () => {
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <ToGoal />
         )}
-
         {onlyWidth >= 768 && onlyWidth < 1280 && <ToGoal />}
 
         {onlyWidth < 768 && location.pathname === '/training/books' && (
@@ -147,7 +142,6 @@ const TrainingPage = () => {
           <FinishModal />
         </Modal>
       )}
-     	<Notification notification={notification} error={serverError}/>
     </div>
   )
 }

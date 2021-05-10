@@ -6,6 +6,9 @@ import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
 import getModalState from '../redux/selectors/modalSelector'
+import Notification from './notification/Notification'
+import notifSelectors from '../redux/selectors/notifSelectors'
+import errorSelector from '../redux/selectors/errorSelector'
 
 function App() {
   function useQuery() {
@@ -27,6 +30,8 @@ function App() {
   // }
   const dispatch = useDispatch()
   const history = useHistory();  
+  const notification = useSelector(notifSelectors.getNotifState)
+  const serverError = useSelector(errorSelector.getError)
 
   // dispatch(authOperations.registerOperation(user));
   // dispatch(authOperations.loginOperation(user))
@@ -44,11 +49,13 @@ function App() {
     // .catch(error => {
     //   history.push('/login');
     // });
+    // eslint-disable-next-line
   }, []);
 
   return (
     <>
       <Header />
+      <Notification notification={notification} error={serverError} />
       <Main />
     </>
   )

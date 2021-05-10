@@ -16,6 +16,7 @@ import MainStyled from './MainStyled';
 const Main = () => {
   const isAuth = useSelector(authSelectors.isAuth);
   const showModal = useSelector(getModalContent);
+
   return (
     <MainStyled>
       <Suspense fallback={<LoaderSpinner />}>
