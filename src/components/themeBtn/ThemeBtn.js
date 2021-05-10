@@ -12,9 +12,15 @@ const ThemeBtn = () => {
   return (
     <ThemeBtnStyles>
       {theme.mode === 'light' ? (
-        <button className='themeBtn' onClick={() => dispatch(switchTheme(darkTheme))}><MoonIcon/></button>
+        <>
+          <input className='themeInput' id='dark' name='dark' type='checkbox' onChange={() => dispatch(switchTheme(darkTheme))}></input>
+          <label for='dark' className='themeBtn'><MoonIcon/></label>
+        </>
       ) : (
-        <button className='themeBtn' onClick={() => dispatch(switchTheme(lightTheme))}><SunIcon/></button>
+        <>
+          <input className='themeInput' id='light' type='checkbox' onChange={() => dispatch(switchTheme(lightTheme))}></input>
+          <label for='light' className='themeBtn'><SunIcon/></label>
+        </>
       )}
     </ThemeBtnStyles>
   )
