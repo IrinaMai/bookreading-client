@@ -8,6 +8,9 @@ import Header from './header/Header'
 import Main from './main/Main'
 import ThemeBtn from './themeBtn/ThemeBtn'
 import getModalState from '../redux/selectors/modalSelector'
+import Notification from './notification/Notification'
+import notifSelectors from '../redux/selectors/notifSelectors'
+import errorSelector from '../redux/selectors/errorSelector'
 
 function App() {
   function useQuery() {
@@ -30,6 +33,8 @@ function App() {
   // }
   const dispatch = useDispatch()
   const history = useHistory();  
+  const notification = useSelector(notifSelectors.getNotifState)
+  const serverError = useSelector(errorSelector.getError)
 
   // dispatch(authOperations.registerOperation(user));
   // dispatch(authOperations.loginOperation(user))
@@ -47,6 +52,7 @@ function App() {
     // .catch(error => {
     //   history.push('/login');
     // });
+    // eslint-disable-next-line
   }, []);
 
   const GlobalStyle = createGlobalStyle`
@@ -63,6 +69,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle/>
       <Header />
+      <Notification notification={notification} error={serverError} />
       <Main />
     </ThemeProvider>
   )

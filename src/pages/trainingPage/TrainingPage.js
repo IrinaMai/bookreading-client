@@ -33,6 +33,7 @@ const TrainingPage = () => {
   const activeTrainingID = useSelector(getActiveTrainingID)
   const activeTraining = useSelector(getActiveTraining)
   const userActiveTraining = useSelector(authSelectors.getUserActiveTraining)
+
   const onlyWidth = useWindowWidth()
   const location = useLocation()
   const dispatch = useDispatch()
@@ -65,7 +66,6 @@ const TrainingPage = () => {
         {onlyWidth < 768 && location.pathname !== '/training/books' && (
           <ToGoal />
         )}
-
         {onlyWidth >= 768 && onlyWidth < 1280 && <ToGoal />}
 
         {onlyWidth < 768 && location.pathname === '/training/books' && (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import GoogleAuth from '../googleAuth/GoogleAuth';
 
@@ -7,10 +7,6 @@ import * as yup from 'yup';
 
 import authOperations from '../../redux/operations/authOperations';
 import LoginFormWrapper from './LoginFormStyled';
-import Notification from '../notification/Notification';
-import { useSelector } from 'react-redux';
-import notifSelectors from '../../redux/selectors/notifSelectors';
-import errorSelector from '../../redux/selectors/errorSelector';
 
 const LoginForm = () => {
 	const [visiblePassword, setVisiblePassword] = useState(false);
@@ -32,9 +28,6 @@ const LoginForm = () => {
 
 	const dispatch = useDispatch();
 
-	const notification = useSelector(notifSelectors.getNotifState)
-	const serverError = useSelector(errorSelector.getError)
-
 	const onHandleSubmit = async values => {
 		await dispatch(authOperations.loginOperation(values));
 	};	
@@ -54,7 +47,6 @@ const LoginForm = () => {
 				{({ values, isValid, isSubmitting }) => (
 					<Form>
 						<section className='form'>
-						<Notification notification={notification} error={serverError}/>
 							<label className='formLabel'>
 								<p className='formLabelText'>
 									Електронна адреса <span className='text'>*</span>
