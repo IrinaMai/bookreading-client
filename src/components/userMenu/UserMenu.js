@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useWindowWidth } from '@react-hook/window-size';
 import UserName from '../userName/UserName';
+import ThemeBtn from '../themeBtn/ThemeBtn'
 import UserMenuStyled from './UserMenuStyled';
 import mainRoutes from '../../routes/mainRoutes';
 import { useDispatch } from 'react-redux';
@@ -20,6 +21,7 @@ const UserMenu = () => {
   const onlyWidth = useWindowWidth();
   return (
     <UserMenuStyled>
+      <ThemeBtn/>
       <nav className="userMenu-nav">
         <ul className="userMenu-navlist list">
           {mainRoutes.map(

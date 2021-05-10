@@ -11,7 +11,7 @@ const UserNameStyled = styled.div`
     width: 33px;
     height: 33px;
     border-radius: 50%;
-    background-color: #f5f7fa;
+    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
     font-family: Montserrat;
     font-weight: 600;
     font-size: 14px;

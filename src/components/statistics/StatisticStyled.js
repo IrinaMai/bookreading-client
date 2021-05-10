@@ -7,7 +7,7 @@ const StatisticsStyled = styled.div`
     font-size: 12px;
     line-height: 2.17;
     text-transform: uppercase;
-    color: var(--main-text);
+    color: ${(props) => props.theme.MAIN_TEXT};
 
     @media (max-width: 767px) {
       text-align: center;
@@ -18,8 +18,8 @@ const StatisticsStyled = styled.div`
         vertical-align: middle;
         width: 33%;
         height: 1px;
-        background: #e0e5eb;
-        border: solid var(--secondary-background);
+        background: ${(props) => props.theme.DECOR_COLOR};
+        border: solid ${(props) => props.theme.SECONDARY_BACKGROUND};
         border-width: 0 10px;
       }
       &:before {
@@ -37,8 +37,8 @@ const StatisticsStyled = styled.div`
         vertical-align: middle;
         width: 31%;
         height: 1px;
-        background: #e0e5eb;
-        border: solid var(--secondary-background);
+        background: ${(props) => props.theme.DECOR_COLOR};
+        border: solid ${(props) => props.theme.SECONDARY_BACKGROUND};
         border-width: 0 8px;
       }
       &:after {
@@ -55,8 +55,8 @@ const StatisticsStyled = styled.div`
         vertical-align: middle;
         width: 33%;
         height: 1px;
-        background: #e0e5eb;
-        border: solid var(--secondary-background);
+        background: ${(props) => props.theme.DECOR_COLOR};
+        border: solid ${(props) => props.theme.SECONDARY_BACKGROUND};
         border-width: 0 10px;
       }
       &:before {
@@ -97,10 +97,10 @@ const StatisticsStyled = styled.div`
     font-size: 14px;
     line-height: 1.71;
     text-align: right;
-    color: var(--main-text);
+    color: ${(props) => props.theme.MAIN_TEXT};
   }
   .pagesText {
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
 
   // css transition styles

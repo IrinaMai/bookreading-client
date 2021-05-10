@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const HeaderStyled = styled.div`
   position: fixed;
   width: 100%;
-  background-color: var(--secondary-background);
+  background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   z-index: 1000;
   .container.header-container {
@@ -20,7 +20,7 @@ const HeaderStyled = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 1.35;
-    color: var(--main-text);
+    color: ${(props) => props.theme.MAIN_TEXT};
     ${props =>
       !props.isAuth &&
       `

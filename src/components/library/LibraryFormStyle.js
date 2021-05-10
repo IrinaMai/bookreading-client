@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-background-color: #F6F7FB;
+background-color: ${(props) => props.theme.MAIN_BACKGROUND};
 display: block;
 
 
@@ -32,7 +32,7 @@ color: #898F9F;
         padding: 2px 13px;
         width: 100%;
    
-        background: #F6F7FB;
+        background: ${(props) => props.theme.MAIN_BACKGROUND};
         border: 1px solid #A6ABB9;
         outline: none;
         
@@ -41,6 +41,11 @@ color: #898F9F;
         border: none;
         box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
         }
+    }
+
+    .bookInput:focus {
+        border: 1px solid #A6ABB9;
+        background: ${(props) => props.theme.MAIN_BACKGROUND};
     }
 
     
@@ -58,9 +63,9 @@ color: #898F9F;
         outline: none;
         cursor: pointer;
         
-        color: #000000;
-        background: #F6F7FB;
-        border: 1px solid #242A37;
+        color: ${(props) => props.theme.MAIN_TEXT};
+        background: ${(props) => props.theme.MAIN_BACKGROUND};
+        border: 1px solid ${(props) => props.theme.MAIN_TEXT};
         transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
                 

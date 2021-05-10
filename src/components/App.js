@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { useHistory, useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
+import ThemeBtn from './themeBtn/ThemeBtn'
 import getModalState from '../redux/selectors/modalSelector'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
   const googleToken = {
     token: query.get('token'),
   }
+  const theme = useSelector(state => state.theme.theme)
   const modal = useSelector(getModalState)
   // const user = {
   //   email: 'darthvader@deathstar.com',
@@ -46,11 +49,22 @@ function App() {
     // });
   }, []);
 
+  const GlobalStyle = createGlobalStyle`
+  html {
+    color: ${(props) => props.theme.MAIN_TEXT}
+  }
+  body {
+    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
+    font-family: "Montserrat", sans-serif;
+  }
+  `
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
       <Header />
       <Main />
-    </>
+    </ThemeProvider>
   )
 }
 

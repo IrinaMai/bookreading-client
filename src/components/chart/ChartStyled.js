@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 
 const ChartStyled = styled.div`
-  background-color: var(--secondary-background);
+  background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
   width: 270px;
   height: 290px;
   padding: 14px 22px;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
+  tspan {
+    color: ${(props) => props.theme.MAIN_TEXT};
+  }
 
   @media (max-width: 767px) {
     margin-left: auto;
@@ -21,7 +24,7 @@ const ChartStyled = styled.div`
     font-size: 12px;
     line-height: 3.17;
     text-transform: uppercase;
-    color: var(--main-text);
+    color: ${(props) => props.theme.MAIN_TEXT};
   }
   .pagesAverage-amount {
     width: 25px;
@@ -32,8 +35,8 @@ const ChartStyled = styled.div`
     line-height: 3.17;
     text-align: center;
     text-transform: uppercase;
-    color: var(--main-text);
-    background: #f5f7fa;
+    color: ${(props) => props.theme.MAIN_TEXT};
+    background: ${(props) => props.theme.MAIN_BACKGROUND};
   }
   ul.recharts-default-legend {
     display: flex;
@@ -48,9 +51,10 @@ const ChartStyled = styled.div`
   font-size: 12px;
   line-height: 3.17;
   text-transform: uppercase;
-  background: #F5F7FA;
+  background: ${(props) => props.theme.MAIN_BACKGROUND};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   }
+
   @media screen and (min-width: 768px) {
     width: 678px;
     height: 340px;

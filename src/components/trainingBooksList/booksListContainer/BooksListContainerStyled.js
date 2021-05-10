@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
 const BooksWrapper = styled.div`
-  border-top: 1px solid #e0e5eb;
-  border-bottom: 1px solid #e0e5eb;
+  border-top: 1px solid ${(props) => props.theme.DECOR_COLOR};
+  border-bottom: 1px solid ${(props) => props.theme.DECOR_COLOR};
   max-width: 886px;
   margin-bottom: 40px;
 
   .labelContainer {
-    border-bottom: 1px solid #e0e5eb;
+    border-bottom: 1px solid ${(props) => props.theme.DECOR_COLOR};
     padding-top: 5px;
   }
   .bookLabel {
     font-weight: 500;
     font-size: 14px;
     line-height: 2.71;
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
 
   .labelContainer .bookLabel:nth-of-type(1) {
