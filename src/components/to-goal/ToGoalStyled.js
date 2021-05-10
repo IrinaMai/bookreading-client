@@ -4,7 +4,7 @@ const ToGoalStyled = styled.div`
   display: block;
   justify-content: center;
   order: 2;
-  background: var(--secondary-background);
+  background: ${(props) => props.theme.SECONDARY_BACKGROUND};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   margin-bottom: 30px;
   @media (min-width: 1280px) {
@@ -19,7 +19,7 @@ const ToGoalStyled = styled.div`
   .bookTitleMore {
     height: 60px;
   
-    background: #b1b5c2;
+    background: ${(props) => props.theme.TITLE_BACKGROUND};
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
     color: #fff;
     padding-top: 15px;
@@ -68,7 +68,7 @@ const ToGoalStyled = styled.div`
   .booksCounterMore {
     width: 100px;
     height: 100px;
-    background: var(--main-background);
+    background: ${(props) => props.theme.MAIN_BACKGROUND};
     box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
     text-align: center;
   }
@@ -93,7 +93,7 @@ const ToGoalStyled = styled.div`
     line-height: 0.82;
     text-align: center;
 
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
   .counterLabelMore {
     width: 73px;
@@ -103,7 +103,7 @@ const ToGoalStyled = styled.div`
     font-size: 11px;
     line-height: 0.82;
     text-align: center;
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
   @media (min-width: 768px) and (max-width: 1279px) {
     height: 125px;

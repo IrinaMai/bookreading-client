@@ -9,7 +9,7 @@ const TimerStyled = styled.div`
     width: 100%;
     height: 60px;
     margin: auto;
-    background: var(--secondary-background);
+    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
     box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
   }
   .timer {

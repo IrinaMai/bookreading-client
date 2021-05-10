@@ -10,7 +10,7 @@ const UserMenuStyled = styled.div`
   }
   .userMenu-nav::after {
     content: '';
-    border-right: 1px solid #e0e5eb;
+    border-right: 1px solid ${(props) => props.theme.DECOR_COLOR};
     margin-right: 14px;
   }
   .userMenu-navlist {

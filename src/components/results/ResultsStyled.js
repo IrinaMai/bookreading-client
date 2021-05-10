@@ -4,7 +4,7 @@ const ResultsWrapper = styled.div`
   min-width: 270px;
   height: 340px;
   padding: 10px 17px;
-  background-color: var(--secondary-background);
+  background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
   @media (min-width: 768px) and (max-width: 1279px) {
@@ -56,16 +56,21 @@ const ResultsWrapper = styled.div`
 
   .formInputDate,
   .pagesInput {
+    color: ${(props) => props.theme.MAIN_TEXT};
+  }
+
+  .formInputDate,
+  .pagesInput {
     width: 100%;
     height: 42px;
     padding: 5px 13px;
     font-size: 14px;
     border: 1px solid #a6abb9;
-    background-color: var(--main-background);
+    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
     outline: none;
 
     &:focus {
-      background-color: var(--secondary-background);
+      background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
       box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
     }
   }
@@ -74,7 +79,7 @@ const ResultsWrapper = styled.div`
     font-weight: 500;
     font-size: 11px;
     line-height: 2.45;
-    color: var(--secondary-text);
+    color: ${(props) => props.theme.SECONDARY_TEXT};
   }
 
   .formButton {
@@ -92,8 +97,8 @@ const ResultsWrapper = styled.div`
     color: var(--secondary-background);
     outline: none;
     cursor: pointer;
-    background-color: var(--accent-color);
-    border: 1px solid var(--accent-color);
+    background-color: ${(props) => props.theme.ACCENT_COLOR};
+    border: 1px solid ${(props) => props.theme.ACCENT_COLOR};
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media (min-width: 768px) and (max-width: 1279px) {

@@ -56,7 +56,8 @@ function App() {
   body {
     background-color: ${(props) => props.theme.MAIN_BACKGROUND};
     font-family: "Montserrat", sans-serif;
-  }`
+  }
+  `
 
   return (
     <ThemeProvider theme={theme}>
