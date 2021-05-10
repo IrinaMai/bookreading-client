@@ -10,7 +10,7 @@ const BackButton = () => {
 
   const handelBack = () => {
     location.pathname === "/training/books" && history.goBack()
-    location.pathname === "/library" && history.push("/library/books")
+    location.pathname === "/library/books" && history.push("/library")
 
   }
   return (
