@@ -13,7 +13,7 @@ import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 import GoonButton from '../../components/goonButton/GoonButon'
 import LibraryWrapper from "./LibraryPageStyled"
-import { Link, Redirect  } from 'react-router-dom';
+import { Redirect  } from 'react-router-dom';
 
 
 
