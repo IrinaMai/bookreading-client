@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 import { getActiveTraining } from '../../redux/selectors/trainingSelectors';
 import ChartStyled from './ChartStyled';
 import getAveragePages from '../../utils/getAveragePages';
+import themeSelectors from '../../redux/selectors/themeSelectors';
 
 
 
 const Chart = () => {
+  const pagesTotalColor = useSelector(themeSelectors.getPagesTotalColor)
   const training = useSelector(getActiveTraining)  
   const onlyWidth = useWindowWidth();
   const start = DateTime.fromISO(training.startDate);
@@ -77,7 +79,7 @@ const Chart = () => {
         <Tooltip />
         <Legend align="right" verticalAlign="middle" iconSize={0} />
         <Line type="monotone" dataKey="pagesRead" name="Факт" stroke="#FF6B08" strokeWidth={2} activeDot={{ r: 8 }} dot={{ strokeWidth: 6 }} />
-        <Line type="monotone" dataKey="pagesTotal" name="План" stroke="#091E3F" strokeWidth={2} activeDot={{ r: 8 }} dot={{ strokeWidth: 6 }} />
+        <Line type="monotone" dataKey="pagesTotal" name="План" stroke={pagesTotalColor} strokeWidth={2} activeDot={{ r: 8 }} dot={{ strokeWidth: 6 }} />
       </LineChart>
     </ChartStyled>
   );
