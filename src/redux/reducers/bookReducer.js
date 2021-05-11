@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { postBookSuccess, patchBookSuccess, getCurrentBook } from '../actions/bookAction'
+import { postBookSuccess, patchBookSuccess } from '../actions/bookAction'
 import authActions from '../actions/authActions'
 import trainingActions from '../actions/trainingActions'
 

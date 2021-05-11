@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "./GoonButonStyled";
-import {Link} from "react-router-dom"
 
 const GoonButton = () => {
 

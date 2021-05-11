@@ -12,7 +12,8 @@ import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
 import { getModalContent } from '../../redux/selectors/modalSelector'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 import GoonButton from '../../components/goonButton/GoonButon'
-import  LibraryWrapper from "./LibraryPageStyled";
+import LibraryWrapper from "./LibraryPageStyled"
+import { Redirect  } from 'react-router-dom';
 
 
 
@@ -23,15 +24,16 @@ const LibraryPage = () => {
   const onlyWidth = useWindowWidth()
   const location = useLocation()
 
-  const handleClick = () => {
-    dispatch(modalActions.setModalContent('resume'))
-    dispatch(modalActions.toggleModal())
-  }
+
+  // const handleClick = () => {
+  //   dispatch(modalActions.setModalContent('resume'))
+  //   dispatch(modalActions.toggleModal())
+  // }
 
   useEffect(() => {
     if (!bookList.length) {
       dispatch(modalActions.setModalContent('libraryEmpty')) &&
-        dispatch(modalActions.toggleModal())
+      dispatch(modalActions.toggleModal())
     }
     return () => {
       dispatch(modalActions.clearModalContent())
@@ -41,28 +43,35 @@ const LibraryPage = () => {
 
   return (
     <LibraryWrapper>
-
-        {onlyWidth < 768 && location.pathname === '/library' && (
+      {onlyWidth < 768 && location.pathname === '/library/books' && (
           <>
           <BackButton />
-          <LibraryForm/>
-          </>
-        )}
-        {onlyWidth < 768 && !bookList.length && location.pathname === '/library' && showModal === 'libraryEmpty' &&(
+          <LibraryForm />
+          { !bookList.length && showModal === 'libraryEmpty' &&(
           <Modal>
             <LibraryEmpty />
           </Modal>
         )}
-    
+        </>
+      )}
+      
+      {onlyWidth < 768 && bookList.length ===0  && (<Redirect  to='/library/books' />) }
 
-        {onlyWidth < 768  &&  location.pathname === '/library/books' && bookList.length >0 &&(
-          <>
-          <BooksList/>
-          <GoonButton />
-          <AddButton/>
-          </>
-        )}
+      {onlyWidth < 768 && location.pathname === '/library' && bookList.length> 0 &&(
+         <>
+           <BooksList />
+            <GoonButton />
+            <AddButton />
+            </>
+      )}
 
+       
+
+
+
+
+      
+ 
 
 {onlyWidth >= 768 && location.pathname === '/library' &&
 <>
