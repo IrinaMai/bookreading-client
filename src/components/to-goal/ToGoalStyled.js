@@ -6,10 +6,7 @@ const ToGoalStyled = styled.div`
   order: 2;
   background: ${(props) => props.theme.SECONDARY_BACKGROUND};
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-  margin-bottom: 30px;
-  @media (min-width: 1280px) {
-    
-   }
+  margin-bottom: 30px; 
   .containerMore {
     height: 215px;
   }
