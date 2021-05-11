@@ -94,6 +94,12 @@ color: #898F9F;
         font-size: 8px;
     }
 
+@media (max-width: 767px) {
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media (min-width: 768px) {
     margin-top: 20px;
     margin-bottom: 40px;

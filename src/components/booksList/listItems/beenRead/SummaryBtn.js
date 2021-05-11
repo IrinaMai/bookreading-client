@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import modalActions from '../../../../redux/actions/modalActions'
-import { getModalContent } from '../../../../redux/selectors/modalSelector'
 
 
 
 const SummaryBtn = ({ id, setBookId }) => {
   const dispatch = useDispatch()
-  const showModal = useSelector(getModalContent)
 
 
   const handleClick = (e) => {

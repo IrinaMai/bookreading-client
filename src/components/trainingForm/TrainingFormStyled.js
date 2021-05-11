@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import themeReducer from '../../redux/reducers/themeReducer'
 
 const FormContainer = styled.div`
   @media (max-width: 767px) {
@@ -80,11 +79,14 @@ const FormContainer = styled.div`
   }
 
   .css-krgdfr-control,
-  .css-602z3o-control {
+  .css-602z3o-control,
+  .css-1qh2582-control {
     color: ${(props) => props.theme.MAIN_TEXT};
     background: ${(props) => props.theme.SECONDARY_BACKGROUND};
   }
-  
+  .css-1f43avz-a11yText-A11yText{
+    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
+  }
   .css-1uccc91-singleValue {
     color: ${(props) => props.theme.MAIN_TEXT};
   }
@@ -120,7 +122,7 @@ const FormContainer = styled.div`
     line-height: 2.7;
     color: ${(props) => props.theme.SECONDARY_TEXT};
     background-color: transparent;
-    border: 1px solid var(--main-text);
+    border: 1px solid ${(props) => props.theme.SECONDARY_TEXT};
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 

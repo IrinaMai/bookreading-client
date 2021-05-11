@@ -1,3 +1,5 @@
 const getNotifState = state => state.notification;
 
-export default {getNotifState};
+const notifSelectors = {getNotifState};
+
+export default notifSelectors;

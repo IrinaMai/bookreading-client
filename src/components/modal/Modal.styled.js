@@ -31,6 +31,7 @@ const ModalWindow = styled.div`
     min-width: 50px;
     min-height: 50px;
     box-shadow: 0px 22px 40px 0px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0px 0px 24px rgba(0, 0, 0, 0.25));
     padding: 15px;
     z-index: 12000;
 

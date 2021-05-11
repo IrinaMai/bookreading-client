@@ -5,7 +5,6 @@ import ResumeWrapper from './Resume.styled'
 import StarRating from '../rating/StarRating'
 import { patchBookAtDB } from '../../redux/operations/bookOperation'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
-import userEvent from '@testing-library/user-event'
 
 
 const initialValue = {
@@ -26,13 +25,12 @@ const Resume = ({bookId}) => {
       setBook({ ...book, review: currentBook.review })
       setRating(currentBook.rating)
     }
-
+    // eslint-disable-next-line
   }, [])
   
   const closeModal = () => {
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
-    document.body.style.overflow = 'visible'
   }
 
   

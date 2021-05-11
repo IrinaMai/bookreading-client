@@ -39,6 +39,7 @@ const TrainingBooksList = () => {
       tablet={onlyWidth > 767}
       desktop={onlyWidth > 1279}
       books={books.length > 3}
+      training={activeTrainingID}
     >
       {!books.length && (
         <TransitionGroup component="ul">

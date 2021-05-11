@@ -9,7 +9,6 @@ const WellDone = () => {
   const closeModal = () => {
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
-    document.body.style.overflow = 'visible'
   }
 
   return (
@@ -20,7 +19,7 @@ const WellDone = () => {
             Ти молодчина, <br />
             але потрібно швидше!
           </p>
-          <p className="wellDoneText">Наступного разу тобі все вдасться 🙂</p>
+          <p className="wellDoneText">Наступного разу тобі все вдасться &#x1F60A;</p>
         </div>
         <button className="mobileButton" type="button" onClick={closeModal}>
           Ok

@@ -22,7 +22,7 @@ const TimerContainer = () => {
       />
       <Timer
         title="До досягнення мети залишилось"
-        dateTime={DateTime.fromISO(endTime)}
+        dateTime={DateTime.fromISO(endTime).plus({ days: 1 })}
       />
     </TimerContainerSyled>
   )

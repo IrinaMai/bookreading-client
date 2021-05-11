@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import icon from '../../assets/images/registr/icon.svg';
 
 const RegistrSideBarWrapper = styled.section`
-	background-color: var(--secondary-background);
+	background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};;
 
 	@media screen and (max-width: 767px) {
 		padding: 50px 0px 58px 0px;
@@ -12,7 +12,7 @@ const RegistrSideBarWrapper = styled.section`
 	}
 
 	.loginSideBar {
-		background-color: var(--secondary-background);
+		background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};;
 		width: 270px;
 		margin: 0 auto;
 		text-align: center;
@@ -50,7 +50,7 @@ const RegistrSideBarWrapper = styled.section`
 			font-weight: 500;
 			font-size: 20px;
 			line-height: 1.9;
-			color: var(--main-text);
+			color: ${(props) => props.theme.MAIN_TEXT};
 		}
 
 		&-item {

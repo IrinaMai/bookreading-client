@@ -30,6 +30,15 @@ const HeaderStyled = styled.div`
     }
     `}
   }
+  .headerThemeBtnContainer{
+    height: 37px;
+    position: relative;
+  }
+  @media (min-width: 768px){
+    .header-logo {
+      width: 135px;
+    }
+  }
 `;
 
 export default HeaderStyled;

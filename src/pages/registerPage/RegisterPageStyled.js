@@ -43,7 +43,7 @@ const RegisterWrapper = styled.section`
 
 	.rightSideBar {
 		@media (min-width: 1280px) {
-			background-color: var(--secondary-background);
+			background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 			width: 100%;
 		}
 	}

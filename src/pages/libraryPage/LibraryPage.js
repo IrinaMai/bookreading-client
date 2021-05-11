@@ -25,10 +25,7 @@ const LibraryPage = () => {
   const location = useLocation()
 
 
-  // const handleClick = () => {
-  //   dispatch(modalActions.setModalContent('resume'))
-  //   dispatch(modalActions.toggleModal())
-  // }
+
 
   useEffect(() => {
     if (!bookList.length) {
@@ -39,20 +36,23 @@ const LibraryPage = () => {
       dispatch(modalActions.clearModalContent())
       dispatch(modalActions.offModal())
     }
+    // eslint-disable-next-line
   }, [bookList.length])
 
   return (
-    <LibraryWrapper>
+    <LibraryWrapper booklist={bookList.length}>
       {onlyWidth < 768 && location.pathname === '/library/books' && (
-          <>
-          <BackButton />
+        <div className="container">
+          <div className="bookList-form">
+          {bookList.length > 0 && <BackButton />}
           <LibraryForm />
           { !bookList.length && showModal === 'libraryEmpty' &&(
           <Modal>
             <LibraryEmpty />
           </Modal>
         )}
-        </>
+        </div>
+        </div>
       )}
       
       {onlyWidth < 768 && bookList.length ===0  && (<Redirect  to='/library/books' />) }

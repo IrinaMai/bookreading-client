@@ -57,7 +57,7 @@ const Results = () => {
       pages: '',
     },
     validationSchema,
-    onSubmit: values => {
+    onSubmit: async values => {
       const date = convertDate(values.date)
 
       const pagesPerDay =
@@ -69,21 +69,24 @@ const Results = () => {
         training.pagesTotal
       )
 
-      dispatch(addResultsOperation(date, values.pages))
+      await dispatch(addResultsOperation(date, values.pages))      
 
       if (!pagesPerDay && values.pages < averagePages) {
         dispatch(modalActions.setModalContent('wellDone'))
         dispatch(modalActions.toggleModal())
+        return
       }
 
-      if (!statistic?.length && values.pages < averagePages) {
+      if (!statistic?.length && values.pages < averagePages) {        
         dispatch(modalActions.setModalContent('wellDone'))
         dispatch(modalActions.toggleModal())
+        return
       }
 
       if (pagesPerDay < averagePages && values.pages > 0) {
         dispatch(modalActions.setModalContent('wellDone'))
         dispatch(modalActions.toggleModal())
+        return
       }
     },
   })
