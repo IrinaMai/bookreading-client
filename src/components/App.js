@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
@@ -10,7 +9,9 @@ import getModalState from '../redux/selectors/modalSelector'
 import Notification from './notification/Notification'
 import notifSelectors from '../redux/selectors/notifSelectors'
 import errorSelector from '../redux/selectors/errorSelector'
+import GlobalStyle from '../assets/styles/GlobalStyle'
 
+ 
 function App() {
   function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -41,18 +42,6 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  const GlobalStyle = createGlobalStyle`
-  html {
-    color: ${(props) => props.theme.MAIN_TEXT}
-  }
-  body {
-    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
-    font-family: "Montserrat", sans-serif;
-  }
-  .fa {
-    color: ${(props) => props.theme.MAIN_TEXT};
-  }
-  `
 
   return (
     <ThemeProvider theme={theme}>

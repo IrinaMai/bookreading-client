@@ -36,6 +36,7 @@ const LibraryPage = () => {
       dispatch(modalActions.clearModalContent())
       dispatch(modalActions.offModal())
     }
+    // eslint-disable-next-line
   }, [bookList.length])
 
   return (

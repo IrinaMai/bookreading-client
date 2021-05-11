@@ -1,3 +1,5 @@
 const getError = state => state.error;
 
-export default {getError};
+const errorSelector = {getError};
+
+export default errorSelector;

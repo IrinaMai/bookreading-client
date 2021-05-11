@@ -12,6 +12,7 @@ import themeSelectors from '../../redux/selectors/themeSelectors';
 
 const Chart = () => {
   const pagesTotalColor = useSelector(themeSelectors.getPagesTotalColor)
+  const mainTextColor = useSelector(themeSelectors.getMainTextColor)
   const training = useSelector(getActiveTraining)  
   const onlyWidth = useWindowWidth();
   const start = DateTime.fromISO(training.startDate);
@@ -73,7 +74,7 @@ const Chart = () => {
       >
         <CartesianGrid strokeDasharray="0" horizontal={false} stroke="#B1B5C2" />
         <XAxis dataKey="date" tickLine={false} tick={onlyWidth >= 768 && <></>}>
-          <Label value="ЧАС" offset={0} position="insideBottomRight" />
+          <Label value="ЧАС" offset={0} position="insideBottomRight" fill={mainTextColor}/>
         </XAxis>
         <YAxis tickLine={false} tick={false} />
         <Tooltip />

@@ -69,9 +69,7 @@ const Results = () => {
         training.pagesTotal
       )
 
-      await dispatch(addResultsOperation(date, values.pages))
-      console.log(`training`, training)
-      console.log(`averagePages`, averagePages)
+      await dispatch(addResultsOperation(date, values.pages))      
 
       if (!pagesPerDay && values.pages < averagePages) {
         dispatch(modalActions.setModalContent('wellDone'))

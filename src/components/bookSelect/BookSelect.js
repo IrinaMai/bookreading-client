@@ -7,6 +7,7 @@ import { getAllBooks } from '../../redux/selectors/bookSelectors'
 
 const BookSelect = ({ onChange, value, selectRef, onBlur }) => {
   const titleBackground = useSelector(themeSelectors.getTitleBackground)
+  const secondaryBgColor = useSelector(themeSelectors.getSecondaryBackground)
   const books = useSelector(getAllBooks) // all books from store
   const booksList = useSelector(getBooksList)
 
@@ -38,7 +39,7 @@ const BookSelect = ({ onChange, value, selectRef, onBlur }) => {
       ...provided,
       fontSize: '14px',
     }),
-    menu: provided => ({ ...provided, zIndex: 9999, padding: '5px' }),
+    menu: provided => ({ ...provided, zIndex: 9999, padding: '5px', backgroundColor: secondaryBgColor }),
     menuPortal: base => ({ ...base, zIndex: 9999 }),
   }
 

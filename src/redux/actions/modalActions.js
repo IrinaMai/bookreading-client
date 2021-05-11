@@ -6,4 +6,6 @@ const offModal = createAction('modal/offModal')
 const setModalContent = createAction('modal/setContent')
 const clearModalContent = createAction('modal/clearContent')
 
-export default { toggleModal, onModal, offModal, setModalContent, clearModalContent }
+const modalActions = { toggleModal, onModal, offModal, setModalContent, clearModalContent }
+
+export default modalActions;

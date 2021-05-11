@@ -9,6 +9,7 @@ const useTime = (refreshCycle = 1000) => {
   useEffect(() => {
     const intervalId = setInterval(() => setNow(getTime()), refreshCycle)
     return () => clearInterval(intervalId)
+    // eslint-disable-next-line
   }, [refreshCycle, setInterval, clearInterval, setNow, getTime])
 
   return now
