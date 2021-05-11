@@ -43,19 +43,21 @@ const RegisterWrapper = styled.section`
 
 	.rightSideBar {
 		@media (min-width: 1280px) {
+			padding-top: 130px;
 			background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 			width: 100%;
 		}
 	}
 	.registrSideBar {
 		@media (min-width: 1280px) {
-			position: absolute;
-			top: 13%;
-			right: 10%;
+			margin: 0 auto;
+			/* position: absolute; */
+			/* top: 13%; */
+			/* right: 10%; */
 		}
-		@media (min-width: 1500px) {
-			top: 13%;
-			right: 20%;
+		@media (min-width: 1700px) {
+			/* top: 13%; */
+			/* right: 20%; */
 		}
 	}
 `;

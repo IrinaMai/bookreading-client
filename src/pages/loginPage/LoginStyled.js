@@ -50,13 +50,15 @@ const LoginWrapper = styled.section`
 	.loginSideBar {
 		background-color: transparent;
 		@media (min-width: 1280px) {
-			position: absolute;
-			top: 30%;
-			right: 10%;
+		padding-top: 130px;
+			/* position: absolute; */
+			/* top: 30%;
+			right: 10%; */
 		}
 		@media (min-width: 1500px) {
-			top: 30%;
-			right: 20%;
+			margin: 0 auto;
+			/* top: 30%;
+			right: 20%; */
 		}
 		.text{
 			color: ${(props) => props.theme.MAIN_TEXT};

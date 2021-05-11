@@ -8,7 +8,7 @@ const RegistrSideBarWrapper = styled.section`
 		padding: 50px 0px 58px 0px;
 	}
 	@media screen and (min-width: 768px) and (max-width: 1279px) {
-		padding: 40px 40px 30px 40px;
+		padding: 60px 40px 30px 40px;
 	}
 
 	.loginSideBar {
