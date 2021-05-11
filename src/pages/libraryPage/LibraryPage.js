@@ -43,7 +43,6 @@ const LibraryPage = () => {
     <LibraryWrapper booklist={bookList.length}>
       {onlyWidth < 768 && location.pathname === '/library/books' && (
         <div className="container">
-          <div className="bookList-form">
           {bookList.length > 0 && <BackButton />}
           <LibraryForm />
           { !bookList.length && showModal === 'libraryEmpty' &&(
@@ -51,7 +50,7 @@ const LibraryPage = () => {
             <LibraryEmpty />
           </Modal>
         )}
-        </div>
+
         </div>
       )}
       
@@ -65,13 +64,6 @@ const LibraryPage = () => {
             </>
       )}
 
-       
-
-
-
-
-      
- 
 
 {onlyWidth >= 768 && location.pathname === '/library' &&
 <>
