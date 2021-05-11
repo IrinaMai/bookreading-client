@@ -8,7 +8,7 @@ const RegistrationWrapper = styled.section`
 	@media screen and (min-width: 768px) {
 		min-width: 400px;
 		min-height: 420px;
-		background-color: var(--secondary-background);
+		background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 		padding: 40px 40px 25px 40px;
 	}
 
@@ -17,7 +17,7 @@ const RegistrationWrapper = styled.section`
 	}
 
 	.text {
-		color: var(--accent-color);
+		color: ${(props) => props.theme.ACCENT_COLOR};
 		font-size: 17px;
 	}
 
@@ -106,8 +106,10 @@ const RegistrationWrapper = styled.section`
 		padding-left: 10px;
 		width: 270px;
 		height: 42px;
-		border: none;
+		border: 1px solid ${(props) => props.theme.SECONDARY_TEXT};
 		box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+		background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
+		color: ${(props) => props.theme.MAIN_TEXT};
 
 		@media screen and (min-width: 768px) {
 			width: 320px;
@@ -119,8 +121,8 @@ const RegistrationWrapper = styled.section`
 
 	.formBtn {
 		padding: 0px 48px;
-		border: 1px solid var(--accent-color);
-		background-color: var(--accent-color);
+		border: 1px solid ${(props) => props.theme.ACCENT_COLOR};
+		background-color: ${(props) => props.theme.ACCENT_COLOR};
 		color: var(--secondary-background);
 		box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 
@@ -140,7 +142,7 @@ const RegistrationWrapper = styled.section`
 			cursor: pointer;
 			outline: none;
 
-			color: var(--accent-color);
+			color:  ${(props) => props.theme.ACCENT_COLOR};
 			border-color: #d15807;
 			background: #d15807;
 			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
@@ -169,8 +171,11 @@ const RegistrationWrapper = styled.section`
 		line-height: 2.92;
 	}
 	.formLinkText {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
-		color: var(--secondary-text);
+		color: ${(props) => props.theme.SECONDARY_TEXT};
 	}
 	.loginLink {
 		padding-left: 10px;
@@ -179,12 +184,12 @@ const RegistrationWrapper = styled.section`
 		color: var(--accent-color);
 
 		&:hover {
-			color: var(--secondary-background);
+			color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 		}
 
 		@media screen and (min-width: 768px) {
 			&:hover {
-				color: var(--secondary-text);
+				color: ${(props) => props.theme.SECONDARY_TEXT};
 			}
 		}
 	}

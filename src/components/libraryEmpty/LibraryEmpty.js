@@ -10,7 +10,6 @@ const LibraryEmpty = () => {
   const dispatch = useDispatch()
   const closeModal = () => {
     dispatch(modalActions.offModal())
-    document.body.style.overflow = 'visible'
   }
 
   return (

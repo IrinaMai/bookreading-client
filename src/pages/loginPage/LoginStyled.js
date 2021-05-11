@@ -43,11 +43,12 @@ const LoginWrapper = styled.section`
 
 	.rightSideBar {
 		@media (min-width: 1280px) {
-			background-color: var(--secondary-background);
+			background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 			width: 100%;
 		}
 	}
 	.loginSideBar {
+		background-color: transparent;
 		@media (min-width: 1280px) {
 			position: absolute;
 			top: 30%;
@@ -56,6 +57,12 @@ const LoginWrapper = styled.section`
 		@media (min-width: 1500px) {
 			top: 30%;
 			right: 20%;
+		}
+		.text{
+			color: ${(props) => props.theme.MAIN_TEXT};
+		}
+		.name{
+			border-color: ${(props) => props.theme.DECOR_COLOR};
 		}
 	}
 `;

@@ -14,14 +14,15 @@ margin-top: 10px;
     line-height: 38px;
     text-align: center;
     color: #707375;
-    background-color: #F5F7FA;
+    background-color: ${(props) => props.theme.MAIN_BACKGROUND};
     box-shadow: 0px 2px 2px rgba(9, 30, 63, 0.15);
     width: 150px;
     height: 40px;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .googleBtn:hover {
-    box-shadow: 0px 4px 4px 1px rgba(9, 30, 63, 0.15);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .googleIcon {

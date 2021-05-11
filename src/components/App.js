@@ -2,11 +2,10 @@ import { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import authOperations from '../redux/operations/authOperations'
 import Header from './header/Header'
 import Main from './main/Main'
-import ThemeBtn from './themeBtn/ThemeBtn'
 import getModalState from '../redux/selectors/modalSelector'
 import Notification from './notification/Notification'
 import notifSelectors from '../redux/selectors/notifSelectors'
@@ -22,36 +21,23 @@ function App() {
   }
   const theme = useSelector(state => state.theme.theme)
   const modal = useSelector(getModalState)
-  // const user = {
-  //   email: 'darthvader@deathstar.com',
-  //   password: 'PaDmE#123456',
-  // }
-  // const user = {
-  //   name: 'Obi Wan Kenobi',
-  //   email: 'obiwankenobi@jedi.com',
-  //   password: 'PaDmE#123456',
-  // }
+ 
   const dispatch = useDispatch()
-  const history = useHistory();  
   const notification = useSelector(notifSelectors.getNotifState)
   const serverError = useSelector(errorSelector.getError)
 
-  // dispatch(authOperations.registerOperation(user));
-  // dispatch(authOperations.loginOperation(user))
-  // dispatch(authOperations.logOutOperation());
+  
 
   useEffect(() => {
     googleToken?.token && dispatch(authOperations.loginOperation(googleToken))
+    // eslint-disable-next-line
   }, [googleToken])
   useEffect(() => {
     !modal && (document.body.style.overflow = 'visible')
   }, [modal])
 
   useEffect(() => {
-    dispatch(authOperations.refreshOperation())
-    // .catch(error => {
-    //   history.push('/login');
-    // });
+    dispatch(authOperations.refreshOperation())   
     // eslint-disable-next-line
   }, []);
 
@@ -62,6 +48,9 @@ function App() {
   body {
     background-color: ${(props) => props.theme.MAIN_BACKGROUND};
     font-family: "Montserrat", sans-serif;
+  }
+  .fa {
+    color: ${(props) => props.theme.MAIN_TEXT};
   }
   `
 

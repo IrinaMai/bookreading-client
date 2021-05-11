@@ -24,16 +24,12 @@ export const Timer = ({ title, dateTime }) => {
   const duration = end
     .diff(now, ['days', 'hours', 'minutes', 'seconds', 'milliseconds'])
     .toObject()
-  const sameTitle =
-    title === 'До закінчення року залишилось'
-      ? duration.days
-      : duration.days + 1
   return (
     <TimerStyled>
       <p className="title">{title}</p>
       <div className="timerContaienr">
         <div className="partContainer">
-          <p className="number">{dateTime.c !== null ? sameTitle : '0'}</p>
+          <p className="number">{dateTime.c !== null ? duration.days : '0'}</p>
           <span>ДН</span>
         </div>
         <b className="dots">:</b>

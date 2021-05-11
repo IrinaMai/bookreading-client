@@ -169,12 +169,12 @@ const RegistrationForm = () => {
 						</button>
 
 						<p className='formLink'>
-							<p className='formLinkText'>
+							<span className='formLinkText'>
 								Вже з нами?
 								<Link className='loginLink' to='/login'>
 									Увійти
 								</Link>
-							</p>
+							</span>
 						</p>
 					</Form>
 				)}

@@ -3,6 +3,7 @@ import BeenReadStyles from './BeenReadStyles'
 
 const BeenReadHeaderTytles = () => {
   return (
+    <ul>
     <BeenReadStyles>
         <div className='list-header'>
           <span className='header-name header-item'>Назва книги<span className='dots'>:</span></span>
@@ -12,6 +13,7 @@ const BeenReadHeaderTytles = () => {
           <span className='header-rating header-item'>Рейтинг<span className='ratingHidden'> книги</span><span className='dots'>:</span></span>
         </div>
     </BeenReadStyles>
+    </ul>
   )
 }
 

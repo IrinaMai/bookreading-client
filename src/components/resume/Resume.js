@@ -32,7 +32,6 @@ const Resume = ({bookId}) => {
   const closeModal = () => {
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
-    document.body.style.overflow = 'visible'
   }
 
   

@@ -8,7 +8,7 @@ const LoginFormWrapper = styled.section`
 	@media screen and (min-width: 768px) {
 		min-width: 400px;
 		min-height: 420px;
-		background-color: var(--secondary-background);
+		background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
 		padding: 40px 40px 25px 40px;
 	}
 
@@ -60,6 +60,7 @@ const LoginFormWrapper = styled.section`
 		width: 270px;
 
 		position: absolute;
+		bottom: -25px;
 	}
 
 	.formLabel {
@@ -82,8 +83,10 @@ const LoginFormWrapper = styled.section`
 		padding-left: 10px;
 		width: 270px;
 		height: 42px;
-		border: none;
+		border: 1px solid ${(props) => props.theme.SECONDARY_TEXT};
 		box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+		background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
+		color: ${(props) => props.theme.MAIN_TEXT};
 
 		@media screen and (min-width: 768px) {
 			width: 320px;

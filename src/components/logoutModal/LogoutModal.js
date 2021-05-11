@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
 import modalActions from '../../redux/actions/modalActions'
 import authOperations from '../../redux/operations/authOperations'
 import LogoutModalStyled from './LogoutModalStyled'
@@ -12,7 +11,6 @@ const LogoutModal = () => {
     dispatch(authOperations.logOutOperation())    
     dispatch(modalActions.offModal())
     dispatch(modalActions.clearModalContent())
-    document.body.style.overflow = 'visible'
   }
   const logOutCancel = () => {
     dispatch(modalActions.clearModalContent())

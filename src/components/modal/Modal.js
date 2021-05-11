@@ -35,11 +35,6 @@ const Modal = ({ children }) => {
     dispatch(modalActions.clearModalContent())
     document.body.style.overflow = 'visible'
   }
-  const closeModal = () => {
-    dispatch(modalActions.offModal())
-    dispatch(modalActions.clearModalContent())
-    document.body.style.overflow = 'visible'
-  }
 
   return (
     <>

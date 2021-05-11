@@ -3,6 +3,7 @@ import ListItemStyles from './ListItemStyles'
 
 const HeaderTitles = () => {
   return (
+    <ul>
     <ListItemStyles>
         <div className='list-header'>
           <span className='header-name header-item'>Назва книги<span className='dots'>:</span></span>
@@ -11,6 +12,7 @@ const HeaderTitles = () => {
           <span className='header-pages header-item'>Стор.<span className='dots'>:</span></span>
         </div>
     </ListItemStyles>
+    </ul>
   )
 }
 

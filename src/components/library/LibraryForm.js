@@ -4,10 +4,6 @@ import Wrapper from './LibraryFormStyle.js'
 import { addBookToDb } from '../../redux/operations/bookOperation'
 import BookAddSchema from './yup.js'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
-import notifSelectors from '../../redux/selectors/notifSelectors';
-import { useSelector } from 'react-redux';
-import Notification from '../notification/Notification';
-import errorSelector from '../../redux/selectors/errorSelector';
 
 
 const initialState = {
@@ -19,8 +15,6 @@ const initialState = {
 
 const LibraryForm = () => {
   const dispatch = useDispatch()
-  const notification = useSelector(notifSelectors.getNotifState)
-  const serverError = useSelector(errorSelector.getError)
 
   return (
     <Wrapper>
@@ -32,10 +26,9 @@ const LibraryForm = () => {
           actions.resetForm({ ...initialState })
         }}
       >
-        {({ errors, touched, values, handleChange, isValid }) => (
+        {({ values, handleChange, isValid }) => (
           <Form>
             <label htmlFor="title" className="bookLabel bookTitle">
-              {' '}
               Назва книги
               <Field
                 id="title"
@@ -44,8 +37,7 @@ const LibraryForm = () => {
                 onChange={handleChange}
                 placeholder="..."
                 className="bookInput"
-              />
-              <Notification notification={notification} error={serverError}/>
+              />              
               <ErrorMessage component="div" name="title" className="bookError"/>
             </label>
 

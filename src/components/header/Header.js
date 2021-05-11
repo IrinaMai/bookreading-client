@@ -5,6 +5,7 @@ import HeaderStyled from './HeaderStyled';
 import UserMenu from '../userMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import authSelectors from '../../redux/selectors/authSelectors';
+import ThemeBtn from '../themeBtn/ThemeBtn';
 
 const Header = () => {
   const isAuth = useSelector(authSelectors.isAuth);
@@ -19,6 +20,7 @@ const Header = () => {
             <UserMenu />
           </>
         )}
+        {!isAuth && <div className="headerThemeBtnContainer"><ThemeBtn/></div>}
       </div>
     </HeaderStyled>
   );

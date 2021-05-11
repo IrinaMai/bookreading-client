@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     border: none;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     background-color: transparent;
-    cursor: pointer;
+    cursor: ${({ training }) => (!training && 'pointer')};
     outline: none;
     
     & > svg {
