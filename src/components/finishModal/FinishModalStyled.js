@@ -16,7 +16,7 @@ const FinishModalStyled = styled.div`
     font-size: 16px;
     line-height: 1.37;
     text-align: center;
-    color: var(--main-text);
+    color: ${(props) => props.theme.MAIN_TEXT};
     margin-bottom: 20px;
   }
   .finishButton {

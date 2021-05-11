@@ -18,6 +18,7 @@ const InputDateContainer = styled.div`
     height: 42px;
     padding: 5px 47px;
     border: 1px solid #a6abb9;
+    color: ${(props) => props.theme.MAIN_TEXT};
     background: transparent;
     outline: none;
 
@@ -26,7 +27,8 @@ const InputDateContainer = styled.div`
     }
 
     &:focus {
-        background-color: var(--secondary-background);
+        background-color: ${(props) => props.theme.MAIN_BACKGROUND};
+        color: ${(props) => props.theme.MAIN_TEXT};
         box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
         }
   }
