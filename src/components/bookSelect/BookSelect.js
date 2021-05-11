@@ -2,9 +2,11 @@ import Select from 'react-select'
 import { xorWith, isEqual } from 'lodash'
 import { useSelector } from 'react-redux'
 import { getBooksList } from '../../redux/selectors/trainingSelectors'
+import themeSelectors from '../../redux/selectors/themeSelectors'
 import { getAllBooks } from '../../redux/selectors/bookSelectors'
 
 const BookSelect = ({ onChange, value, selectRef, onBlur }) => {
+  const titleBackground = useSelector(themeSelectors.getTitleBackground)
   const books = useSelector(getAllBooks) // all books from store
   const booksList = useSelector(getBooksList)
 
@@ -47,7 +49,7 @@ const BookSelect = ({ onChange, value, selectRef, onBlur }) => {
       colors: {
         ...theme.colors,
         primary25: '#ff6b08',
-        primary: '#B1B5C2',
+        primary: `${titleBackground}`,
       },
     }
   }

@@ -79,12 +79,18 @@ const FormContainer = styled.div`
     }
   }
 
-  .css-krgdfr-control {
+  .css-krgdfr-control,
+  .css-602z3o-control {
+    color: ${(props) => props.theme.MAIN_TEXT};
     background: ${(props) => props.theme.SECONDARY_BACKGROUND};
   }
+  
+  .css-1uccc91-singleValue {
+    color: ${(props) => props.theme.MAIN_TEXT};
+  }
 
-  .css-krgdfr-control {
-    background: ${(props) => props.theme.SECONDARY_BACKGROUND};
+  .css-1uccc91-singleValue:placeholder {
+    color: #242a37;
   }
 
   // select styles
@@ -127,7 +133,7 @@ const FormContainer = styled.div`
     &:focus:not([disabled]) {
       background: #6d7a8d;
       outline: none;
-      color: ${(props) => props.theme.SECONDARY_BACKGROUND};
+      color: #ffffff;
       border: 1px solid #6d7a8d;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     }
