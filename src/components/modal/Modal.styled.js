@@ -27,7 +27,8 @@ const ModalWindow = styled.div`
     top: 145px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: ${(props) => props.theme.SECONDARY_BACKGROUND};
+    background-color: ${props => props.theme.SECONDARY_BACKGROUND};
+    min-width: 50px;
     min-height: 50px;
     box-shadow: 0px 22px 40px 0px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -42,7 +43,7 @@ const ModalWindow = styled.div`
     }
     @media (min-width: 1280px) and (orientation: landscape) {
       top: 50%;
-      transform: translate(-50%, -50%)
+      transform: translate(-50%, -50%);
     }
   }
 `

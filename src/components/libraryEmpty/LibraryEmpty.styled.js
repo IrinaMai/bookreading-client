@@ -5,6 +5,12 @@ const LibraryEmptyWrapper = styled.div`
   min-height: 356px;
   padding-top: 18px;
   padding-bottom: 28px;
+  @media (min-width: 480px) {
+    min-width: 400px;
+    min-height: 234px;
+    padding-top: 42px;
+    padding-bottom: 35px;
+  }
   @media (min-width: 768px) {
     min-width: 510px;
     min-height: 234px;
@@ -56,9 +62,14 @@ const LibraryEmptyWrapper = styled.div`
     outline: none;
     border: none;
     color: var(--secondary-background);
-    background: #d15807;
+    background: var(--accent-color);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
+  .mobileButton:hover,
+  .mobileButton:focus {
+    background: #d15807;
+  }
+
   @media (min-width: 768px) {
     .libraryEmptyTitle {
       font-size: 19px;
