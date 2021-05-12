@@ -11,6 +11,49 @@ list-style-type: none;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 }
 
+.list-item button {
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  
+  & > svg {
+    fill: var(--light-text);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover > svg,
+  &:focus > svg {
+    fill: var(--accent-color);
+    transform: scale(1.1);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .list-item button {
+    top: 19px;
+    right: 18px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .list-item button {
+    top: -1px;
+    right: -27px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+.list-item button {
+  width: 33px;
+  height: 33px;
+  top: -7px;
+  right: -70px;
+}
+}
+
 .item {
   display: inline-block;
   font-family: Montserrat;
@@ -110,7 +153,7 @@ list-style-type: none;
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .list-item {
-    padding: 14px 26px 14px 20px;
+    padding: 14px 40px 14px 20px;
   }
 
   .header-name {
@@ -130,6 +173,10 @@ list-style-type: none;
     max-width: 285px;
   }
 
+  .item-pages {
+
+  }
+
   .item-author {
     width: 182px;
   }
@@ -139,6 +186,7 @@ list-style-type: none;
   }
 
   .description-container {
+    position: relative;
     width: 308px;
   }
 }
@@ -178,6 +226,7 @@ list-style-type: none;
   }
 
   .description-container {
+    position: relative;
     width: 492px;
   }
 }

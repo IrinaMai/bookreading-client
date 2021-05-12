@@ -17,7 +17,6 @@ const DeleteButton = ({ id }) => {
         type="button"
         data-id={id}
         onClick={onDeleteBook}
-        className="deleteButton"
         >
         <DeleteIcon className="deleteIcon" />
       </button>

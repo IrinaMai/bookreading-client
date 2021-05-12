@@ -14,6 +14,7 @@ const WillRead = (
   author,
   year,
     pages,
+    status
 
   }) => {
   const onlyWidth = useWindowWidth()
@@ -27,7 +28,7 @@ const WillRead = (
           <span className='item-author item'>{author}</span>
           <span className='item-year item'>{year}</span>
           <span className='item-pages item'>{pages}</span>
-          < DeleteButton id={_id }/>
+          {status === 'WillRead' && <DeleteButton id={_id }/>}
         </div>
       </div>
     </ListItemStyles>
