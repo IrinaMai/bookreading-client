@@ -94,7 +94,7 @@ const ResultsWrapper = styled.div`
     font-size: 14px;
     line-height: 1.71;
     text-align: center;
-    color: ${(props) => props.theme.MAIN_TEXT};
+    color: var(--secondary-background);
     outline: none;
     cursor: pointer;
     background-color: ${(props) => props.theme.ACCENT_COLOR};

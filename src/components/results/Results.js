@@ -21,7 +21,7 @@ const Results = () => {
   const dispatch = useDispatch()
   const startDate = useSelector(getActiveStartDate)
   const finishDate = useSelector(getActiveFinishDate)
-  const training = useSelector(getActiveTraining)
+  const {pagesTotal, pagesRead} = useSelector(getActiveTraining)
   const statistic = useSelector(getStatistics)
 
   const pagesRegExp = /^-?[1-9]\d*(\.\d+)?$/
@@ -66,26 +66,26 @@ const Results = () => {
       const averagePages = getAveragePages(
         startDate,
         finishDate,
-        training.pagesTotal
+        pagesTotal
       )
 
       await dispatch(addResultsOperation(date, values.pages))      
 
-      if (!pagesPerDay && values.pages < averagePages) {
+      if (!pagesPerDay && values.pages < averagePages && (values.pages + pagesRead < pagesTotal)) {
         dispatch(modalActions.setModalContent('wellDone'))
-        dispatch(modalActions.toggleModal())
+        dispatch(modalActions.onModal())
         return
       }
 
-      if (!statistic?.length && values.pages < averagePages) {        
+      if (!statistic?.length && values.pages < averagePages && values.pages + pagesRead < pagesTotal) {        
         dispatch(modalActions.setModalContent('wellDone'))
-        dispatch(modalActions.toggleModal())
+        dispatch(modalActions.onModal())
         return
       }
 
-      if (pagesPerDay < averagePages && values.pages > 0) {
+      if (pagesPerDay < averagePages && values.pages > 0 && values.pages + pagesRead < pagesTotal) {
         dispatch(modalActions.setModalContent('wellDone'))
-        dispatch(modalActions.toggleModal())
+        dispatch(modalActions.onModal())
         return
       }
     },

@@ -54,7 +54,7 @@ const TrainingPage = () => {
       dispatch(trainingActions.removeStartData())
       dispatch(authActions.toggleUserTraining())
       dispatch(modalActions.setModalContent('endOfTraining'))
-      dispatch(modalActions.toggleModal())
+      dispatch(modalActions.onModal())
     }
     // eslint-disable-next-line
   }, [activeTraining])

@@ -2,7 +2,7 @@ import axios from 'axios';
 import authActions from '../actions/authActions';
 import notifActions from '../actions/notifActions';
 
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://bookreading-team2.herokuapp.com/api';
 
 const token = {
   set(token) {
