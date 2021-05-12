@@ -8,7 +8,7 @@ const DeleteButton = ({ id }) => {
     const dispatch = useDispatch()
 
     const onDeleteBook = (e) => {
-        console.log('e.taget :>> ', e.currentTarget.dataset.id);
+   
         dispatch(patchBookAtDB(e.currentTarget.dataset.id, {isDeleted: true}) )
     }
 
