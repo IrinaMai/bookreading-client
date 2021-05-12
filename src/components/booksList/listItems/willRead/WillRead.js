@@ -3,6 +3,8 @@ import { useWindowWidth } from '@react-hook/window-size'
 import TrainingIcon from '../../../icons/TrainingIcon'
 import HeaderTitles from './HeaderTitles'
 import ListItemStyles from './ListItemStyles'
+import DeleteButton from '../../../deleteButton/DeleteButton';
+
 
 const WillRead = (
   {
@@ -11,7 +13,8 @@ const WillRead = (
   title,
   author,
   year,
-  pages,
+    pages,
+
   }) => {
   const onlyWidth = useWindowWidth()
   return (
@@ -24,6 +27,7 @@ const WillRead = (
           <span className='item-author item'>{author}</span>
           <span className='item-year item'>{year}</span>
           <span className='item-pages item'>{pages}</span>
+          < DeleteButton id={_id }/>
         </div>
       </div>
     </ListItemStyles>
