@@ -10,7 +10,7 @@ import Modal from '../../components/modal/Modal'
 import modalActions from '../../redux/actions/modalActions'
 import LibraryEmpty from '../../components/libraryEmpty/LibraryEmpty'
 import { getModalContent } from '../../redux/selectors/modalSelector'
-import { getAllBooks } from '../../redux/selectors/bookSelectors'
+import { getAllBooks , getUnfilteredBook} from '../../redux/selectors/bookSelectors'
 import GoonButton from '../../components/goonButton/GoonButon'
 import LibraryWrapper from "./LibraryPageStyled"
 import { Redirect  } from 'react-router-dom';
@@ -21,6 +21,7 @@ const LibraryPage = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(getModalContent)
   const bookList = useSelector(getAllBooks)
+  const unfilteredBok = useSelector(getUnfilteredBook)
   const onlyWidth = useWindowWidth()
   const location = useLocation()
 
@@ -43,9 +44,9 @@ const LibraryPage = () => {
     <LibraryWrapper booklist={bookList.length}>
       {onlyWidth < 768 && location.pathname === '/library/books' && (
         <div className="container">
-          {bookList.length > 0 && <BackButton />}
+          {unfilteredBok.length > 0 && <BackButton />}
           <LibraryForm />
-          { !bookList.length && showModal === 'libraryEmpty' &&(
+          { !unfilteredBok.length && showModal === 'libraryEmpty' &&(
           <Modal>
             <LibraryEmpty />
           </Modal>
