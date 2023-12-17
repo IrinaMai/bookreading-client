@@ -2,7 +2,7 @@ import axios from 'axios';
 import authActions from '../actions/authActions';
 import notifActions from '../actions/notifActions';
 
-axios.defaults.baseURL = 'https://bookreading-team2.herokuapp.com/api';
+axios.defaults.baseURL = 'https://terrific-diagnostic-poet.glitch.me';
 
 const token = {
   set(token) {
